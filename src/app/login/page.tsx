@@ -1,7 +1,11 @@
 "use client";
 
 import { useEffect } from "react";
+<<<<<<< HEAD
 import { IntroText, LoginButton, Logo, Policies, Title } from "./_component";
+=======
+import { LoginButton } from "./_component";
+>>>>>>> 9c4bfa5 (✨ Feat: 로그인 페이지 생성)
 
 export default function LoginPage(): JSX.Element {
   // 카카오 SDK 초기화
@@ -16,13 +20,18 @@ export default function LoginPage(): JSX.Element {
     function onLoadKakaoAPI() {
       if (!window.Kakao.isInitialized()) {
         window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_JS_API_KEY);
+<<<<<<< HEAD
         console.log("first Init!: ", window.Kakao.isInitialized());
+=======
+        console.log("first Init: ", window.Kakao.isInitialized());
+>>>>>>> 9c4bfa5 (✨ Feat: 로그인 페이지 생성)
       }
     }
     kakaoSDK.addEventListener("load", onLoadKakaoAPI);
   }, []);
 
   return (
+<<<<<<< HEAD
     <main className="flex flex-col items-center justify-center min-h-screen bg-primary text-white">
       <Logo />
       <Title />
@@ -30,5 +39,11 @@ export default function LoginPage(): JSX.Element {
       <LoginButton />
       <Policies />
     </main>
+=======
+    <div>
+      <h1>LoginPage</h1>
+      <LoginButton />
+    </div>
+>>>>>>> 9c4bfa5 (✨ Feat: 로그인 페이지 생성)
   );
 }
