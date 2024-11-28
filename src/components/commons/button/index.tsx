@@ -1,14 +1,14 @@
 import cn from "@/lib/tailwind-cn";
 import { cva, VariantProps } from "class-variance-authority";
-import { ComponentProps } from "react";
+import { ComponentProps, PropsWithChildren } from "react";
 
-type buttonVariant = "filled" | "text" | "elevated";
+type buttonVariant = "primary" | "secondary";
 type buttonSize = "sm" | "md" | "lg";
 
 const buttonVariants = cva(`inline-flex items-center justify-center rounded-lg font-semibold`, {
   variants: {
     variant: {
-      filled: "bg-primary text-white hover:bg-blue-300 active:bg-blue-500",
+      primary: "bg-primary text-white hover:bg-blue-300 active:bg-blue-500",
     },
     size: {
       sm: "px-4 py-[6px] text-xs",
@@ -24,13 +24,13 @@ const buttonVariants = cva(`inline-flex items-center justify-center rounded-lg f
   },
   compoundVariants: [
     {
-      variant: "filled",
+      variant: "primary",
       disabled: true,
       className: "bg-gray-200 text-opacity-[0.38] hover:bg-gray-200 active:bg-gray-200",
     },
   ],
   defaultVariants: {
-    variant: "filled",
+    variant: "primary",
     size: "md",
   },
 });
@@ -45,7 +45,15 @@ type buttonProps = Omit<ButtonVariantProps, "theme" | "size"> &
     size?: buttonSize;
   };
 
-export function Button({ variant, size, fullWidth, disabled, children, className, ...props }: buttonProps) {
+export default function Button({
+  variant,
+  size,
+  fullWidth,
+  disabled,
+  children,
+  className,
+  ...props
+}: PropsWithChildren<buttonProps>) {
   const buttonClassName = buttonVariants({ variant, size, fullWidth, disabled });
   return (
     <button className={cn(buttonClassName, className)} {...props}>
