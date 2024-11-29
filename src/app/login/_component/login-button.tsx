@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-const redirectUri = `${process.env.NEXT_PUBLIC_BACKEND_URL}/oauth2/authorization/kakao`;
+const redirectUri = `${process.env.NEXT_PUBLIC_SERVER_URL}/oauth2/authorization/kakao`;
 
 // 카카오 SDK 초기화 재확인
 export default function LoginButton() {
