@@ -11,16 +11,22 @@ function saveTokenToStorage(accessToken: string, refreshToken: string) {
 
 async function checkRegistration(accessToken: string) {
   try {
-    const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/profiles/registration/check`, {
+    const apiUrl = `api/profiles/registration/check`;
+    const response = await axios.get(apiUrl, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
     });
+
+    // if (response.data?.result?.regitster === undefined) {
+    //   throw new Error("register not found in response data");
+    // }
+
     console.log(response.data);
-    return response.data;
-  } catch (error) {
+    return response.data.result;
+  } catch (error: any) {
     console.log(error);
-    throw new Error("Registration check failed");
+    throw new Error(error.response?.data?.message || "Registration check failed");
   }
 }
 
@@ -30,19 +36,19 @@ export default function RegistrationForm() {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    const queryParams = new URLSearchParams(window.location.search);
-    const accessToken = queryParams.get("access");
-    const refreshToken = queryParams.get("refresh");
+    let queryParams = new URLSearchParams(window.location.search);
+    let accessToken = queryParams.get("access");
+    let refreshToken = queryParams.get("refresh");
 
     if (accessToken && refreshToken) {
       saveTokenToStorage(accessToken, refreshToken);
 
       checkRegistration(accessToken)
         .then((data) => {
-          if (data.exists) {
+          if (data.register) {
             router.push("/");
           } else {
-            router.push("/register");
+            router.replace("/registration-form");
           }
         })
         .catch(() => {
@@ -53,8 +59,6 @@ export default function RegistrationForm() {
       router.push("/login");
     }
   }, [router]);
-  //   }
-  // });
 
   return (
     <div>
