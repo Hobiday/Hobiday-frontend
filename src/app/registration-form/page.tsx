@@ -4,9 +4,9 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
-function saveTokenToStorage(accessToken: string, refreshToken: string) {
-  sessionStorage.setItem("accessToken", accessToken);
-  localStorage.setItem("refreshToken", refreshToken);
+function saveTokenToCookie(accessToken: string, refreshToken: string) {
+  document.cookie = `accessToken=${accessToken}; path=/; `;
+  document.cookie = `refreshToken=${refreshToken}; path=/; `;
 }
 
 async function checkRegistration(accessToken: string) {
@@ -40,12 +40,14 @@ export default function RegistrationForm() {
     let accessToken = queryParams.get("access");
     let refreshToken = queryParams.get("refresh");
 
+    console.log(accessToken, refreshToken);
+
     if (accessToken && refreshToken) {
-      saveTokenToStorage(accessToken, refreshToken);
+      saveTokenToCookie(accessToken, refreshToken);
 
       checkRegistration(accessToken)
         .then((data) => {
-          if (data.register) {
+          if (data.result.register == true) {
             router.push("/");
           } else {
             router.replace("/registration-form");
@@ -56,6 +58,7 @@ export default function RegistrationForm() {
           router.push("/login");
         });
     } else {
+      console.log("토큰 정보가 없습니다");
       router.push("/login");
     }
   }, [router]);

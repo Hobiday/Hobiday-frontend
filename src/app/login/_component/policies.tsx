@@ -3,6 +3,11 @@ import Link from "next/link";
 import React from "react";
 
 export default function Policies() {
+  function saveTokenToCookie(accessToken: string, refreshToken: string) {
+    document.cookie = `accessToken=${accessToken}; path=/;`;
+    document.cookie = `refreshToken=${refreshToken}; path=/; `;
+  }
+
   // 관리자 계정으로 로그인
   async function adminAccess(nickname: string) {
     try {
@@ -10,9 +15,9 @@ export default function Policies() {
       const response = await axios.get(apiUrl);
 
       const { accessToken, refreshToken } = response.data.result;
-
-      sessionStorage.setItem("accessToken", accessToken);
-      localStorage.setItem("refreshToken", refreshToken);
+      if (accessToken && refreshToken) {
+        saveTokenToCookie(accessToken, refreshToken);
+      }
 
       window.location.href = "/";
     } catch (error) {
@@ -21,7 +26,7 @@ export default function Policies() {
   }
 
   return (
-    <p className="mt-6 mb-16 text-[10px] font-light leading-6">
+    <p className="mt-6 mb-12 text-[10px] font-light leading-6">
       가입을 진행할 경우,{" "}
       <button onClick={() => adminAccess("account1")} className="font-normal underline">
         서비스 약관
