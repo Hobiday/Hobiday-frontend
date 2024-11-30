@@ -41,19 +41,11 @@ const nextConfig = {
       },
     },
   },
-<<<<<<< HEAD
-=======
-
->>>>>>> 7704a60 (✨ Feat: 카카오 로그인 기능 연결)
   async rewrites() {
     return [
       {
         source: "/api/:path*",
-<<<<<<< HEAD
         destination: `${process.env.NEXT_PUBLIC_SERVER_URL}/api/:path*`,
-=======
-        destination: `${process.env.NEXT_PUBLIC_SERVER_URL}/:path*`,
->>>>>>> 7704a60 (✨ Feat: 카카오 로그인 기능 연결)
       },
     ];
   },
