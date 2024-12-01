@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 function saveTokenToCookie(accessToken: string, refreshToken: string) {
+  // 현 단계에서 httpOnly, Secure 넣을 경우 쿠키에서 확인 불가능해 제외
   document.cookie = `accessToken=${accessToken}; path=/; `;
   document.cookie = `refreshToken=${refreshToken}; path=/; `;
 }
@@ -18,11 +19,6 @@ async function checkRegistration(accessToken: string) {
       },
     });
 
-    // if (response.data?.result?.regitster === undefined) {
-    //   throw new Error("register not found in response data");
-    // }
-
-    console.log(response.data);
     return response.data.result;
   } catch (error: any) {
     console.log(error);
@@ -39,8 +35,6 @@ export default function RegistrationForm() {
     let queryParams = new URLSearchParams(window.location.search);
     let accessToken = queryParams.get("access");
     let refreshToken = queryParams.get("refresh");
-
-    console.log(accessToken, refreshToken);
 
     if (accessToken && refreshToken) {
       saveTokenToCookie(accessToken, refreshToken);
