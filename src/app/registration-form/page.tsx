@@ -18,8 +18,7 @@ async function checkRegistration(accessToken: string) {
         Authorization: `Bearer ${accessToken}`,
       },
     });
-
-    return response.data.result;
+    return response.data.result.register;
   } catch (error: any) {
     console.log(error);
     throw new Error(error.response?.data?.message || "Registration check failed");
@@ -41,7 +40,7 @@ export default function RegistrationForm() {
 
       checkRegistration(accessToken)
         .then((data) => {
-          if (data.result.register == true) {
+          if (data) {
             router.push("/");
           } else {
             router.replace("/registration-form");
