@@ -2,7 +2,7 @@ import cn from "@/lib/tailwind-cn";
 import { cva, VariantProps } from "class-variance-authority";
 import { ComponentProps, PropsWithChildren } from "react";
 
-type buttonVariant = "primary" | "secondary";
+type buttonVariant = "primary";
 type buttonSize = "sm" | "md" | "lg";
 
 const buttonVariants = cva(`inline-flex items-center justify-center rounded-lg font-semibold`, {
