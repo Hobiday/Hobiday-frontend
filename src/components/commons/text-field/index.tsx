@@ -1,5 +1,5 @@
 import cn from "@/lib/tailwind-cn";
-import React, { InputHTMLAttributes, PropsWithChildren } from "react";
+import { forwardRef, InputHTMLAttributes, PropsWithChildren } from "react";
 
 export default function TextField({ children, className }: PropsWithChildren<{ className?: string }>) {
   return <div className={cn("flex flex-col gap-1", className)}>{children}</div>;
@@ -18,7 +18,7 @@ TextField.Label = ({
   return <label className={cn("text-xs font-semibold", labelStyle[status], className)}>{children}</label>;
 };
 
-TextField.Input = React.forwardRef<
+TextField.Input = forwardRef<
   HTMLInputElement,
   InputHTMLAttributes<HTMLInputElement> & { status?: "default" | "success" | "error" }
 >(({ className, status = "default", value = "", maxLength, ...props }, ref) => {
