@@ -96,7 +96,7 @@ export default function Example() {
 
       {/* Chip 테스트 */}
       <div className="space-y-4 mt-6">
-        <Chip label="Default Chip" />
+        <Chip label="해시태그" state="hashTag" isDelete={true} />
 
         <div className="grid grid-cols-2 gap-4">
           {categories.map((category) => (
@@ -106,7 +106,7 @@ export default function Example() {
               state={
                 selectedChip === category ? "selected" : preSelectedChips.includes(category) ? "preSelected" : "default"
               }
-              withClose={false}
+              isDelete={false}
               onClick={() => handleChipClick(category)}
             />
           ))}

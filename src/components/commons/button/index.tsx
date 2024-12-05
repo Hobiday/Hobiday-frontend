@@ -48,15 +48,8 @@ type ButtonProps = Omit<ButtonVariantProps, "variant" | "size"> &
     size?: ButtonSize;
   };
 
-export default function Button({
-  variant,
-  size,
-  fullWidth,
-  disabled,
-  children,
-  className,
-  ...props
-}: PropsWithChildren<ButtonProps>) {
+export default function Button({ className, ...props }: PropsWithChildren<ButtonProps>) {
+  const { variant, size, fullWidth, disabled, children } = props;
   const buttonClassName = buttonVariants({ variant, size, fullWidth, disabled });
   return (
     <button className={cn(buttonClassName, className)} {...props}>
@@ -64,3 +57,5 @@ export default function Button({
     </button>
   );
 }
+
+Button.displayName = "Button";
