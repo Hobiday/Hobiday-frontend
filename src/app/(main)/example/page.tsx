@@ -3,6 +3,7 @@
 import Button from "@/components/commons/button";
 import Chip from "@/components/commons/chip";
 import TextField from "@/components/commons/text-field";
+import NavigationBar from "@/components/navigation-bar";
 import { ChangeEvent, useState } from "react";
 
 export default function Example() {
@@ -110,6 +111,10 @@ export default function Example() {
             />
           ))}
         </div>
+      </div>
+
+      <div className="space-y-4 mt-6">
+        <NavigationBar />
       </div>
     </section>
   );

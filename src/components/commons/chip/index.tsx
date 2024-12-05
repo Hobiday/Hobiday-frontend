@@ -41,9 +41,15 @@ type ChipProps = Omit<ChipVariantProps, "variant"> &
     className?: string;
   };
 
-export default function Chip({ className, ...props }: ChipProps) {
-  const { label, state = "default", isDelete = false, onClose, onClick } = props;
-
+export default function Chip({
+  label,
+  state = "default",
+  isDelete = false,
+  onClose,
+  onClick,
+  className,
+  ...props
+}: ChipProps) {
   return (
     <button className={cn(chipVariants({ state }), className)} onClick={onClick} {...props}>
       <span>{label}</span>

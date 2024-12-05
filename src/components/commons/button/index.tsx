@@ -42,14 +42,22 @@ type ButtonVariantProps = VariantProps<typeof buttonVariants>;
 
 type HTMLButtonProps = Pick<ComponentProps<"button">, "onClick" | "disabled" | "type" | "className" | "children">;
 
-type ButtonProps = Omit<ButtonVariantProps, "variant" | "size"> &
+type ButtonProps = Omit<ButtonVariantProps, "variant" | "size" | "fullWidth"> &
   HTMLButtonProps & {
     variant: ButtonVariant;
     size?: ButtonSize;
+    fullWidth?: boolean;
   };
 
-export default function Button({ className, ...props }: PropsWithChildren<ButtonProps>) {
-  const { variant, size, fullWidth, disabled, children } = props;
+export default function Button({
+  variant,
+  size,
+  fullWidth,
+  disabled,
+  children,
+  className,
+  ...props
+}: PropsWithChildren<ButtonProps>) {
   const buttonClassName = buttonVariants({ variant, size, fullWidth, disabled });
   return (
     <button className={cn(buttonClassName, className)} {...props}>
