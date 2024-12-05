@@ -8,22 +8,27 @@ export default function TextField({ children, className }: PropsWithChildren<{ c
 TextField.Label = ({
   children,
   className,
+  htmlFor,
   status = "default",
-}: PropsWithChildren<{ className?: string; status?: "default" | "success" | "error" }>) => {
+}: PropsWithChildren<{ className?: string; htmlFor?: string; status?: "default" | "success" | "error" }>) => {
   const labelStyle = {
     default: "text-gray-700",
     success: "text-primary",
     error: "text-error",
   };
-  return <label className={cn("text-xs font-semibold", labelStyle[status], className)}>{children}</label>;
+  return (
+    <label htmlFor={htmlFor} className={cn("text-xs font-semibold", labelStyle[status], className)}>
+      {children}
+    </label>
+  );
 };
 
 TextField.Input = forwardRef<
   HTMLInputElement,
   InputHTMLAttributes<HTMLInputElement> & { status?: "default" | "success" | "error" }
->(({ className, status = "default", value = "", maxLength, ...props }, ref) => {
+>(({ className, status = "default", value = "", maxLength, id, ...props }, ref) => {
   const inputStyle = {
-    default: "border-gray-200 focus:ring-blue-500 focus:border-blue-500",
+    default: "border-gray-200 focus:ring-gray-500 focus:border-gray-500",
     success: "border-primary focus:ring-blue-500 focus:border-blue-500",
     error: "border-gray-800 text-error focus:ring-red-500 focus:border-red-500",
   };
@@ -32,6 +37,7 @@ TextField.Input = forwardRef<
     <div className="relative w-full">
       <input
         ref={ref}
+        id={id}
         maxLength={maxLength}
         className={cn("w-full border-b-2 px-1 py-2 font-semibold focus:outline-none", inputStyle[status], className)}
         {...props}

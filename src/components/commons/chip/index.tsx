@@ -48,16 +48,15 @@ export default function Chip({ className, ...props }: ChipProps) {
     <button className={cn(chipVariants({ state }), className)} onClick={onClick} {...props}>
       <span>{label}</span>
       {isDelete && (
-        <button
-          type="button"
+        <div
           onClick={(e) => {
             e.stopPropagation();
             onClose?.();
           }}
-          className="ml-[2px] flex items-center justify-center w-[18px] h-[18px] text-gray-500 hover:text-gray-700 active:text-gray-900"
+          className="ml-[2px] flex items-center justify-center w-[18px] h-[18px] text-gray-500 cursor-pointer hover:text-gray-700 active:text-gray-900"
         >
           ×
-        </button>
+        </div>
       )}
     </button>
   );

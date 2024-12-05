@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
 import TextField from "./index";
 
-type textFieldProps = {
+type TextFieldProps = {
   className?: string;
   label?: string;
   inputPlaceholder?: string;
@@ -11,7 +12,7 @@ type textFieldProps = {
   value?: string;
 };
 
-const meta: Meta<textFieldProps> = {
+const meta: Meta<TextFieldProps> = {
   title: "Components/TextField",
   component: TextField,
   parameters: {
@@ -47,7 +48,7 @@ const meta: Meta<textFieldProps> = {
     maxLength: {
       description: "Input의 최대 길이를 지정합니다.",
       control: "number",
-      defaultValue: 50,
+      defaultValue: 15,
     },
     value: {
       description: "Input의 값을 지정합니다.",
@@ -59,19 +60,21 @@ const meta: Meta<textFieldProps> = {
 
 export default meta;
 
-type Story = StoryObj<textFieldProps>;
+type Story = StoryObj<TextFieldProps>;
 
-export const Interactive: Story = {
+export const Default: Story = {
   args: {
     className: "",
-    label: "Label",
+    label: "Default Label",
     inputPlaceholder: "Enter text",
-    helperText: "Helper text goes here.",
+    helperText: "Default helper text.",
     status: "default",
     maxLength: 15,
     value: "",
   },
-  render: function renderInteractive(args) {
+  render: function renderDefault(args) {
+    const [value, setValue] = useState(args.value || "");
+
     return (
       <TextField className={args.className}>
         <TextField.Label status={args.status}>{args.label}</TextField.Label>
@@ -79,7 +82,66 @@ export const Interactive: Story = {
           status={args.status}
           placeholder={args.inputPlaceholder}
           maxLength={args.maxLength}
-          value={args.value}
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+        />
+        <TextField.HelperText status={args.status}>{args.helperText}</TextField.HelperText>
+      </TextField>
+    );
+  },
+};
+
+export const Success: Story = {
+  args: {
+    className: "",
+    label: "Success Label",
+    inputPlaceholder: "Enter success text",
+    helperText: "Success helper text.",
+    status: "success",
+    maxLength: 15,
+    value: "",
+  },
+  render: function renderSuccess(args) {
+    const [value, setValue] = useState(args.value || "");
+
+    return (
+      <TextField className={args.className}>
+        <TextField.Label status={args.status}>{args.label}</TextField.Label>
+        <TextField.Input
+          status={args.status}
+          placeholder={args.inputPlaceholder}
+          maxLength={args.maxLength}
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+        />
+        <TextField.HelperText status={args.status}>{args.helperText}</TextField.HelperText>
+      </TextField>
+    );
+  },
+};
+
+export const Error: Story = {
+  args: {
+    className: "",
+    label: "Error Label",
+    inputPlaceholder: "Enter error text",
+    helperText: "Error helper text.",
+    status: "error",
+    maxLength: 15,
+    value: "",
+  },
+  render: function renderError(args) {
+    const [value, setValue] = useState(args.value || "");
+
+    return (
+      <TextField className={args.className}>
+        <TextField.Label status={args.status}>{args.label}</TextField.Label>
+        <TextField.Input
+          status={args.status}
+          placeholder={args.inputPlaceholder}
+          maxLength={args.maxLength}
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
         />
         <TextField.HelperText status={args.status}>{args.helperText}</TextField.HelperText>
       </TextField>

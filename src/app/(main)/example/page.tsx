@@ -14,16 +14,15 @@ export default function Example() {
     const value = e.target.value.trim();
     setNickname(value);
 
-    // 닉네임 상태 로직(예시이며 '중복 체크'라는 닉네임 입력할때만 올바른 닉네임으로 설정됨)
-    if (value === "중복 체크") {
+    if (value === "사용 가능") {
       setStatus("success");
       setMessage("사용 가능한 닉네임입니다.");
-    } else if (value === "") {
-      setStatus("default");
-      setMessage("");
-    } else {
+    } else if (value === "중복") {
       setStatus("error");
       setMessage("이미 사용 중인 닉네임입니다.");
+    } else {
+      setStatus("default");
+      setMessage("");
     }
   };
 
