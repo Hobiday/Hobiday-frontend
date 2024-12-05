@@ -33,6 +33,8 @@
 
 .logo-with-shadow {
   animation: bounce 3s infinite;
+  width: 219px;
+  height: 219px;
 }
 
 .logo-container::after {
