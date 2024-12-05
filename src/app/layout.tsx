@@ -2,7 +2,7 @@ import ReactQueryProvider from "@/contexts/providers/query.provider";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import KakaoScript from "@/components/_providers/kakao-script";
+import KakaoScript from "@/contexts/providers/kakao-script";
 
 const pretendard = localFont({
   src: "../styles/fonts/PretendardVariable.woff2",
