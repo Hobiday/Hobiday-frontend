@@ -1,6 +1,5 @@
 import axios from "axios";
 import Link from "next/link";
-import React from "react";
 
 export default function Policies() {
   function saveTokenToCookie(accessToken: string, refreshToken: string) {
@@ -26,7 +25,7 @@ export default function Policies() {
   }
 
   return (
-    <p className="mt-6 mb-12 text-[10px] font-light leading-6">
+    <h2 className="mt-6 mb-12 text-[10px] font-light leading-6">
       가입을 진행할 경우,{" "}
       <button onClick={() => adminAccess("account1")} className="font-normal underline">
         서비스 약관
@@ -36,6 +35,6 @@ export default function Policies() {
         개인정보 처리방침
       </button>
       에 동의한 것으로 간주합니다.
-    </p>
+    </h2>
   );
 }

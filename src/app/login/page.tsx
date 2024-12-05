@@ -23,12 +23,12 @@ export default function LoginPage(): JSX.Element {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-primary text-white">
+    <main className="flex flex-col items-center justify-center min-h-screen bg-primary text-white">
       <Logo />
       <Title />
       <IntroText />
       <LoginButton />
       <Policies />
-    </div>
+    </main>
   );
 }

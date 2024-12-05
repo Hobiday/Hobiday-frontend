@@ -57,8 +57,8 @@ export default function RegistrationForm() {
   }, [router]);
 
   return (
-    <div>
+    <>
       <h1>Registration Form Page</h1>
-    </div>
+    </>
   );
 }

@@ -24,13 +24,13 @@
     }
   },
   "include": [
-    "src/@types/global.d.ts",
-    "src/@types/images.d.ts",
+    "@types/global.d.ts",
+    "@types/images.d.ts",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src",
+    "src"
   ],
   "exclude": ["node_modules"]
 }
