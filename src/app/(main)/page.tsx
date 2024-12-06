@@ -1,5 +1,5 @@
-import LoadingSpinner from "@/components/spinner";
 import HomeDefault from "@/assets/icons/home-default.svg";
+import LoadingSpinner from "@/components/commons/spinner";
 
 export default function HomePage() {
   return (
