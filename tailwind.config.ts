@@ -37,6 +37,7 @@ const config: Config = {
           800: "#202021",
           900: "#070708",
         },
+        kakao: "#FEE500",
       },
       fontFamily: {
         pretendard: ["var(--font-pretendard)"],
