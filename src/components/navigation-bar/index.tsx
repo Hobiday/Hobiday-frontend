@@ -1,5 +1,6 @@
 "use client";
 
+import cn from "@/lib/tailwind-cn";
 import { useState } from "react";
 import NavigationTab from "./navigation-tab";
 
@@ -34,11 +35,16 @@ const TABS = [
     pressedIcon: AccountPressed,
   },
 ];
-export default function NavigationBar() {
+export default function NavigationBar({ className }: { className?: string }) {
   const [activeTab, setActiveTab] = useState<string>("홈");
 
   return (
-    <div className="flex w-full h-20 justify-around items-center border-t border-gray-300">
+    <section
+      className={cn(
+        "flex w-full h-20 justify-around items-center gap-[10px] border border-transparent border-t-gray-300",
+        className,
+      )}
+    >
       {TABS.map((tab) => (
         <NavigationTab
           key={tab.name}
@@ -49,6 +55,6 @@ export default function NavigationBar() {
           onClick={() => setActiveTab(tab.name)}
         />
       ))}
-    </div>
+    </section>
   );
 }

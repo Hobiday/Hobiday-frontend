@@ -20,40 +20,40 @@ const meta: Meta<TextFieldProps> = {
   },
   tags: ["autodocs"],
   argTypes: {
-    className: {
-      description: "추가적인 CSS 클래스를 지정합니다.",
-      control: "text",
-    },
     label: {
-      description: "TextField의 Label 텍스트를 지정합니다.",
+      description: "TextField의 Label 텍스트를 지정",
       control: "text",
       defaultValue: "Label",
     },
     inputPlaceholder: {
-      description: "Input의 Placeholder 텍스트를 지정합니다.",
+      description: "Input의 Placeholder 텍스트를 지정",
       control: "text",
       defaultValue: "Enter text",
     },
     helperText: {
-      description: "HelperText의 내용을 지정합니다.",
+      description: "HelperText의 내용을 지정",
       control: "text",
       defaultValue: "Helper text goes here.",
     },
     status: {
-      description: "Label, Input, HelperText의 상태를 지정합니다.",
+      description: "Label, Input, HelperText의 상태를 지정",
       control: "select",
       options: ["default", "success", "error"],
       defaultValue: "default",
     },
     maxLength: {
-      description: "Input의 최대 길이를 지정합니다.",
+      description: "Input의 최대 길이를 지정",
       control: "number",
       defaultValue: 15,
     },
     value: {
-      description: "Input의 값을 지정합니다.",
+      description: "Input의 값을 지정",
       control: "text",
       defaultValue: "",
+    },
+    className: {
+      description: "추가적인 CSS 클래스를 지정",
+      control: "text",
     },
   },
 };

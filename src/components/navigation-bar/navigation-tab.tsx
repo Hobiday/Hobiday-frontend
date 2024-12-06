@@ -1,3 +1,5 @@
+import cn from "@/lib/tailwind-cn";
+
 export default function NavigationTab({
   name,
   defaultIcon,
@@ -15,7 +17,10 @@ export default function NavigationTab({
 
   return (
     <button
-      className={`flex flex-col items-center justify-center gap-2 ${isActive ? "text-primary" : "text-gray-400"}`}
+      className={cn(
+        "flex flex-col items-center justify-center w-[96px] h-20 gap-2",
+        `${isActive ? "text-primary" : "text-gray-400"}`,
+      )}
       onClick={onClick}
     >
       <div className="flex justify-center items-center w-6 h-6">
