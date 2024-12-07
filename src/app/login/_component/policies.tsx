@@ -1,5 +1,4 @@
 import axios from "axios";
-import Link from "next/link";
 
 export default function Policies() {
   function saveTokens(accessToken: string, refreshToken: string) {
