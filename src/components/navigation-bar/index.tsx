@@ -1,7 +1,6 @@
 "use client";
 
 import cn from "@/lib/tailwind-cn";
-import { useState } from "react";
 import NavigationTab from "./navigation-tab";
 
 import AccountDefault from "@/assets/icons/account-default.svg";
@@ -12,31 +11,42 @@ import WishlistDefault from "@/assets/icons/heart-default.svg";
 import WishlistPressed from "@/assets/icons/heart-pressed.svg";
 import HomeDefault from "@/assets/icons/home-default.svg";
 import HomePressed from "@/assets/icons/home-pressed.svg";
+import { usePathname } from "next/navigation";
+import { useMemo } from "react";
 
-const TABS = [
+const NAVIGATION_TABS = [
   {
     name: "홈",
+    path: "/",
     defaultIcon: HomeDefault,
     pressedIcon: HomePressed,
   },
   {
     name: "피드",
+    path: "/feed",
     defaultIcon: FeedDefault,
     pressedIcon: FeedPressed,
   },
   {
     name: "위시리스트",
+    path: "/wishlist",
     defaultIcon: WishlistDefault,
     pressedIcon: WishlistPressed,
   },
   {
     name: "마이페이지",
+    path: "/my",
     defaultIcon: AccountDefault,
     pressedIcon: AccountPressed,
   },
 ];
+
 export default function NavigationBar({ className }: { className?: string }) {
-  const [activeTab, setActiveTab] = useState<string>("홈");
+  const pathname = usePathname();
+
+  const activeTab = useMemo(() => {
+    return NAVIGATION_TABS.find((tab) => tab.path === pathname)?.name || "홈";
+  }, [pathname]);
 
   return (
     <section
@@ -45,14 +55,14 @@ export default function NavigationBar({ className }: { className?: string }) {
         className,
       )}
     >
-      {TABS.map((tab) => (
+      {NAVIGATION_TABS.map((tab) => (
         <NavigationTab
           key={tab.name}
           name={tab.name}
+          href={tab.path}
           defaultIcon={tab.defaultIcon}
           pressedIcon={tab.pressedIcon}
           isActive={activeTab === tab.name}
-          onClick={() => setActiveTab(tab.name)}
         />
       ))}
     </section>
