@@ -6,6 +6,19 @@ export default function HomePage() {
     <section>
       <h2 className="font-bold text-2xl underline">Homepage</h2>
       <LoadingSpinner />
+      <LoadingSpinner />
+      <LoadingSpinner />
+      <LoadingSpinner />
+      <LoadingSpinner />
+      <LoadingSpinner />
+      <LoadingSpinner />
+      <LoadingSpinner />
+      <LoadingSpinner />
+      <LoadingSpinner />
+      <LoadingSpinner />
+      <LoadingSpinner />
+      <LoadingSpinner />
+      <LoadingSpinner />
 
       <HomeDefault />
       <HomeDefault className="fill-blue-300" />

@@ -51,7 +51,7 @@ export default function NavigationBar({ className }: { className?: string }) {
   return (
     <section
       className={cn(
-        "flex w-full h-20 justify-around items-center gap-[10px] border border-transparent border-t-gray-400",
+        "flex w-full h-20 justify-around items-center gap-[10px] bg-white border border-transparent border-t-gray-400",
         className,
       )}
     >
