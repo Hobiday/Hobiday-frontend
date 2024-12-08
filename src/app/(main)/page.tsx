@@ -6,7 +6,6 @@ export default function HomePage() {
     <>
       <AdBanner />
       <Tabs />
-      <p>github actions test comment</p>
     </>
   );
 }
