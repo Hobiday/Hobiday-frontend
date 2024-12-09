@@ -35,9 +35,13 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.AUTO_ACTIONS }}
         with:
           source-directory: "output"
+
           destination-github-username: hyeonseok98
+
           destination-repository-name: Hobiday
-          target-branch: main
+
+          user-email: ${{ secrets.EMAIL }}
+
           commit-message: ${{ github.event.commits[0].message }}
           user-email: ${{ secrets.EMAIL }}
           keep-files: true # Ensure existing files are not removed
