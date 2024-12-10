@@ -1,3 +1,6 @@
+import Card from "@/components/card";
+import Chip from "@/components/commons/chip";
+import SectionLayout from "@/components/section-layout";
 import Tabs from "./tabs";
 
 const TAB_CATEGORY = [
@@ -12,8 +15,71 @@ const TAB_CATEGORY = [
 
 export default function PerformanceList() {
   return (
-    <div>
+    <>
       <Tabs categories={TAB_CATEGORY} gap={12} className="h-11 py-[6px]" />
-    </div>
+      <SectionLayout className="flex flex-col py-4 gap-3">
+        {mockData.map((data) => (
+          <Card key={data.id} className="w-full">
+            <Card.Image src={data.image.src} alt={data.image.alt} width={88} height={88} />
+            <Card.Content>
+              <Card.Category>
+                <Chip label={data.category.label} state="hashTag" />
+              </Card.Category>
+              <Card.Title>{data.title}</Card.Title>
+              <Card.Info iconSrc={data.info.iconSrc} info={data.info.text} />
+            </Card.Content>
+          </Card>
+        ))}
+      </SectionLayout>
+    </>
   );
 }
+
+// api로 대체하여 삭제예정
+const mockData = [
+  {
+    id: 1,
+    image: {
+      src: "/img/logo-image.png",
+      alt: "눈꽃",
+    },
+    category: {
+      label: "서커스/마술",
+    },
+    title: "매직쇼 더 라이브 [춘천]",
+    info: {
+      iconSrc: "/img/logo-image.png",
+      text: "춘천교육문화관 공연장",
+    },
+  },
+  {
+    id: 2,
+    image: {
+      src: "/img/logo-image.png",
+      alt: "눈꽃",
+    },
+    category: {
+      label: "서커스/마술",
+    },
+    title: "매직쇼 더 라이브 [춘천]",
+    info: {
+      iconSrc: "/img/logo-image.png",
+      text: "춘천교육문화관 공연장",
+    },
+  },
+  {
+    id: 3,
+    image: {
+      src: "/img/logo-image.png",
+      alt: "눈꽃",
+    },
+    category: {
+      label: "서커스/마술",
+    },
+    title: "매직쇼 더 라이브 [춘천]",
+    info: {
+      iconSrc: "/img/logo-image.png",
+      text: "춘천교육문화관 공연장",
+    },
+  },
+];
