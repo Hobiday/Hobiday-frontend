@@ -1,12 +1,11 @@
 import AdBanner from "./_component/banner";
-import Tabs from "./_component/tabs";
+import PerformanceList from "./_component/performance-list";
 
 export default function HomePage() {
   return (
     <>
       <AdBanner />
-      <Tabs />
-      <p>github actions test comment</p>
+      <PerformanceList />
     </>
   );
 }
