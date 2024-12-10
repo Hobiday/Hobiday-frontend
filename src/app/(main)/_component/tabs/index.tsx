@@ -1,15 +1,50 @@
-import Chip from "@/components/commons/chip";
-import SectionLayout from "@/components/section-layout";
+"use client";
 
-export default function Tabs() {
+import "swiper/css";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import Chip from "@/components/commons/chip";
+import cn from "@/lib/tailwind-cn";
+import { useState } from "react";
+
+type Category = {
+  id: number;
+  name: string;
+};
+
+type TabsProps = {
+  categories: Category[];
+  gap?: number;
+  onTabClick?: (category: Category) => void;
+  className?: string;
+};
+
+export default function Tabs({ categories, gap = 12, onTabClick, className = "" }: TabsProps) {
+  const [selectedTabId, setSelectedTabId] = useState<number>(categories.length > 0 ? categories[0].id : 0);
+
+  const handleChipClick = (category: Category) => {
+    setSelectedTabId(category.id);
+    onTabClick?.(category);
+  };
+
   return (
-    <SectionLayout className="flex h-11 gap-3 py-[6px]">
-      <Chip label="전체" />
-      <Chip label="연극" />
-      <Chip label="무용" />
-      <Chip label="대중무용" />
-      <Chip label="서커스/마술" />
-      <Chip label="복합" />
-    </SectionLayout>
+    <Swiper
+      slidesPerView="auto"
+      freeMode={true}
+      spaceBetween={gap}
+      slidesOffsetBefore={16}
+      slidesOffsetAfter={16}
+      className={cn("w-full cursor-pointer", className)}
+    >
+      {categories.map((category) => (
+        <SwiperSlide key={category.id} className="!w-auto">
+          <Chip
+            label={category.name}
+            state={selectedTabId === category.id ? "selected" : "default"}
+            onClick={() => handleChipClick(category)}
+          />
+        </SwiperSlide>
+      ))}
+    </Swiper>
   );
 }
