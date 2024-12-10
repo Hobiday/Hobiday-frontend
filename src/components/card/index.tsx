@@ -14,8 +14,8 @@ export default function Card({ children, className }: CardProps) {
 type CardImageProps = {
   src: string;
   alt: string;
-  width: number;
-  height: number;
+  width: string;
+  height: string;
   className?: string;
 };
 
@@ -23,7 +23,7 @@ function CardImage({ src, alt, width, height, className }: CardImageProps) {
   return (
     <div
       className={cn(
-        `flex-shrink-0 relative w-[${width}px] h-[${height}px] mr-4 bg-white border border-gray-200 rounded-lg overflow-hidden`,
+        `flex-shrink-0 relative ${width} ${height} mr-4 bg-white border border-gray-200 rounded-lg overflow-hidden`,
         className,
       )}
     >
@@ -38,7 +38,7 @@ type CardContentProps = {
 };
 
 function CardContent({ children, className }: CardContentProps) {
-  return <div className={cn("flex flex-1 flex-col justify-center", className)}>{children}</div>;
+  return <div className={cn("flex flex-col justify-center min-w-0", className)}>{children}</div>;
 }
 
 type CardCategoryProps = {
@@ -71,13 +71,13 @@ type CardInfoProps = {
 
 function CardInfo({ iconSrc, info, className }: CardInfoProps) {
   return (
-    <div className={cn("mt-1 flex items-center text-xs text-gray-500", className)}>
+    <div className={cn("flex items-center mt-1 text-xs text-gray-500", className)}>
       {iconSrc && (
         <div className="flex-shrink-0 w-4 h-4 mr-2">
           <Image src={iconSrc} alt="icon" width={16} height={16} className="w-full h-full object-contain" />
         </div>
       )}
-      <span className="whitespace-nowrap overflow-hidden text-ellipsis">{info}</span>
+      <span className="inline-block whitespace-nowrap overflow-hidden text-ellipsis">{info}</span>
     </div>
   );
 }

@@ -20,7 +20,7 @@ export default function PerformanceList() {
       <SectionLayout className="flex flex-col py-4 gap-3">
         {mockData.map((data) => (
           <Card key={data.id} className="w-full">
-            <Card.Image src={data.image.src} alt={data.image.alt} width={88} height={88} />
+            <Card.Image src={data.image.src} alt={data.image.alt} width="w-[88px]" height="h-[88px]" />
             <Card.Content>
               <Card.Category>
                 <Chip label={data.category.label} state="hashTag" />
