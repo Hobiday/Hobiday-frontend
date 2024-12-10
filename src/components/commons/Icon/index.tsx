@@ -4,17 +4,17 @@ import { ReactNode } from "react";
 
 type IconProps = {
   iconSrc?: string;
-  alt: string;
+  alt?: string;
   size?: number;
   onClick?: () => void;
   className?: string;
   children?: ReactNode;
 };
 
-export default function Icon({ iconSrc, alt = "icon", size = 24, onClick, className, children }: IconProps) {
+export default function Icon({ iconSrc, alt = "icon", size, onClick, className, children }: IconProps) {
   return (
     <div
-      className={(cn("flex justify-center items-center"), className)}
+      className={cn("flex justify-center items-center", className)}
       style={{ width: size, height: size }}
       onClick={onClick}
     >

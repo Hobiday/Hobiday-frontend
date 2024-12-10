@@ -1,3 +1,5 @@
+import { MainLayout } from "@/components/layout";
+
 export default function MyPage() {
-  return <div>MyPage</div>;
+  return <MainLayout headerProps={{ showBackButton: true }}>MyPage</MainLayout>;
 }
