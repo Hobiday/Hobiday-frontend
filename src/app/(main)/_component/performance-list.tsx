@@ -1,6 +1,6 @@
 import Card from "@/components/card";
 import Chip from "@/components/commons/chip";
-import SectionLayout from "@/components/section-layout";
+import SectionLayout from "@/components/layout/section-layout";
 import Tabs from "./tabs";
 
 const TAB_CATEGORY = [
