@@ -1,6 +1,5 @@
-import Card from "@/components/card";
-import Chip from "@/components/commons/chip";
-import SectionLayout from "@/components/layout/section-layout";
+"use client";
+
 import Tabs from "./tabs";
 
 const TAB_CATEGORY = [
@@ -14,72 +13,35 @@ const TAB_CATEGORY = [
 ];
 
 export default function PerformanceList() {
+  // const {
+  //   data: performances,
+  //   isPending,
+  //   isError,
+  // } = useAllPerformancesQuery({
+  //   rowStart: "0",
+  //   rowEnd: "10",
+  // });
+
+  // if (isPending) return <div>Loading...</div>;
+  // if (isError) return <div>데이터를 불러오는 중 문제가 발생했습니다.</div>;
+
   return (
     <>
       <Tabs categories={TAB_CATEGORY} gap={12} className="h-11 py-[6px]" />
-      <SectionLayout className="flex flex-col py-4 gap-3">
-        {PERF_MOCKUP_DATA.map((data) => (
-          <Card key={data.id} className="w-full">
-            <Card.Image src={data.image.src} alt={data.image.alt} width="w-[88px]" height="h-[88px]" />
+      {/* <SectionLayout className="flex flex-col py-4 gap-3">
+        {performances?.map((performance) => (
+          <Card key={performance.performId} className="w-full">
+            <Card.Image src={performance.poster} alt={performance.performName} width="w-[88px]" height="h-[88px]" />
             <Card.Content>
               <Card.Category>
-                <Chip label={data.category.label} state="hashTag" />
+                <Chip label={performance.genreName} state="hashTag" />
               </Card.Category>
-              <Card.Title>{data.title}</Card.Title>
-              <Card.Info iconSrc={data.info.iconSrc} info={data.info.text} />
+              <Card.Title>{performance.performName}</Card.Title>
+              <Card.Info iconSrc="/img/icon-location.png" info={performance.placeName} />
             </Card.Content>
           </Card>
         ))}
-      </SectionLayout>
+      </SectionLayout> */}
     </>
   );
 }
-
-// api로 대체하여 삭제예정
-const PERF_MOCKUP_DATA = [
-  {
-    id: 1,
-    image: {
-      src: "/img/logo-image.png",
-      alt: "눈꽃",
-    },
-    category: {
-      label: "서커스/마술",
-    },
-    title: "매직쇼 더 라이브 [춘천]",
-    info: {
-      iconSrc: "/img/logo-image.png",
-      text: "춘천교육문화관 공연장",
-    },
-  },
-  {
-    id: 2,
-    image: {
-      src: "/img/logo-image.png",
-      alt: "눈꽃",
-    },
-    category: {
-      label: "서커스/마술",
-    },
-    title: "매직쇼 더 라이브 [춘천]",
-    info: {
-      iconSrc: "/img/logo-image.png",
-      text: "춘천교육문화관 공연장",
-    },
-  },
-  {
-    id: 3,
-    image: {
-      src: "/img/logo-image.png",
-      alt: "눈꽃",
-    },
-    category: {
-      label: "서커스/마술",
-    },
-    title: "매직쇼 더 라이브 [춘천]",
-    info: {
-      iconSrc: "/img/logo-image.png",
-      text: "춘천교육문화관 공연장",
-    },
-  },
-];
