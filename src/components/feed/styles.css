@@ -1,0 +1,7 @@
+.swiper-pagination-bullet {
+  @apply w-[6px] h-[6px] bg-gray-200;
+}
+
+.swiper-pagination-bullet-active {
+  @apply w-[6px] h-[6px] bg-white;
+}
