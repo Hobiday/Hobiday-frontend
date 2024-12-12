@@ -2,21 +2,21 @@
 
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 
-type BottomSheetContextType = {
+type ModalContextType = {
   isOpen: boolean;
   open: () => void;
   close: () => void;
 };
 
-const BottomSheetContext = createContext<BottomSheetContextType | undefined>(undefined);
+const ModalContext = createContext<ModalContextType | undefined>(undefined);
 
-export function BottomSheetProvider({ children }: { children: ReactNode }) {
+export function ModalProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const open = () => setIsOpen(true);
   const close = () => setIsOpen(false);
 
-  // 바텀 시트 외부 영역 스크롤 방지
+  // 모달 외부 영역 스크롤 방지
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -29,13 +29,13 @@ export function BottomSheetProvider({ children }: { children: ReactNode }) {
     };
   }, [isOpen]);
 
-  return <BottomSheetContext.Provider value={{ isOpen, open, close }}>{children}</BottomSheetContext.Provider>;
+  return <ModalContext.Provider value={{ isOpen, open, close }}>{children}</ModalContext.Provider>;
 }
 
-export function useBottomSheet() {
-  const context = useContext(BottomSheetContext);
+export function useModal() {
+  const context = useContext(ModalContext);
   if (!context) {
-    throw new Error("Error! Use within a BottomSheetProvider");
+    throw new Error("useModal must be used within a ModalProvider");
   }
   return context;
 }

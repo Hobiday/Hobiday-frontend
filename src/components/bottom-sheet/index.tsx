@@ -1,9 +1,7 @@
-"use client";
-
 import { useBottomSheet } from "@/contexts/bottom-sheet.context";
 import cn from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
-import { ReactNode } from "react";
+import { PropsWithChildren, ReactNode } from "react";
 
 type BottomSheetProps = {
   children: ReactNode;
@@ -26,10 +24,10 @@ export default function BottomSheet({ children, height = "45%" }: BottomSheetPro
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
           />
-          {/* 바텀 시트 애니메이션 */}
+          {/* 바텀 시트 */}
           <motion.div
             className={cn(
-              "fixed bottom-0 max-w-[430px] w-full bg-white rounded-t-2xl shadow-lg mx-auto overflow-hidden z-bottomSheet",
+              "fixed bottom-0 max-w-[430px] w-full gap-4 bg-white rounded-t-2xl shadow-lg mx-auto overflow-hidden z-bottomSheet",
             )}
             style={{ height }}
             initial={{ y: "140%" }}
@@ -63,10 +61,9 @@ function BottomSheetTitle({ children }: { children: string }) {
   );
 }
 
-function BottomSheetContent({ children }: { children: ReactNode }) {
+function BottomSheetContents({ children }: PropsWithChildren) {
   return <section className="p-4">{children}</section>;
 }
 
-BottomSheet.Header = BottomSheetHeader;
 BottomSheet.Title = BottomSheetTitle;
-BottomSheet.Content = BottomSheetContent;
+BottomSheet.Contents = BottomSheetContents;
