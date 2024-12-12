@@ -1,3 +1,5 @@
+"use client";
+
 import { useRouter } from "next/navigation";
 import PlusCircle from "src/assets/icons/plus-circle.svg";
 import ArrowBottom from "src/assets/icons/arrow-bottom.svg";

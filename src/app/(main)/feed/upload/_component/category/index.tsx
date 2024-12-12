@@ -1,3 +1,5 @@
+"use client";
+
 import CommentText from "src/assets/icons/comment-text.svg";
 import ArrowForward from "src/assets/icons/arrow-forward.svg";
 import Chip from "@/components/commons/chip";

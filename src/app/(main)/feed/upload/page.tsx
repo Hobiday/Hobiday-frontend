@@ -1,6 +1,4 @@
-"use client";
-
-import { useState } from "react";
+import useTextStore from "@/stores/useTextStore";
 import ImageUploader from "./_component/image-uploader";
 import TextInput from "./_component/text-input";
 import AddInfo from "./_component/add-info";
@@ -16,14 +14,18 @@ const headerProps = {
 };
 
 export default function FeedUploadPage() {
-  const [text, setText] = useState("");
+  const { text } = useTextStore();
+
+  function handleFeedUpload() {
+    console.log("API 연결 예정정");
+  }
 
   return (
-    <MainLayout headerProps={headerProps}>
+    <MainLayout headerProps={{ ...headerProps, onRightTextClick: handleFeedUpload }}>
       <div className="bg-white">
         <SelectCategory />
         <ImageUploader />
-        <TextInput value={text} onChange={(newText) => setText(newText)} />
+        <TextInput />
         <HashtagInput />
         <AddInfo />
       </div>

@@ -1,3 +1,5 @@
+"use client";
+
 import Icon from "@/components/commons/Icon";
 import Image from "next/image";
 import { useState } from "react";
