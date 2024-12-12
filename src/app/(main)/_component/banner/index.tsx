@@ -1,4 +1,4 @@
-import SectionLayout from "@/components/section-layout";
+import SectionLayout from "@/components/layout/section-layout";
 import Image from "next/image";
 import Link from "next/link";
 

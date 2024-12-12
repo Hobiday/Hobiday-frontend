@@ -45,6 +45,8 @@ const config: Config = {
       zIndex: {
         header: "20",
         navbar: "10",
+        bottomSheet: "30",
+        modal: "40",
       },
     },
   },
