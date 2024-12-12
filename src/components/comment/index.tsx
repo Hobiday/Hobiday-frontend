@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 interface CommentCardProps {
@@ -36,10 +37,13 @@ export default function CommentCard({
     <div className="p-4 mb-4">
       {/* 유저 프로필 */}
       <div className="flex items-center mb-3">
-        <img
+        <Image
           src={profileImage || "https://via.placeholder.com/40"}
           alt={`${profileName} profile`}
+          width={28}
+          height={28}
           className="w-7 h-7 rounded-full mr-2"
+          unoptimized
         />
         <div className="font-semibold text-xs">{profileName}</div>
       </div>

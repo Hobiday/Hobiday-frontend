@@ -9,6 +9,7 @@ import "./styles.css";
 import { useEffect, useRef, useState } from "react";
 import CommentGradient from "../commons/Icon/comment-gradient";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 type FeedItemProps = {
   children: React.ReactNode;
@@ -29,11 +30,14 @@ FeedItem.Profile = function Profile({ profileImage, profileName, isFollowing }: 
   return (
     <div className="flex items-center justify-between mx-4 my-2">
       <div className="flex items-center">
-        <img
+        <Image
           // API 연결 후 profileImage로 변경
           src={profileImage || "https://via.placeholder.com/40"}
           alt={`${profileName} profile`}
+          width={40}
+          height={40}
           className="w-10 h-10 rounded-full"
+          unoptimized
         />
         <div className="font-semibold mx-2">{profileName}</div>
       </div>
@@ -125,11 +129,12 @@ FeedItem.HashTags = function HashTags({ hashTag }: HashTagsProps) {
 
 type ActionsProps = {
   feedId: number;
+  liked: boolean;
   likeCount: number;
   commentCount: number;
 };
 
-FeedItem.Actions = function Actions({ feedId, likeCount, commentCount }: ActionsProps) {
+FeedItem.Actions = function Actions({ feedId, likeCount, liked, commentCount }: ActionsProps) {
   const router = useRouter();
   return (
     <div className="flex items-center mx-4 pb-3">

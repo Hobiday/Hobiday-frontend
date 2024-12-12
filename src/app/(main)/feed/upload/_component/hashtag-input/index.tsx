@@ -1,3 +1,4 @@
+import Icon from "@/components/commons/Icon";
 import { ChangeEvent, KeyboardEvent, useState } from "react";
 import Hashtag from "src/assets/icons/hashtag.svg";
 
@@ -54,9 +55,11 @@ export default function HashtagInput() {
   return (
     <div className="border-b border-b-gray-100">
       <div className="p-3 flex items-center gap-x-2 h-12">
-        <Hashtag />
-        <h3 className="text-sm font-semibold">태그</h3>
-        <h4 className="text-sm font-semibold text-gray-500">(선택)</h4>
+        <Icon size={24}>
+          <Hashtag />
+        </Icon>
+        <span className="text-sm font-semibold">태그</span>
+        <span className="text-sm font-semibold text-gray-500">(선택)</span>
       </div>
       <textarea
         className="w-full p-3 border-none focus:outline-none text-xs placeholder-gray-500"

@@ -14,7 +14,7 @@ export default function TextInput({ value, onChange }: TextInputProps) {
         className="w-full h-28 text-xs px-4 border-none placeholder-gray-500 focus:outline-none"
       />
 
-      <h4 className="text-right text-gray-500 text-xs">{value.length} / 2200</h4>
+      <span className="text-right text-gray-500 text-xs">{value.length} / 2200</span>
     </div>
   );
 }
