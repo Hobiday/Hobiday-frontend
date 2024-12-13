@@ -6,6 +6,6 @@ export const useAllPerformancesQuery = (params: { rowStart: string; rowEnd: stri
   return useQuery({
     queryKey: performanceKeys.all,
     queryFn: () => fetchAllPerformances(params),
-    select: (data) => data.result,
+    select: (data) => data?.result || [],
   });
 };
