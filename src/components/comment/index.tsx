@@ -42,7 +42,7 @@ export default function CommentCard({
           alt={`${profileName} profile`}
           width={28}
           height={28}
-          className="w-7 h-7 rounded-full mr-2"
+          className="rounded-full mr-2"
           unoptimized
         />
         <div className="font-semibold text-xs">{profileName}</div>
@@ -50,7 +50,7 @@ export default function CommentCard({
 
       {/* 댓글 내용 */}
       <div className="text-xs relative mx-9">
-        <main
+        <section
           ref={contentRef}
           className={`overflow-hidden relative ${isExpanded ? "line-clamp-none" : "line-clamp-3"}`}
         >
@@ -63,7 +63,7 @@ export default function CommentCard({
             </button>
           )}
           {contents}
-        </main>
+        </section>
       </div>
 
       {/* 작성 시간 및 옵션 */}

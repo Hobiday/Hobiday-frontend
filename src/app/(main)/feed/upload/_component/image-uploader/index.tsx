@@ -37,11 +37,7 @@ export default function ImageUploader() {
       <div className="flex gap-3">
         {photos.map((photo, index) => (
           <div key={index} className="relative w-[72px] h-[72px]">
-            <Image
-              src={URL.createObjectURL(photo)}
-              alt={`Preview ${index + 1}`}
-              className="w-full h-full object-cover"
-            />
+            <Image src={URL.createObjectURL(photo)} alt={`Preview ${index + 1}`} fill className="object-cover" />
             <button
               onClick={() => handleRemovePhoto(index)}
               className="absolute top-1 right-1 text-black w-5 h-5 rounded-full flex items-center justify-center"
