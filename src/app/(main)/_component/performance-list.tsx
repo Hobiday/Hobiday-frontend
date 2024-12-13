@@ -1,5 +1,11 @@
 "use client";
 
+import Location from "@/assets/icons/location.svg";
+import Card from "@/components/card";
+import Chip from "@/components/commons/chip";
+import LoadingSpinner from "@/components/commons/spinner";
+import { SectionLayout } from "@/components/layout";
+import { useAllPerformancesQuery } from "@/hooks";
 import Tabs from "./tabs";
 
 const TAB_CATEGORY = [
@@ -13,35 +19,41 @@ const TAB_CATEGORY = [
 ];
 
 export default function PerformanceList() {
-  // const {
-  //   data: performances,
-  //   isPending,
-  //   isError,
-  // } = useAllPerformancesQuery({
-  //   rowStart: "0",
-  //   rowEnd: "10",
-  // });
+  const {
+    data: performances,
+    isPending,
+    isError,
+  } = useAllPerformancesQuery({
+    rowStart: "0",
+    rowEnd: "10",
+  });
 
-  // if (isPending) return <div>Loading...</div>;
-  // if (isError) return <div>데이터를 불러오는 중 문제가 발생했습니다.</div>;
+  if (isPending) {
+    return (
+      <div className="flex justify-center items-center h-[300px]">
+        <LoadingSpinner size={40} />
+      </div>
+    );
+  }
+  if (isError) return <div>데이터를 불러오는 중 문제가 발생했습니다.</div>;
 
   return (
     <>
       <Tabs categories={TAB_CATEGORY} gap={12} className="h-11 py-[6px]" />
-      {/* <SectionLayout className="flex flex-col py-4 gap-3">
+      <SectionLayout className="flex flex-col py-4 gap-3">
         {performances?.map((performance) => (
           <Card key={performance.performId} className="w-full">
-            <Card.Image src={performance.poster} alt={performance.performName} width="w-[88px]" height="h-[88px]" />
+            <Card.Image src={performance.poster} alt={performance.performName} width={"w-[88px]"} height="h-[88px]" />
             <Card.Content>
               <Card.Category>
                 <Chip label={performance.genreName} state="hashTag" />
               </Card.Category>
               <Card.Title>{performance.performName}</Card.Title>
-              <Card.Info iconSrc="/img/icon-location.png" info={performance.placeName} />
+              <Card.Info svgr={<Location />} info={performance.placeName} />
             </Card.Content>
           </Card>
         ))}
-      </SectionLayout> */}
+      </SectionLayout>
     </>
   );
 }

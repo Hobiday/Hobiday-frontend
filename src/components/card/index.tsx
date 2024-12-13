@@ -63,13 +63,17 @@ function CardTitle({ children, className }: CardTitleProps) {
   );
 }
 
-type CardInfoProps = {
-  iconSrc?: string;
+type BaseCardInfoProps = {
   info: string;
   className?: string;
 };
 
-function CardInfo({ iconSrc, info, className }: CardInfoProps) {
+// 이미지 형태 혹은 svgr 둘 중 한 가지만 props로 받을 수 있게 설정
+type CardInfoProps =
+  | (BaseCardInfoProps & { iconSrc: string; svgr?: never })
+  | (BaseCardInfoProps & { svgr: ReactNode; iconSrc?: never });
+
+function CardInfo({ iconSrc, svgr, info, className }: CardInfoProps) {
   return (
     <div className={cn("flex items-center mt-1 text-xs text-gray-500", className)}>
       {iconSrc && (
@@ -77,6 +81,7 @@ function CardInfo({ iconSrc, info, className }: CardInfoProps) {
           <Image src={iconSrc} alt="icon" width={16} height={16} className="w-full h-full object-contain" />
         </div>
       )}
+      {svgr && <div className="flex-shrink-0 w-4 h-4 mr-2">{svgr}</div>}
       <span className="inline-block whitespace-nowrap overflow-hidden text-ellipsis">{info}</span>
     </div>
   );
