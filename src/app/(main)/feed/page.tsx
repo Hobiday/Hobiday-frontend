@@ -2,7 +2,6 @@
 
 import Chip from "@/components/commons/chip";
 import FeedItem from "@/components/feed";
-import useFeedStore from "@/stores/useFeedStore";
 import { MainLayout } from "@/components/layout";
 
 import Pencil from "@/assets/icons/pencil.svg";
@@ -97,7 +96,12 @@ export default function FeedPage() {
               <FeedItem.Image feedFiles={feed.feedFiles} />
               <FeedItem.Content contents={feed.contents} />
               <FeedItem.HashTags hashTag={feed.hashTag} />
-              <FeedItem.Actions feedId={feed.feedId} likeCount={feed.likeCount} commentCount={feed.commentCount} />
+              <FeedItem.Actions
+                feedId={feed.feedId}
+                likeCount={feed.likeCount}
+                commentCount={feed.commentCount}
+                liked={feed.liked}
+              />
             </FeedItem>
           ))}
         </div>
