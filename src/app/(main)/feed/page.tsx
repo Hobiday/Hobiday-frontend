@@ -4,7 +4,6 @@ import Pencil from "@/assets/icons/pencil.svg";
 import Search from "@/assets/icons/search.svg";
 import FeedPageList from "@/components/feed/index";
 import { MainLayout } from "@/components/layout";
-import { useState } from "react";
 import TextLogo from "../../../../public/img/logo-text.svg";
 
 interface Feed {
@@ -22,8 +21,6 @@ interface Feed {
 }
 
 export default function FeedPage() {
-  const [filter, setFilter] = useState<"recommended" | "latest">("recommended");
-
   const headerProps = {
     title: "피드",
     leftIcons: [{ icon: <TextLogo />, path: "/" }],
@@ -33,9 +30,7 @@ export default function FeedPage() {
     ],
   };
 
-  // 추천순, 최신순 필터링 추가
-
-  const FEED_DATA: Feed[] = [
+  const feedData: Feed[] = [
     {
       feedId: 1,
       profileImage: "https://via.placeholder.com/40",
@@ -58,6 +53,7 @@ export default function FeedPage() {
       feedId: 2,
       profileImage: "https://via.placeholder.com/40",
       profileName: "김하비",
+
       time: "2024-12-06T21:42:31.279Z",
       feedFiles: [
         "https://fastly.picsum.photos/id/524/400/400.jpg?hmac=msawrWikHM9c5n3cItDml12lRmNkSrzXlRWyTnoIdig",
