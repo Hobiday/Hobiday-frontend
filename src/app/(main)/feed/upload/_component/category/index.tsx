@@ -8,11 +8,68 @@ import { useBottomSheet } from "@/contexts";
 import BottomSheet from "@/components/bottom-sheet";
 import Icon from "@/components/commons/Icon";
 
+interface CategoryListProps {
+  categories: string[];
+  tempCategory: string;
+  onCategoryChange: (category: string) => void;
+}
+
+function CategoryList({ categories, tempCategory, onCategoryChange }: CategoryListProps) {
+  return (
+    <ul className="space-y-4">
+      {categories.map((category) => (
+        <li key={category} className="flex items-center justify-between p-2 rounded">
+          <label htmlFor={category} className="cursor-pointer text-gray-700 flex items-center justify-between w-full">
+            {category}
+            <input
+              type="radio"
+              id={category}
+              name="category"
+              value={category}
+              checked={tempCategory === category}
+              onChange={() => onCategoryChange(category)}
+              className="w-5 h-5 text-primary border-gray-300 checked:bg-primary"
+            />
+          </label>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+interface SelectCategoryButtonProps {
+  onConfirm: () => void;
+  disabled: boolean;
+}
+
+function SelectCategoryButton({ onConfirm, disabled }: SelectCategoryButtonProps) {
+  return (
+    <button
+      onClick={onConfirm}
+      className="mt-6 w-full px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark disabled:bg-gray-300"
+      disabled={disabled}
+    >
+      선택하기
+    </button>
+  );
+}
+
 export default function SelectCategory() {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [tempCategory, setTempCategory] = useState("");
   const { open, close } = useBottomSheet();
   const categories = ["연극", "무용", "대중무용", "클래식", "국악", "대중음악", "복합", "서커스/마술", "뮤지컬"];
+
+  const handleCategoryChange = (category: string) => {
+    setTempCategory(category);
+  };
+
+  const handleConfirm = () => {
+    if (tempCategory) {
+      setSelectedCategory(tempCategory);
+      close();
+    }
+  };
 
   return (
     <>
@@ -40,39 +97,8 @@ export default function SelectCategory() {
       <BottomSheet height="70%">
         <BottomSheet.Title>주제 선택</BottomSheet.Title>
         <BottomSheet.Contents>
-          <ul className="space-y-4">
-            {categories.map((category) => (
-              <li key={category} className="flex items-center justify-between p-2 rounded">
-                <label
-                  htmlFor={category}
-                  className="cursor-pointer text-gray-700 flex items-center justify-between w-full"
-                >
-                  {category}
-                  <input
-                    type="radio"
-                    id={category}
-                    name="category"
-                    value={category}
-                    checked={tempCategory === category}
-                    onChange={() => setTempCategory(category)}
-                    className="w-5 h-5 text-primary border-gray-300 checked:bg-primary"
-                  />
-                </label>
-              </li>
-            ))}
-          </ul>
-          <button
-            onClick={() => {
-              if (tempCategory) {
-                setSelectedCategory(tempCategory);
-                close();
-              }
-            }}
-            className="mt-6 w-full px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark disabled:bg-gray-300"
-            disabled={!tempCategory}
-          >
-            선택하기
-          </button>
+          <CategoryList categories={categories} tempCategory={tempCategory} onCategoryChange={handleCategoryChange} />
+          <SelectCategoryButton onConfirm={handleConfirm} disabled={!tempCategory} />
         </BottomSheet.Contents>
       </BottomSheet>
     </>
