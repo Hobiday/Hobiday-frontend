@@ -1,13 +1,13 @@
-import LikeGradient from "../commons/Icon/like-gradient";
+import LikeGradient from "@/utils/like-gradient";
+import CommentGradient from "@/utils/comment-gradient";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import "./styles.css";
+import "@/app/globals.css";
 
 import { useEffect, useRef, useState } from "react";
-import CommentGradient from "../commons/Icon/comment-gradient";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
@@ -36,7 +36,7 @@ FeedItem.Profile = function Profile({ profileImage, profileName, isFollowing }: 
           alt={`${profileName} profile`}
           width={40}
           height={40}
-          className="w-10 h-10 rounded-full"
+          className="rounded-full"
           unoptimized
         />
         <div className="font-semibold mx-2">{profileName}</div>
@@ -55,7 +55,7 @@ type ImageCarouselProps = {
 FeedItem.Image = function Image({ feedFiles }: ImageCarouselProps) {
   return (
     <div className="flex justify-center items-center">
-      <div className="w-[398px] h-[398px] overflow-hidden rounded-lg">
+      <section className="w-[398px] h-[398px] overflow-hidden rounded-lg">
         {feedFiles.length > 1 ? (
           <Swiper
             spaceBetween={10}
@@ -74,7 +74,7 @@ FeedItem.Image = function Image({ feedFiles }: ImageCarouselProps) {
         ) : (
           <img src={feedFiles[0]} alt="feed-image" className="w-[398px] h-[398px] object-cover" />
         )}
-      </div>
+      </section>
     </div>
   );
 };
@@ -98,7 +98,10 @@ FeedItem.Content = function Content({ contents }: ContentProps) {
 
   return (
     <div className="text-sm mx-4 mt-2 relative">
-      <main ref={contentRef} className={`overflow-hidden relative ${isExpanded ? "line-clamp-none" : "line-clamp-3"}`}>
+      <section
+        ref={contentRef}
+        className={`overflow-hidden relative ${isExpanded ? "line-clamp-none" : "line-clamp-3"}`}
+      >
         {isOverflowing && !isExpanded && (
           <button
             onClick={() => setIsExpanded(true)}
@@ -108,7 +111,7 @@ FeedItem.Content = function Content({ contents }: ContentProps) {
           </button>
         )}
         {contents}
-      </main>
+      </section>
     </div>
   );
 };
