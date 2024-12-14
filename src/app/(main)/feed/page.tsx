@@ -30,49 +30,64 @@ export default function FeedPage() {
     ],
   };
 
+  const loggedInProfileId = 5; // 로그인 유저의 profileId 설정
+
   const feedData: Feed[] = [
     {
       feedId: 1,
-      profileImage: "https://via.placeholder.com/40",
-      profileName: "김하비",
-      time: "2024-12-06T21:42:31.279Z",
-      feedFiles: [
-        "https://fastly.picsum.photos/id/194/400/400.jpg?hmac=9M4afVM4gcbNrK0jdWxStpZb97YStvTZPDV_zwfSe7c",
-        "https://fastly.picsum.photos/id/556/400/400.jpg?hmac=eIgLNSug_bhkfJKE7PrkeIX3pmn7FfmmxfQlPcgziBQ",
-        "https://fastly.picsum.photos/id/861/400/400.jpg?hmac=Bt3C22W8d4rkkTYLllIRhZyKnD8LLvwgzUmqhGjzKsI",
-      ],
-      contents:
-        "피드 텍스트 기본 텍스트 박스 최대 3줄 그 이상 말 줄임표 + 더보기 버튼 사용 피드 텍스트 기본 텍스트 박스  ",
-      hashTag: ["테스트", "해시태그"],
-      likeCount: 8,
-      liked: false,
-      commentCount: 3,
-      isFollowing: false,
+      contents: "이것은 피드 1내용입니다.",
+      profileName: "sample5",
+      profileId: 5,
+      profileImageUrl: null,
+      hashTag: ["#여행", "#힐링"],
+      feedFiles: ["https://example.com/image1.jpg", "https://example.com/image2.jpg"],
+      likeCount: 0,
+      commentCount: 0,
+      performId: "PF214630",
+      performName: "영재한음 (국악) 회",
+      startDate: "2023.01.29",
+      endDate: "2024.12.29",
+      genreName: "한국음악(국악)",
+      performState: "공연중",
+      placeName: "남산골한옥마을",
+      openRun: false,
+      area: "서울특별시",
+      poster: "http://www.kopis.or.kr/upload/pfmPoster/PF_PF214630_230308_183127.PNG",
+      performLikeCount: 7,
+      relativeTime: "1일 전",
+      liked: true,
     },
     {
       feedId: 2,
-      profileImage: "https://via.placeholder.com/40",
-      profileName: "김하비",
-
-      time: "2024-12-06T21:42:31.279Z",
+      contents: "피드 작성 API 테스트입니다.",
+      profileName: "sample2",
+      profileId: 2,
+      profileImageUrl: null,
+      hashTag: ["해시태그", "테스트", "Hobiday"],
       feedFiles: [
-        "https://fastly.picsum.photos/id/524/400/400.jpg?hmac=msawrWikHM9c5n3cItDml12lRmNkSrzXlRWyTnoIdig",
-        "https://fastly.picsum.photos/id/456/400/400.jpg?hmac=Wj-1M_DzwOwj84HvgJKFMtgB4xX886nXBuuOIRlK7vk",
-        "https://fastly.picsum.photos/id/334/400/400.jpg?hmac=UpHNsYIHrauzlcGPuvPr_NnVeOBwx-6ivqTCh1_IaYE",
+        "https://hyun-buckbuck.s3.ap-northeast-2.amazonaws.com/test/20241212150510-248bf875-1732-4b19-951f-75db079706a2-EdIWKy6UEAAZl-o.jpg",
       ],
-      contents:
-        "피드 텍스트 기본 텍스트 박스 최대 3줄 그 이상 말 줄임표 더보기 버튼 사용 피드 텍스트 기본 텍스트 박스  텍스트 기본 텍스트 박스 텍스트 기본 텍스트 박스 텍스트 기본 텍스트 박스 텍스트 기본 텍스트 피드 텍스트 기본 텍스트 박스 최대 3줄 그 이상 말 줄임표 + 더보기 버튼 사용 피드 텍스트 기본 텍스트 박스  텍스트 기본 텍스트 박스 텍스트 기본 텍스트 박스 텍스트 기본 텍스트 박스 텍스트 기본 텍스트 ",
-      hashTag: ["테스트", "해시태그"],
-      likeCount: 8,
+      likeCount: 0,
+      commentCount: 0,
+      performId: "PF255055",
+      performName: "원: 죄 [창원]",
+      startDate: "2024.12.03",
+      endDate: "2025.01.26",
+      genreName: "연극",
+      performState: "공연중",
+      placeName: "사랑새아트홀",
+      openRun: false,
+      area: "경상남도",
+      poster: "http://www.kopis.or.kr/upload/pfmPoster/PF_PF255055_241202_161340.jpg",
+      performLikeCount: 10,
+      relativeTime: "1일 전",
       liked: false,
-      commentCount: 3,
-      isFollowing: false,
     },
   ];
 
   return (
     <MainLayout headerProps={headerProps}>
-      <FeedPageList />
+      <FeedPageList feedData={feedData} />
     </MainLayout>
   );
 }
