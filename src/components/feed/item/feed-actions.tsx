@@ -34,8 +34,8 @@ export default function FeedActions({ feedId, likeCount, liked, commentCount }: 
 
   return (
     <div className="flex items-center mx-4 pb-3">
-      <div className="flex items-center space-x-1 cursor-pointer" onClick={handleLikeToggle}>
-        {isLiked ? <LikeGradientPressed /> : <LikeGradientDefault />}
+      <div className="flex items-center space-x-1">
+        <button onClick={handleLikeToggle}>{isLiked ? <LikeGradientPressed /> : <LikeGradientDefault />}</button>
         <div className="font-medium text-gray-500">{likes}</div>
       </div>
       <div
