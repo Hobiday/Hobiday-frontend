@@ -1,5 +1,5 @@
 import { MainLayout } from "@/components/layout";
-import CommentPage from "@/components/feed/comment-page";
+import CommentPage from "@/components/feed/comment";
 import { Suspense } from "react";
 
 interface Comment {
