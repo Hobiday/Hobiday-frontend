@@ -22,7 +22,7 @@ export default function Modal({ children }: PropsWithChildren) {
           {/* 모달 컨텐츠 */}
           <motion.div
             className={cn(
-              "fixed flex flex-col justify-center items-center w-[212px] pt-6 pb-4 px-4 gap-4 bg-white rounded-lg shadow-lg z-modal",
+              "fixed flex flex-col justify-center items-center w-[220px] pt-6 pb-4 px-4 gap-4 bg-white rounded-lg shadow-lg z-modal",
             )}
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
