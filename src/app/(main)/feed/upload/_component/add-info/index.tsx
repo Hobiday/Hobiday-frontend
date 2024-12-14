@@ -1,15 +1,10 @@
-"use client";
-
-import { useRouter } from "next/navigation";
 import PlusCircle from "src/assets/icons/plus-circle.svg";
 import ArrowBottom from "src/assets/icons/arrow-bottom.svg";
-import Icon from "@/components/commons/Icon";
+import Icon from "@/components/commons/icon";
 
 export default function AddInfo() {
-  const router = useRouter();
-
   const handleClick = () => {
-    router.push("/"); // Adjust path as necessary
+    // <Link href="/" />;
   };
 
   return (

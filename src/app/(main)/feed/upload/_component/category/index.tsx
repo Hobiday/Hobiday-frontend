@@ -6,7 +6,7 @@ import Chip from "@/components/commons/chip";
 import { useState } from "react";
 import { useBottomSheet } from "@/contexts";
 import BottomSheet from "@/components/bottom-sheet";
-import Icon from "@/components/commons/Icon";
+import Icon from "@/components/commons/icon";
 
 interface CategoryListProps {
   categories: string[];
