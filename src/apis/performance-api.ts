@@ -1,4 +1,4 @@
-import { AllPerformancesResponse, PerformancesByGenreResponse } from "@/types";
+import { AllPerformancesResponse, PerformancesByGenreResponse } from "@/types/performance/performance.type";
 import { handleApiError } from "@/utils/api-error/error-handler";
 import { ENDPOINTS } from "./end-points";
 import { apiClient } from "./index";
@@ -11,6 +11,8 @@ import { apiClient } from "./index";
 export const fetchAllPerformances = async (params: { rowStart: string; rowEnd: string }) => {
   try {
     const response = await apiClient.get<AllPerformancesResponse>(ENDPOINTS.PERFORMANCES.GET_ALL, { params });
+    console.log(response.data);
+
     return response.data;
   } catch (error) {
     throw new Error(handleApiError(error));

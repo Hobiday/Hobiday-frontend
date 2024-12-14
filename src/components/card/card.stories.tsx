@@ -81,7 +81,7 @@ export const Default: Story = {
             <Chip label={args.category} state="hashTag" />
           </Card.Category>
           <Card.Title>{args.title}</Card.Title>
-          <Card.Info iconSrc={args.iconSrc} info={args.info} />
+          <Card.Info iconSrc={args.iconSrc ?? ""} info={args.info} />
         </Card.Content>
       </Card>
     </div>
@@ -132,7 +132,7 @@ export const WithLongText: Story = {
             <Chip label={args.category} state="hashTag" />
           </Card.Category>
           <Card.Title>{args.title}</Card.Title>
-          <Card.Info iconSrc={args.iconSrc} info={args.info} />
+          <Card.Info iconSrc={args.iconSrc ?? ""} info={args.info} />
         </Card.Content>
       </Card>
     </div>

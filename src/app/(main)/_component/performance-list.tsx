@@ -37,9 +37,9 @@ export default function PerformanceList() {
     enabled: selectedTab !== 0, // "전체" 탭이 아닐 때만 데이터 요청
   });
 
+  const performances = selectedTab === 0 ? allPerformances : performancesByGenre;
   const isPending = selectedTab === 0 ? isAllPerformancesPending : isPerformancesByGenrePending;
   const isError = selectedTab === 0 ? isAllPerformancesError : isPerformancesByGenreError;
-  const performances = selectedTab === 0 ? allPerformances : performancesByGenre;
 
   const handleTabClick = (category: { id: number; name: string }) => {
     setSelectedTab(category.id);
@@ -52,7 +52,10 @@ export default function PerformanceList() {
       </div>
     );
   }
-  if (isError) return <div>데이터를 불러오는 중 문제가 발생했습니다.</div>;
+
+  if (isError) {
+    return <div className="flex justify-center items-center h-[300px]">데이터를 불러오는데 문제가 생겼습니다...</div>;
+  }
 
   return (
     <>
@@ -65,7 +68,7 @@ export default function PerformanceList() {
       />
       <SectionLayout className="flex flex-col py-4 gap-3">
         {performances?.map((performance) => (
-          <Card key={performance.performId} className="w-full">
+          <Card key={performance.performId} href={performance.performId} className="w-full">
             <Card.Image src={performance.poster} alt={performance.performName} width={"w-[88px]"} height="h-[88px]" />
             <Card.Content>
               <Card.Category>

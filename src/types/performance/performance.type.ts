@@ -1,4 +1,4 @@
-import { BaseResponse } from "./base-response";
+import { BaseResponse } from "../base-response";
 
 // 전체 공연 조회
 export interface AllPerformances {
