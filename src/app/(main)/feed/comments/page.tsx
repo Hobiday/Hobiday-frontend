@@ -1,5 +1,6 @@
 import { MainLayout } from "@/components/layout";
 import CommentPage from "@/components/feed/comment-page";
+import { Suspense } from "react";
 
 interface Comment {
   commentId: number;
@@ -39,7 +40,9 @@ export default function CommentsPage() {
 
   return (
     <MainLayout headerProps={{ title: "댓글", showBackButton: true }}>
-      <CommentPage comments={comments} />
+      <Suspense>
+        <CommentPage comments={comments} />
+      </Suspense>
     </MainLayout>
   );
 }
