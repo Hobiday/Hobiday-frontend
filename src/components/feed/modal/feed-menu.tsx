@@ -56,11 +56,6 @@ export default function FeedMenuModal({ feed }: FeedMenuProps) {
     close();
   };
 
-  const handleCancel = () => {
-    setDeleteConfirmModalOpen(false);
-    close();
-  };
-
   return (
     <>
       {/* 모달 열기 버튼 */}
