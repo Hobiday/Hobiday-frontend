@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { ReactNode } from "react";
 
 import ArrowBack from "@/assets/icons/arrow-back.svg";
-import Icon from "@/components/commons/Icon";
+import Icon from "@/components/commons/icon";
 
 type IconType = {
   icon: ReactNode;
