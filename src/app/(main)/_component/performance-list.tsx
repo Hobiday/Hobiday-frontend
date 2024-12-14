@@ -68,14 +68,19 @@ export default function PerformanceList() {
       />
       <SectionLayout className="flex flex-col py-4 gap-3">
         {performances?.map((performance) => (
-          <Card key={performance.performId} href={performance.performId} className="w-full">
-            <Card.Image src={performance.poster} alt={performance.performName} width={"w-[88px]"} height="h-[88px]" />
+          <Card key={performance.performanceId} href={`/performance/${performance.performanceId}`} className="w-full">
+            <Card.Image
+              src={performance.posterUrl}
+              alt={performance.performanceName}
+              width={"w-[88px]"}
+              height={"h-[88px]"}
+            />
             <Card.Content>
               <Card.Category>
-                <Chip label={performance.genreName} state="hashTag" />
+                <Chip label={performance.genre} state="hashTag" />
               </Card.Category>
-              <Card.Title>{performance.performName}</Card.Title>
-              <Card.Info svgr={<Location />} info={performance.placeName} />
+              <Card.Title>{performance.performanceName}</Card.Title>
+              <Card.Info svgr={<Location />} info={performance.facility} />
             </Card.Content>
           </Card>
         ))}

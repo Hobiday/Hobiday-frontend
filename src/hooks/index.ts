@@ -1,1 +1,1 @@
-export * from "./use-performance-query";
+export * from "./performance/use-performance-query";
