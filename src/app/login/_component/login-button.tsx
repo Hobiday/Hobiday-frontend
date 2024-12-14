@@ -1,7 +1,7 @@
 "use client";
 
 import KakaoLogo from "@/assets/icons/kakao-logo.svg";
-import Icon from "@/components/commons/Icon";
+import Icon from "@/components/commons/icon";
 import { useEffect } from "react";
 
 const redirectUri = `${process.env.NEXT_PUBLIC_SERVER_URL}/oauth2/authorization/kakao`;
