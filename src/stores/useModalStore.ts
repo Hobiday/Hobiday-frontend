@@ -1,8 +1,6 @@
 import { create } from "zustand";
 
 interface ModalStore {
-  filter: string;
-  setFilter: (filter: string) => void;
   isModalOpen: boolean;
   setModalOpen: (isOpen: boolean) => void;
   isDeleteConfirmModalOpen: boolean;
@@ -11,10 +9,6 @@ interface ModalStore {
 
 const useModalStore = create<ModalStore>(function (set) {
   return {
-    filter: "",
-    setFilter: function (filter) {
-      set({ filter });
-    },
     isModalOpen: false,
     setModalOpen: function (isOpen) {
       set({ isModalOpen: isOpen });
