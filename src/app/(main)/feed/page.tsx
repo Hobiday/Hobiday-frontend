@@ -87,7 +87,7 @@ export default function FeedPage() {
 
   return (
     <MainLayout headerProps={headerProps}>
-      <FeedPageList feedData={feedData} />
+      <FeedPageList feedData={feedData} loggedInProfileId={loggedInProfileId} />
     </MainLayout>
   );
 }
