@@ -75,13 +75,13 @@ type CardInfoProps =
 
 function CardInfo({ iconSrc, svgr, info, className }: CardInfoProps) {
   return (
-    <div className={cn("flex items-center mt-1 text-xs text-gray-500", className)}>
+    <div className={cn("flex items-center mt-[2px] text-xs text-gray-500", className)}>
       {iconSrc && (
-        <div className="flex-shrink-0 w-4 h-4 mr-2">
+        <div className="flex-shrink-0 w-4 h-4 mr-[3px]">
           <Image src={iconSrc} alt="icon" width={16} height={16} className="w-full h-full object-contain" />
         </div>
       )}
-      {svgr && <div className="flex-shrink-0 w-4 h-4 mr-2">{svgr}</div>}
+      {svgr && <div className="flex justify-center items-center w-3 h-3 mr-[3px]">{svgr}</div>}
       <span className="inline-block whitespace-nowrap overflow-hidden text-ellipsis">{info}</span>
     </div>
   );
