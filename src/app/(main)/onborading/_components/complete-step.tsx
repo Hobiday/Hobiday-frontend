@@ -1,24 +1,36 @@
 "use client";
 
 import Button from "@/components/commons/button";
+import { useProfileRegistration } from "@/hooks/user/use-profile-registration";
+import { useOnboardingStore } from "@/stores/use-onboarding.store";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-type CompleteStepProps = {
-  profile: string;
-};
+export default function CompleteStep() {
+  const { nickname, categories, resetOnboarding } = useOnboardingStore();
+  const [isRegistered, setIsRegistered] = useState<"success" | "error" | "loading">("loading");
 
-export default function CompleteStep({ profile }: CompleteStepProps) {
-  const [showButton, setShowButton] = useState(false);
+  const { mutate } = useProfileRegistration();
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowButton(true); // 2초 후 버튼 표시
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, []);
+    if (nickname && categories.length > 0) {
+      mutate(
+        { profileNickname: nickname, profileGenres: categories },
+        {
+          onSuccess: () => {
+            console.log("프로필 등록 성공!");
+            setIsRegistered("success");
+            resetOnboarding();
+          },
+          onError: (error) => {
+            console.error("프로필 등록 실패:", error);
+            setIsRegistered("error");
+          },
+        },
+      );
+    }
+  }, [mutate, nickname, categories, resetOnboarding]);
 
   return (
     <section className="relative flex flex-col justify-center items-center h-[calc(100vh-var(--header-height))] overflow-hidden">
@@ -28,7 +40,6 @@ export default function CompleteStep({ profile }: CompleteStepProps) {
           background: "radial-gradient(circle, rgba(177,249,243,0.9) 0%, rgba(177,249,243,0) 100%)",
         }}
       />
-
       <div
         className="absolute w-[630px] h-[630px] left-[10px] rounded-full opacity-40 blur-3xl"
         style={{
@@ -42,26 +53,44 @@ export default function CompleteStep({ profile }: CompleteStepProps) {
         }}
       />
 
-      {/* 이미지 */}
-      <div className="animate-fade-in-up z-10">
-        <Image src="/img/logo-image.png" alt="가입 성공" width={176.84} height={182.4} priority />
-      </div>
+      {isRegistered === "loading" && <p className="text-white text-lg animate-pulse z-10">등록 중입니다...</p>}
 
-      {/* 축하 문구 */}
-      <h1 className="mt-6 text-center text-[32px] font-semibold leading-snug text-white animate-fade-in-up z-10">
-        <span className="text-primary">{profile}</span>님,
-        <br />
-        가입을 축하합니다!
-      </h1>
+      {/* 성공 화면 */}
+      {isRegistered === "success" && (
+        <>
+          <div className="animate-fade-in-up z-10">
+            <Image src="/img/logo-image.png" alt="가입 성공" width={176.84} height={182.4} priority />
+          </div>
+          <h1 className="mt-6 text-center text-[32px] font-semibold leading-snug text-white animate-fade-in-up z-10">
+            <span className="text-primary">{nickname}</span>님,
+            <br />
+            가입을 축하합니다!
+          </h1>
+          <div className="absolute bottom-[50px] w-full px-[23px] animate-fade-in-up">
+            <Link href="/" className="block">
+              <Button variant="primary" size="lg" fullWidth>
+                Hobiday 둘러보기
+              </Button>
+            </Link>
+          </div>
+        </>
+      )}
 
-      {showButton && (
-        <div className="absolute bottom-[50px] w-full px-[23px] animate-fade-in-up">
-          <Link href="/" className="block">
-            <Button variant="primary" size="lg" fullWidth>
-              Hobiday 둘러보기
-            </Button>
-          </Link>
-        </div>
+      {/* 프로필 등록 실패 화면 */}
+      {isRegistered === "error" && (
+        <>
+          <h1 className="text-center text-[32px] font-semibold leading-snug text-red-500 animate-fade-in-up z-10">
+            등록에 실패했습니다.
+          </h1>
+          <p className="text-gray-400 mt-2 z-10">다시 시도하거나 로그인 페이지로 돌아가세요.</p>
+          <div className="absolute bottom-[50px] w-full px-[23px] animate-fade-in-up">
+            <Link href="/login" className="block">
+              <Button variant="primary" size="lg" fullWidth>
+                로그인으로 돌아가기
+              </Button>
+            </Link>
+          </div>
+        </>
       )}
     </section>
   );

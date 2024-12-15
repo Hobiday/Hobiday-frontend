@@ -1,9 +1,7 @@
-export interface Profile {
-  profileId: number;
-  memberId: number;
-  profileNickname: string;
-  profileEmail: string;
-  profileGenres: string[];
-  profileIntroduction: string;
-  profileImageUrl: string;
+import { BaseResponse } from "../base-response";
+
+export interface CheckNickname {
+  profileMessage: string;
 }
+
+export type CheckNicknameResponse = BaseResponse<CheckNickname[]>;

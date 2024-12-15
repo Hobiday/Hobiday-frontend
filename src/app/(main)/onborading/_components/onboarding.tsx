@@ -92,7 +92,7 @@ export default function Onboarding() {
         </Funnel.Step>
 
         <Funnel.Step name="complete">
-          <CompleteStep profile={state.profile} />
+          <CompleteStep />
         </Funnel.Step>
       </Funnel>
     </MainLayout>

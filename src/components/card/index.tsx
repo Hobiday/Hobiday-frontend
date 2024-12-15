@@ -5,13 +5,13 @@ import { ReactNode } from "react";
 
 type CardProps = {
   children: React.ReactNode;
-  href: string;
+  href?: string;
   className?: string;
 };
 
 export default function Card({ children, href, className }: CardProps) {
   return (
-    <Link href={href} className={cn("flex p-4 border border-gray-200 rounded-lg", className)}>
+    <Link href={href || ""} className={cn("flex p-4 border border-gray-200 rounded-lg", className)}>
       {children}
     </Link>
   );
