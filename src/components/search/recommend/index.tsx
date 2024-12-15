@@ -52,7 +52,7 @@ const RECOMMEND_MOCKUP_DATA: Recommendation[] = [
     genreName: "연극",
   },
   {
-    performId: "PF255478",
+    performId: "PF255477",
     performName: "머더",
     genreName: "연극",
   },
@@ -67,7 +67,7 @@ const RECOMMEND_MOCKUP_DATA: Recommendation[] = [
     genreName: "연극",
   },
   {
-    performId: "PF255448",
+    performId: "PF255449",
     performName: "모삐-삐-삐-딕!",
     genreName: "연극",
   },

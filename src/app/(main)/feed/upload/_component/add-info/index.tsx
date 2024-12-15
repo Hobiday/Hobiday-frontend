@@ -1,17 +1,9 @@
-"use client";
-
-import { useRouter } from "next/navigation";
 import PlusCircle from "src/assets/icons/plus-circle.svg";
 import ArrowBottom from "src/assets/icons/arrow-bottom.svg";
-import Icon from "@/components/commons/Icon";
+import Icon from "@/components/commons/icon";
+import Link from "next/link";
 
 export default function AddInfo() {
-  const router = useRouter();
-
-  const handleClick = () => {
-    router.push("/"); // Adjust path as necessary
-  };
-
   return (
     <>
       <div className="p-3 flex items-center gap-x-2 h-12 border-b border-b-gray-100">
@@ -20,11 +12,11 @@ export default function AddInfo() {
         </Icon>
         <h3 className="text-sm font-semibold">추가정보 입력하기</h3>
         <h4 className="text-sm font-semibold text-gray-500">(선택)</h4>
-        <button onClick={handleClick} className="ml-auto">
+        <Link href="/search/add-info" className="ml-auto cursor-pointer">
           <Icon size={24}>
             <ArrowBottom />
           </Icon>
-        </button>
+        </Link>
       </div>
     </>
   );

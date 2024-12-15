@@ -2,25 +2,14 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 interface CommentCardProps {
-  commentId: number;
-  // feedId: number;
-  profileImage: string;
-  profileName: string;
-  createTime: string;
-  modifiedTime: string;
+  id: number;
   contents: string;
-  isAuthor: boolean;
+  profileName: string;
+  profileImageUrl: string;
+  relativeTime: string;
 }
 
-export default function CommentCard({
-  commentId,
-  profileImage,
-  profileName,
-  createTime,
-  modifiedTime,
-  contents,
-  isAuthor,
-}: CommentCardProps) {
+export default function CommentCard({ id, contents, profileName, profileImageUrl, relativeTime }: CommentCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isOverflowing, setIsOverflowing] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -38,7 +27,7 @@ export default function CommentCard({
       {/* 유저 프로필 */}
       <div className="flex items-center mb-3">
         <Image
-          src={profileImage || "https://via.placeholder.com/40"}
+          src={profileImageUrl || "https://via.placeholder.com/40"}
           alt={`${profileName} profile`}
           width={28}
           height={28}
@@ -68,8 +57,8 @@ export default function CommentCard({
 
       {/* 작성 시간 및 옵션 */}
       <div className="flex items-center mx-9 my-3 text-[10px] text-gray-500">
-        <div className="mr-3">{createTime}</div>
-        {isAuthor && (
+        <div className="mr-3">{relativeTime}</div>
+        {profileName && (
           <div className="flex space-x-2">
             <button>수정</button>
             <button>삭제</button>

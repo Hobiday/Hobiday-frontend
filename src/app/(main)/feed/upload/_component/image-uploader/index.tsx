@@ -1,6 +1,6 @@
 "use client";
 
-import Icon from "@/components/commons/Icon";
+import Icon from "@/components/commons/icon";
 import Image from "next/image";
 import { useState } from "react";
 import PlusCircle from "src/assets/icons/plus-circle.svg";

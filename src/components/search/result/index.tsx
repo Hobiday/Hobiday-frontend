@@ -29,14 +29,14 @@ export default function SearchResult() {
         </div>
       ) : (
         RESULT_MOCKUP_DATA.map((performance) => (
-          <Card key={performance.performId} className="w-full">
+          <Card href={"/"} key={performance.performId} className="w-full">
             <Card.Image src={performance.poster} alt={performance.performName} width={"w-[88px]"} height={"h-[88px]"} />
             <Card.Content>
               <Card.Category>
                 <Chip label={performance.genreName} state="hashTag" />
               </Card.Category>
               <Card.Title>{performance.performName}</Card.Title>
-              <Card.Info info={performance.placeName} />
+              <Card.Info svgr={<Location />} info={performance.placeName} />
             </Card.Content>
           </Card>
         ))

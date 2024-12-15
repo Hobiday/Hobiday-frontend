@@ -1,5 +1,5 @@
 import { MainLayout } from "@/components/layout";
-import UploadPage from "@/components/feed/upload-page";
+import UploadPage from "@/components/feed/upload";
 
 const headerProps = {
   title: "피드",
