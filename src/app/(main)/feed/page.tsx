@@ -1,8 +1,8 @@
-import { MainLayout } from "@/components/layout";
 import Pencil from "@/assets/icons/pencil.svg";
 import Search from "@/assets/icons/search.svg";
-import TextLogo from "../../../../public/img/logo-text.svg";
 import FeedPageList from "@/components/feed/index";
+import { MainLayout } from "@/components/layout";
+import TextLogo from "../../../../public/img/logo-text.svg";
 
 export default function FeedPage() {
   const headerProps = {

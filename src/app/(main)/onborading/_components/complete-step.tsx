@@ -1,36 +1,33 @@
 "use client";
 
 import Button from "@/components/commons/button";
-import { useProfileRegistration } from "@/hooks/user/use-profile-registration";
-import { useOnboardingStore } from "@/stores/use-onboarding.store";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
 export default function CompleteStep() {
-  const { nickname, categories, resetOnboarding } = useOnboardingStore();
-  const [isRegistered, setIsRegistered] = useState<"success" | "error" | "loading">("loading");
+  // const { nickname, categories, resetOnboarding } = useOnboardingStore();
+  // const [isRegistered, setIsRegistered] = useState<"success" | "error" | "loading">("loading");
 
-  const { mutate } = useProfileRegistration();
+  // const { mutate } = useProfileRegistration();
 
-  useEffect(() => {
-    if (nickname && categories.length > 0) {
-      mutate(
-        { profileNickname: nickname, profileGenres: categories },
-        {
-          onSuccess: () => {
-            console.log("프로필 등록 성공!");
-            setIsRegistered("success");
-            resetOnboarding();
-          },
-          onError: (error) => {
-            console.error("프로필 등록 실패:", error);
-            setIsRegistered("error");
-          },
-        },
-      );
-    }
-  }, [mutate, nickname, categories, resetOnboarding]);
+  // useEffect(() => {
+  //   if (nickname && categories.length > 0) {
+  //     mutate(
+  //       { profileNickname: nickname, profileGenres: categories },
+  //       {
+  //         onSuccess: () => {
+  //           console.log("프로필 등록 성공!");
+  //           setIsRegistered("success");
+  //           resetOnboarding();
+  //         },
+  //         onError: (error) => {
+  //           console.error("프로필 등록 실패:", error);
+  //           setIsRegistered("error");
+  //         },
+  //       },
+  //     );
+  //   }
+  // }, [mutate, nickname, categories, resetOnboarding]);
 
   return (
     <section className="relative flex flex-col justify-center items-center h-[calc(100vh-var(--header-height))] overflow-hidden">
@@ -53,31 +50,32 @@ export default function CompleteStep() {
         }}
       />
 
-      {isRegistered === "loading" && <p className="text-white text-lg animate-pulse z-10">등록 중입니다...</p>}
+      {/* {isRegistered === "loading" && <p className="text-white text-lg animate-pulse z-10">등록 중입니다...</p>} */}
 
       {/* 성공 화면 */}
-      {isRegistered === "success" && (
-        <>
-          <div className="animate-fade-in-up z-10">
-            <Image src="/img/logo-image.png" alt="가입 성공" width={176.84} height={182.4} priority />
-          </div>
-          <h1 className="mt-6 text-center text-[32px] font-semibold leading-snug text-white animate-fade-in-up z-10">
-            <span className="text-primary">{nickname}</span>님,
-            <br />
-            가입을 축하합니다!
-          </h1>
-          <div className="absolute bottom-[50px] w-full px-[23px] animate-fade-in-up">
-            <Link href="/" className="block">
-              <Button variant="primary" size="lg" fullWidth>
-                Hobiday 둘러보기
-              </Button>
-            </Link>
-          </div>
-        </>
-      )}
+      {/* {isRegistered === "success" && ( */}
+      <>
+        <div className="animate-fade-in-up z-10">
+          <Image src="/img/logo-image.png" alt="가입 성공" width={176.84} height={182.4} priority />
+        </div>
+        <h1 className="mt-6 text-center text-[32px] font-semibold leading-snug text-white animate-fade-in-up z-10">
+          {/* <span className="text-primary">{nickname}</span>님, */}
+          <span className="text-primary">Hobiday</span>님,
+          <br />
+          가입을 축하합니다!
+        </h1>
+        <div className="absolute bottom-[50px] w-full px-[23px] animate-fade-in-up">
+          <Link href="/" className="block">
+            <Button variant="primary" size="lg" fullWidth>
+              Hobiday 둘러보기
+            </Button>
+          </Link>
+        </div>
+      </>
+      {/* )} */}
 
       {/* 프로필 등록 실패 화면 */}
-      {isRegistered === "error" && (
+      {/* {isRegistered === "error" && (
         <>
           <h1 className="text-center text-[32px] font-semibold leading-snug text-red-500 animate-fade-in-up z-10">
             등록에 실패했습니다.
@@ -91,7 +89,7 @@ export default function CompleteStep() {
             </Link>
           </div>
         </>
-      )}
+      )} */}
     </section>
   );
 }
