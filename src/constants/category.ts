@@ -9,3 +9,15 @@ export const TAB_CATEGORY = [
   { id: 7, name: "서커스" },
   { id: 8, name: "뮤지컬" },
 ];
+
+export const FEED_CATEGORY = [
+  "연극",
+  "무용",
+  "대중무용",
+  "클래식",
+  "국악",
+  "대중음악",
+  "복합",
+  "서커스/마술",
+  "뮤지컬",
+];

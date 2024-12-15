@@ -7,17 +7,19 @@ import { useState } from "react";
 import { useBottomSheet } from "@/contexts";
 import BottomSheet from "@/components/bottom-sheet";
 import Icon from "@/components/commons/icon";
+import useUploadTextStore from "@/stores/useUploadTextStore";
+import { FEED_CATEGORY } from "@/constants/category";
 
 interface CategoryListProps {
-  categories: string[];
+  FEED_CATEGORY: string[];
   tempCategory: string;
   onCategoryChange: (category: string) => void;
 }
 
-function CategoryList({ categories, tempCategory, onCategoryChange }: CategoryListProps) {
+function CategoryList({ FEED_CATEGORY, tempCategory, onCategoryChange }: CategoryListProps) {
   return (
     <ul className="space-y-4">
-      {categories.map((category) => (
+      {FEED_CATEGORY.map((category) => (
         <li key={category} className="flex items-center justify-between p-2 rounded">
           <label htmlFor={category} className="cursor-pointer text-gray-700 flex items-center justify-between w-full">
             {category}
@@ -55,10 +57,9 @@ function SelectCategoryButton({ onConfirm, disabled }: SelectCategoryButtonProps
 }
 
 export default function SelectCategory() {
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const { category, setCategory } = useUploadTextStore();
   const [tempCategory, setTempCategory] = useState("");
   const { open, close } = useBottomSheet();
-  const categories = ["연극", "무용", "대중무용", "클래식", "국악", "대중음악", "복합", "서커스/마술", "뮤지컬"];
 
   const handleCategoryChange = (category: string) => {
     setTempCategory(category);
@@ -66,7 +67,7 @@ export default function SelectCategory() {
 
   const handleConfirm = () => {
     if (tempCategory) {
-      setSelectedCategory(tempCategory);
+      setCategory(tempCategory);
       close();
     }
   };
@@ -78,12 +79,12 @@ export default function SelectCategory() {
           <CommentText />
         </Icon>
         <h3 className="text-sm font-semibold">주제선택</h3>
-        {selectedCategory ? (
+        {category ? (
           <Chip
-            label={`${selectedCategory}`}
+            label={`${category}`}
             state="hashTag"
             isDelete={true}
-            onClose={() => setSelectedCategory("")}
+            onClose={() => setCategory("")}
             className="ml-auto text-sm bg-white border border-gray-100"
           />
         ) : (
@@ -97,7 +98,11 @@ export default function SelectCategory() {
       <BottomSheet height="70%">
         <BottomSheet.Title>주제 선택</BottomSheet.Title>
         <BottomSheet.Contents>
-          <CategoryList categories={categories} tempCategory={tempCategory} onCategoryChange={handleCategoryChange} />
+          <CategoryList
+            FEED_CATEGORY={FEED_CATEGORY}
+            tempCategory={tempCategory}
+            onCategoryChange={handleCategoryChange}
+          />
           <SelectCategoryButton onConfirm={handleConfirm} disabled={!tempCategory} />
         </BottomSheet.Contents>
       </BottomSheet>

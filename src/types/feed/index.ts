@@ -22,3 +22,8 @@ export interface Feed {
   relativeTime: string;
   liked: boolean;
 }
+
+export interface LikeCount {
+  likeCount: number;
+  liked: boolean;
+}

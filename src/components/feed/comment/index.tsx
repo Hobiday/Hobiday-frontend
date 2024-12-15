@@ -2,45 +2,60 @@
 
 import CommentCard from "@/components/comment";
 import { useSearchParams } from "next/navigation";
+import { useQuery } from "@tanstack/react-query";
+import { fetchComment } from "@/apis/comment-api";
+import { Comment } from "@/types/comment";
+import LoadingSpinner from "@/components/commons/spinner";
 
-interface Comment {
-  commentId: number;
-  profileImage: string;
-  profileName: string;
-  createTime: string;
-  modifiedTime: string;
-  contents: string;
-  isAuthor: boolean;
-}
-
-interface CommentPageProps {
-  comments: Comment[];
-}
-
-export default function CommentPage({ comments }: CommentPageProps) {
+export default function CommentPage() {
   const searchParams = useSearchParams();
   const feedId = searchParams.get("feedId");
 
+  const {
+    data: commentList = [],
+    isPending,
+    isError,
+  } = useQuery({
+    queryKey: ["comments", feedId],
+    queryFn: () => fetchComment(feedId!),
+    enabled: !!feedId,
+  });
+
+  console.log(commentList);
+
   if (!feedId) {
-    return <div>Error: No feed selected</div>;
+    return <div>feed Id가 없습니다.</div>;
+  }
+
+  if (isPending) {
+    return (
+      <div className="flex justify-center items-center h-[300px]">
+        <LoadingSpinner size={40} />
+      </div>
+    );
+  }
+
+  if (isError) {
+    return <div className="flex justify-center items-center h-[300px]">데이터를 불러오는데 문제가 생겼습니다.</div>;
   }
 
   return (
     <>
       {/* 댓글 데이터 표시 */}
       <div className="overflow-y-auto">
-        {comments.map((comment: Comment) => (
-          <CommentCard
-            key={comment.commentId}
-            commentId={comment.commentId}
-            profileImage={comment.profileImage}
-            profileName={comment.profileName}
-            createTime={comment.createTime}
-            modifiedTime={comment.modifiedTime}
-            contents={comment.contents}
-            isAuthor={comment.isAuthor}
-          />
-        ))}
+        {commentList.length > 0 ? (
+          commentList.map((comment: Comment) => (
+            <CommentCard
+              id={comment.id}
+              profileImageUrl={comment.profileImageUrl}
+              profileName={comment.profileName}
+              relativeTime={comment.relativeTime}
+              contents={comment.contents}
+            />
+          ))
+        ) : (
+          <div>댓글이 없습니다.</div>
+        )}
       </div>
 
       {/* 댓글 입력창 */}
