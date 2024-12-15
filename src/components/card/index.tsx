@@ -1,14 +1,20 @@
 import cn from "@/lib/tailwind-cn";
 import Image from "next/image";
+import Link from "next/link";
 import { ReactNode } from "react";
 
 type CardProps = {
   children: React.ReactNode;
+  href: string;
   className?: string;
 };
 
-export default function Card({ children, className }: CardProps) {
-  return <div className={cn("flex p-4 border border-gray-200 rounded-lg", className)}>{children}</div>;
+export default function Card({ children, href, className }: CardProps) {
+  return (
+    <Link href={href} className={cn("flex p-4 border border-gray-200 rounded-lg", className)}>
+      {children}
+    </Link>
+  );
 }
 
 type CardImageProps = {
@@ -63,20 +69,25 @@ function CardTitle({ children, className }: CardTitleProps) {
   );
 }
 
-type CardInfoProps = {
-  iconSrc?: string;
+type BaseCardInfoProps = {
   info: string;
   className?: string;
 };
 
-function CardInfo({ iconSrc, info, className }: CardInfoProps) {
+// 이미지 형태 혹은 svgr 둘 중 한 가지만 props로 받을 수 있게 설정
+type CardInfoProps =
+  | (BaseCardInfoProps & { iconSrc: string; svgr?: never })
+  | (BaseCardInfoProps & { svgr: ReactNode; iconSrc?: never });
+
+function CardInfo({ iconSrc, svgr, info, className }: CardInfoProps) {
   return (
-    <div className={cn("flex items-center mt-1 text-xs text-gray-500", className)}>
+    <div className={cn("flex items-center mt-[2px] text-xs text-gray-500", className)}>
       {iconSrc && (
-        <div className="flex-shrink-0 w-4 h-4 mr-2">
+        <div className="flex-shrink-0 w-4 h-4 mr-[3px]">
           <Image src={iconSrc} alt="icon" width={16} height={16} className="w-full h-full object-contain" />
         </div>
       )}
+      {svgr && <div className="flex justify-center items-center w-3 h-3 mr-[3px]">{svgr}</div>}
       <span className="inline-block whitespace-nowrap overflow-hidden text-ellipsis">{info}</span>
     </div>
   );
