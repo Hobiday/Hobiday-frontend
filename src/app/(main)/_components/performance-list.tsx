@@ -20,7 +20,7 @@ export default function PerformanceList() {
     isError: isAllPerformancesError,
   } = useAllPerformancesQuery({
     rowStart: "0",
-    rowEnd: "10",
+    rowEnd: "20",
   });
 
   // 장르별 데이터 가져오기
@@ -32,7 +32,7 @@ export default function PerformanceList() {
     params: {
       genre: TAB_CATEGORY[selectedTab].name,
       rowStart: "0",
-      rowEnd: "10",
+      rowEnd: "20",
     },
     enabled: selectedTab !== 0, // "전체" 탭이 아닐 때만 데이터 요청
   });
@@ -80,7 +80,7 @@ export default function PerformanceList() {
                 <Chip label={performance.genre} state="hashTag" />
               </Card.Category>
               <Card.Title>{performance.performanceName}</Card.Title>
-              <Card.Info svgr={<Location />} info={performance.facility} />
+              <Card.Info svgr={<Location className="fill-gray-400" />} info={performance.facility} />
             </Card.Content>
           </Card>
         ))}

@@ -1,12 +1,16 @@
 "use client";
 
-import FeedItem from "@/components/feed/item";
 import Button from "@/components/commons/button";
-import { useState } from "react";
+import FeedItem from "@/components/feed/item";
 import { useLatestFeedsQuery, usePopularFeedsQuery } from "@/hooks/feed/use-feed-query";
+import { useState } from "react";
 import LoadingSpinner from "../commons/spinner";
 
-export default function FeedPage(loggedInProfileId: number) {
+interface FeedPageListProps {
+  loggedInProfileId: number;
+}
+
+export default function FeedPageList({ loggedInProfileId }: FeedPageListProps) {
   const [filter, setFilter] = useState("latest");
 
   const {

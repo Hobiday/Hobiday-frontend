@@ -1,6 +1,6 @@
 import { MainLayout } from "@/components/layout";
-import AdBanner from "./_component/banner";
-import PerformanceList from "./_component/performance-list";
+import AdBanner from "./_components/banner";
+import PerformanceList from "./_components/performance-list";
 
 import Search from "@/assets/icons/search.svg";
 import TextLogo from "../../../public/img/logo-text.svg";

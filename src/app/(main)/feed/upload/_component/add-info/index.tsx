@@ -1,7 +1,7 @@
-import PlusCircle from "src/assets/icons/plus-circle.svg";
-import ArrowBottom from "src/assets/icons/arrow-bottom.svg";
 import Icon from "@/components/commons/icon";
 import Link from "next/link";
+import ArrowBottom from "src/assets/icons/arrow-bottom.svg";
+import PlusCircle from "src/assets/icons/plus-circle.svg";
 
 export default function AddInfo() {
   return (

@@ -1,25 +1,23 @@
 "use client";
 
-import CommentText from "src/assets/icons/comment-text.svg";
-import ArrowForward from "src/assets/icons/arrow-forward.svg";
-import Chip from "@/components/commons/chip";
-import { useState } from "react";
-import { useBottomSheet } from "@/contexts";
 import BottomSheet from "@/components/bottom-sheet";
+import Chip from "@/components/commons/chip";
 import Icon from "@/components/commons/icon";
-import useUploadTextStore from "@/stores/useUploadTextStore";
-import { FEED_CATEGORY } from "@/constants/category";
+import { useBottomSheet } from "@/contexts";
+import { useState } from "react";
+import ArrowForward from "src/assets/icons/arrow-forward.svg";
+import CommentText from "src/assets/icons/comment-text.svg";
 
 interface CategoryListProps {
-  FEED_CATEGORY: string[];
+  categories: string[];
   tempCategory: string;
   onCategoryChange: (category: string) => void;
 }
 
-function CategoryList({ FEED_CATEGORY, tempCategory, onCategoryChange }: CategoryListProps) {
+function CategoryList({ categories, tempCategory, onCategoryChange }: CategoryListProps) {
   return (
     <ul className="space-y-4">
-      {FEED_CATEGORY.map((category) => (
+      {categories.map((category) => (
         <li key={category} className="flex items-center justify-between p-2 rounded">
           <label htmlFor={category} className="cursor-pointer text-gray-700 flex items-center justify-between w-full">
             {category}
@@ -57,9 +55,10 @@ function SelectCategoryButton({ onConfirm, disabled }: SelectCategoryButtonProps
 }
 
 export default function SelectCategory() {
-  const { category, setCategory } = useUploadTextStore();
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [tempCategory, setTempCategory] = useState("");
   const { open, close } = useBottomSheet();
+  const categories = ["연극", "무용", "대중무용", "클래식", "국악", "대중음악", "복합", "서커스/마술", "뮤지컬"];
 
   const handleCategoryChange = (category: string) => {
     setTempCategory(category);
@@ -67,7 +66,7 @@ export default function SelectCategory() {
 
   const handleConfirm = () => {
     if (tempCategory) {
-      setCategory(tempCategory);
+      setSelectedCategory(tempCategory);
       close();
     }
   };
@@ -79,12 +78,12 @@ export default function SelectCategory() {
           <CommentText />
         </Icon>
         <h3 className="text-sm font-semibold">주제선택</h3>
-        {category ? (
+        {selectedCategory ? (
           <Chip
-            label={`${category}`}
+            label={`${selectedCategory}`}
             state="hashTag"
             isDelete={true}
-            onClose={() => setCategory("")}
+            onClose={() => setSelectedCategory("")}
             className="ml-auto text-sm bg-white border border-gray-100"
           />
         ) : (
@@ -98,11 +97,7 @@ export default function SelectCategory() {
       <BottomSheet height="70%">
         <BottomSheet.Title>주제 선택</BottomSheet.Title>
         <BottomSheet.Contents>
-          <CategoryList
-            FEED_CATEGORY={FEED_CATEGORY}
-            tempCategory={tempCategory}
-            onCategoryChange={handleCategoryChange}
-          />
+          <CategoryList categories={categories} tempCategory={tempCategory} onCategoryChange={handleCategoryChange} />
           <SelectCategoryButton onConfirm={handleConfirm} disabled={!tempCategory} />
         </BottomSheet.Contents>
       </BottomSheet>

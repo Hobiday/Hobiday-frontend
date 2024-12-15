@@ -36,4 +36,11 @@ export const ENDPOINTS = {
     UPDATE: (commentId: string) => `${API_BASE_URL}/api/comments/${commentId}`, // 댓글 수정
     DELETE: (commentId: string) => `${API_BASE_URL}/api/comments/${commentId}`, // 댓글 삭제
   },
+  USERS: {
+    NICKNAME_CHECK: (nickname: string) => `${API_BASE_URL}/api/profiles/registration/${nickname}`,
+    REGISTRATION_CHECK: `${API_BASE_URL}/api/profiles/registration/check`,
+  },
+  PROFILES: {
+    REGISTRATION: `${API_BASE_URL}/api/profiles/registration`,
+  },
 };
