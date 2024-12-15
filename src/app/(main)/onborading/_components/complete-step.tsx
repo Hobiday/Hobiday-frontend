@@ -1,26 +1,27 @@
 "use client";
 
+import Button from "@/components/commons/button";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 type CompleteStepProps = {
   profile: string;
 };
 
 export default function CompleteStep({ profile }: CompleteStepProps) {
-  const router = useRouter();
+  const [showButton, setShowButton] = useState(false);
 
-  // // 3초 후 홈페이지로 자동 이동
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     router.push("/");
-  //   }, 3000);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowButton(true); // 2초 후 버튼 표시
+    }, 2000);
 
-  //   return () => clearTimeout(timer);
-  // }, [router]);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
-    <div className="relative flex flex-col justify-center items-center h-[calc(100vh-var(--header-height))] overflow-hidden">
+    <section className="relative flex flex-col justify-center items-center h-[calc(100vh-var(--header-height))] overflow-hidden">
       <div
         className="absolute w-[350px] h-[350px] top-[40px] left-[-50px] rounded-full opacity-90 blur-3xl"
         style={{
@@ -52,6 +53,16 @@ export default function CompleteStep({ profile }: CompleteStepProps) {
         <br />
         가입을 축하합니다!
       </h1>
-    </div>
+
+      {showButton && (
+        <div className="absolute bottom-[50px] w-full px-[23px] animate-fade-in-up">
+          <Link href="/" className="block">
+            <Button variant="primary" size="lg" fullWidth>
+              Hobiday 둘러보기
+            </Button>
+          </Link>
+        </div>
+      )}
+    </section>
   );
 }
