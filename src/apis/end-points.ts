@@ -5,6 +5,7 @@ export const ENDPOINTS = {
     GET_ALL: `${API_BASE_URL}/api/performs`,
     GENRE: `${API_BASE_URL}/api/performs/genre`,
     GET_BY_ID: (performId: string) => `${API_BASE_URL}/api/performs/${performId}`,
+<<<<<<< HEAD
     SEARCH: (keyword: string) => `/api/performs/search?keyword=${keyword}`,
     RECOMMENDS: `${API_BASE_URL}/api/performs/search/recommends`,
     DETAIL: {
@@ -56,5 +57,16 @@ export const ENDPOINTS = {
     PROFILE: `${API_BASE_URL}/api/profiles/myprofile`, // 내 프로필 정보
     UPDATE: `${API_BASE_URL}/api/profiles/update`,
     FOLLOW: (targetProfileId: number) => `${API_BASE_URL}/api/profiles/follow?targetProfileId=${targetProfileId}`,
+=======
+    SEARCH: `${API_BASE_URL}/api/performs/search`,
+    RECOMMENDS: `${API_BASE_URL}/api/performs/search/recommends`,
+    DETAIL: {
+      BY_ID: (performId: string) => `${API_BASE_URL}/api/performs/detail/${performId}`,
+      FACILITY: (facilityId: string) => `${API_BASE_URL}/api/performs/detail/facility/${facilityId}`,
+    },
+  },
+  USER: {
+    CHECK: `${API_BASE_URL}/api/profiles/registration/check`,
+>>>>>>> 885b823 (✨ Feat: 공연 조회 api 연결 및 performance api adapter 추가 (#34))
   },
 };

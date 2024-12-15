@@ -1,6 +1,10 @@
 import axios from "axios";
 
+<<<<<<< HEAD
 export const API_BASE_URL = process.env.NEXT_PUBLIC_LOCAL_URL || process.env.NEXT_PUBLIC_SERVER_URL;
+=======
+export const API_BASE_URL = process.env.NEXT_PUBLIC_LOCAL_URL;
+>>>>>>> 885b823 (✨ Feat: 공연 조회 api 연결 및 performance api adapter 추가 (#34))
 
 export const apiClient = axios.create({
   baseURL: API_BASE_URL,
@@ -20,6 +24,7 @@ apiClient.interceptors.request.use((config) => {
 
 apiClient.interceptors.response.use(
   (response) => response,
+<<<<<<< HEAD
   async (error) => {
     const currentRequest = error.config;
 
@@ -48,5 +53,11 @@ apiClient.interceptors.response.use(
     }
 
     return Promise.reject(error);
+=======
+  (error) => {
+    if (error.response?.status === 401) {
+      return Promise.reject(error);
+    }
+>>>>>>> 885b823 (✨ Feat: 공연 조회 api 연결 및 performance api adapter 추가 (#34))
   },
 );
