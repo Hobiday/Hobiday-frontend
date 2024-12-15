@@ -39,7 +39,7 @@ export default function Header({
   };
 
   return (
-    <header className={cn("relative flex items-center justify-between w-full h-[48px] px-4 py-2 bg-white", className)}>
+    <header className={cn("relative flex items-center justify-between w-full h-header px-4 py-2 bg-white", className)}>
       {/* 왼쪽: 아이콘들 */}
       <div className="flex items-center justify-start space-x-2">
         {leftIcons.map(({ icon, path, size }, index) => (

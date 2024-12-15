@@ -1,8 +1,8 @@
 import { PaginationProps } from "@/types/commons/pagination";
-import { performanceAdapter } from "@/types/performance/adapter";
+import { performanceAdapter, performanceDetailsAdapter } from "@/types/performance/adapter";
 import { PerformancesByGenreQueryProps } from "@/types/performance/performance-queries";
 import { useQuery } from "@tanstack/react-query";
-import { fetchAllPerformances, fetchPerformancesByGenre } from "../../apis/performance-api";
+import { fetchAllPerformances, fetchPerformanceById, fetchPerformancesByGenre } from "../../apis/performance-api";
 import { performanceKeys } from "../queries";
 
 // 전체 공연 데이터 조회
@@ -27,5 +27,17 @@ export const usePerformancesByGenreQuery = ({ params, enabled }: PerformancesByG
     },
     enabled,
     select: (data) => data || [],
+  });
+};
+
+export const usePerformanceDetailQuery = (performanceId: string) => {
+  return useQuery({
+    queryKey: performanceKeys.details(performanceId),
+    queryFn: async () => {
+      const data = await fetchPerformanceById(performanceId);
+      return performanceDetailsAdapter(data.result);
+    },
+    enabled: !!performanceId,
+    select: (data) => data || null,
   });
 };

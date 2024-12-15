@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import plugin from "tailwindcss/plugin";
 
 const config: Config = {
   content: [
@@ -13,6 +14,7 @@ const config: Config = {
         primary: "#5E50F4",
         secondary: "#B1F9F3",
         error: "#F45050",
+        textColor: "#212121",
         blue: {
           50: "#E5EFFD",
           100: "#CBC7FA",
@@ -43,6 +45,9 @@ const config: Config = {
       fontFamily: {
         pretendard: ["var(--font-pretendard)"],
       },
+      spacing: {
+        header: "48px",
+      },
       zIndex: {
         header: "20",
         navbar: "10",
@@ -51,6 +56,15 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("@tailwindcss/line-clamp")],
+  plugins: [
+    require("@tailwindcss/line-clamp"),
+    plugin(function ({ addBase, theme }) {
+      addBase({
+        ":root": {
+          "--header-height": theme("spacing.header"),
+        },
+      });
+    }),
+  ],
 };
 export default config;

@@ -1,2 +1,2 @@
-export * from "./performanceAdapter";
-export * from "./performanceDetailsAdapter";
+export * from "./performance-adapter";
+export * from "./performance-details-adapter";
