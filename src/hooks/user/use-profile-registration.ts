@@ -15,7 +15,10 @@ export const useCheckNickname = (nickname: string) => {
   return useQuery({
     queryKey: [USER_KEYS.CHECK_NICKNAME, nickname],
     queryFn: () => {
-      if (!nickname) return Promise.resolve(null); // 빈 값이면 API 호출 막기
+      // 빈 값이면 API 호출 막기
+      if (!nickname) {
+        return Promise.resolve(null);
+      }
       return getCheckNickname(nickname);
     },
     enabled: nickname.trim().length > 0, // 공백을 제거하고 조건 확인

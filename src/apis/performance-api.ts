@@ -1,7 +1,8 @@
 import {
   AllPerformancesResponse,
+  PerformanceDetailAllResponse,
+  PerformanceDetailResponse,
   PerformancesByGenreResponse,
-  PerformancesDetailResponse,
 } from "@/types/performance/performance.type";
 import { handleApiError } from "@/utils/api-error/error-handler";
 import { ENDPOINTS } from "./end-points";
@@ -42,7 +43,24 @@ export const fetchPerformancesByGenre = async (params: { rowStart: string; rowEn
  */
 export const fetchPerformanceById = async (performanceId: string) => {
   try {
-    const response = await apiClient.get<PerformancesDetailResponse>(ENDPOINTS.PERFORMANCES.GET_BY_ID(performanceId));
+    const response = await apiClient.get<PerformanceDetailResponse>(ENDPOINTS.PERFORMANCES.GET_BY_ID(performanceId));
+    return response.data;
+  } catch (error) {
+    throw new Error(handleApiError(error));
+  }
+};
+
+/**
+ * @param performId 공연 ID
+ * @returns 공연 기본 및 상세 정보
+ */
+export const fetchPerformanceDetailAll = async (performanceId: string): Promise<PerformanceDetailAllResponse> => {
+  try {
+    const response = await apiClient.get<PerformanceDetailAllResponse>(
+      ENDPOINTS.PERFORMANCES.DETAIL.BY_ID_ALL(performanceId),
+    );
+    console.log("Hi", response.data);
+
     return response.data;
   } catch (error) {
     throw new Error(handleApiError(error));
