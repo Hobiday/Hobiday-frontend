@@ -1,4 +1,5 @@
 import UploadPage from "@/components/feed/upload";
+import { MainLayout } from "@/components/layout";
 
 export default function FeedUploadPage() {
   // function handleFeedUpload() {
