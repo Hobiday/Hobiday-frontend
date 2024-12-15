@@ -1,10 +1,10 @@
 "use client";
 
+import AddInfo from "@/app/(main)/feed/upload/_component/add-info";
+import SelectCategory from "@/app/(main)/feed/upload/_component/category";
+import HashtagInput from "@/app/(main)/feed/upload/_component/hashtag-input";
 import ImageUploader from "@/app/(main)/feed/upload/_component/image-uploader";
 import TextInput from "@/app/(main)/feed/upload/_component/text-input";
-import AddInfo from "@/app/(main)/feed/upload/_component/add-info";
-import HashtagInput from "@/app/(main)/feed/upload/_component/hashtag-input";
-import SelectCategory from "@/app/(main)/feed/upload/_component/category";
 import useUploadTextStore from "@/stores/useUploadTextStore";
 import usePresignedURL from "@/hooks/feed/use-image-upload";
 import useFeedRegistration from "@/hooks/feed/use-feed-upload";

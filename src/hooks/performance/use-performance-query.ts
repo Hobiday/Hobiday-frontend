@@ -1,8 +1,14 @@
 import { PaginationProps } from "@/types/commons/pagination";
-import { performanceAdapter, performanceDetailsAdapter } from "@/types/performance/adapter";
+import { performanceAdapter, performanceDetailAdapter } from "@/types/performance/adapter";
+import { performanceDetailAllAdapter } from "@/types/performance/adapter/performance-detail-all-adapter";
 import { PerformancesByGenreQueryProps } from "@/types/performance/performance-queries";
 import { useQuery } from "@tanstack/react-query";
-import { fetchAllPerformances, fetchPerformanceById, fetchPerformancesByGenre } from "../../apis/performance-api";
+import {
+  fetchAllPerformances,
+  fetchPerformanceById,
+  fetchPerformanceDetailAll,
+  fetchPerformancesByGenre,
+} from "../../apis/performance-api";
 import { PERFORMANCE_KEYS } from "../queries";
 
 // 전체 공연 데이터 조회
@@ -30,14 +36,27 @@ export const usePerformancesByGenreQuery = ({ params, enabled }: PerformancesByG
   });
 };
 
+// 공연 상세 정보
 export const usePerformanceDetailQuery = (performanceId: string) => {
   return useQuery({
     queryKey: PERFORMANCE_KEYS.details(performanceId),
     queryFn: async () => {
       const data = await fetchPerformanceById(performanceId);
-      return performanceDetailsAdapter(data.result);
+      return performanceDetailAdapter(data.result);
     },
     enabled: !!performanceId,
     select: (data) => data || null,
+  });
+};
+
+// 공연 기본 정보 + 상세 정보
+export const usePerformanceDetailAll = (performanceId: string) => {
+  return useQuery({
+    queryKey: PERFORMANCE_KEYS.detailAll(performanceId),
+    queryFn: async () => {
+      const data = await fetchPerformanceDetailAll(performanceId);
+      return performanceDetailAllAdapter(data.result);
+    },
+    enabled: !!performanceId,
   });
 };
