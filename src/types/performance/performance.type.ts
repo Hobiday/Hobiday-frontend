@@ -33,3 +33,19 @@ export interface PerformancesByGenre {
 }
 
 export type PerformancesByGenreResponse = BaseResponse<PerformancesByGenre[]>;
+
+// 공연 상세 조회
+export interface PerformanceDetail {
+  performId: string;
+  facilityId: string;
+  cast: string;
+  runtime: string;
+  perform: string;
+  ticketPrice: string;
+  storyUrl: string;
+  showtime: string;
+  reservationChannel: string;
+  reservationUrl: string;
+}
+
+export type PerformancesDetailResponse = BaseResponse<PerformanceDetail[]>;

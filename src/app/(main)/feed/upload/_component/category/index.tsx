@@ -10,15 +10,15 @@ import ArrowForward from "src/assets/icons/arrow-forward.svg";
 import CommentText from "src/assets/icons/comment-text.svg";
 
 interface CategoryListProps {
-  FEED_CATEGORY: string[];
+  categories: string[];
   tempCategory: string;
   onCategoryChange: (category: string) => void;
 }
 
-function CategoryList({ FEED_CATEGORY, tempCategory, onCategoryChange }: CategoryListProps) {
+function CategoryList({ categories, tempCategory, onCategoryChange }: CategoryListProps) {
   return (
     <ul className="space-y-4">
-      {FEED_CATEGORY.map((category) => (
+      {categories.map((category) => (
         <li key={category} className="flex items-center justify-between p-2 rounded">
           <label htmlFor={category} className="cursor-pointer text-gray-700 flex items-center justify-between w-full">
             {category}
@@ -99,11 +99,7 @@ export default function SelectCategory() {
       <BottomSheet id={bottomSheetId} height="70%">
         <BottomSheet.Title>주제 선택</BottomSheet.Title>
         <BottomSheet.Contents>
-          <CategoryList
-            FEED_CATEGORY={FEED_CATEGORY}
-            tempCategory={tempCategory}
-            onCategoryChange={handleCategoryChange}
-          />
+          <CategoryList categories={categories} tempCategory={tempCategory} onCategoryChange={handleCategoryChange} />
           <SelectCategoryButton onConfirm={handleConfirm} disabled={!tempCategory} />
         </BottomSheet.Contents>
       </BottomSheet>

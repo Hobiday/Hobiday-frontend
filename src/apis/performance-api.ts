@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import {
   AllPerformancesResponse,
   FacilityInfoResponse,
@@ -9,9 +8,6 @@ import {
   ServerFacilityInfo,
   ServerRecommendedSearchWords,
 } from "@/types/performance/server";
-=======
-import { AllPerformancesResponse, PerformancesByGenreResponse } from "@/types/performance/performance.type";
->>>>>>> 885b823 (✨ Feat: 공연 조회 api 연결 및 performance api adapter 추가 (#34))
 import { handleApiError } from "@/utils/api-error/error-handler";
 import { ENDPOINTS } from "./end-points";
 import { apiClient } from "./index";
@@ -21,33 +17,12 @@ import { apiClient } from "./index";
  * @param params.rowEnd - 불러올 데이터의 끝 인덱스
  * @returns 전체 공연 데이터
  */
-<<<<<<< HEAD
 export const fetchAllPerformances = async (params: {
   rowStart: string;
   rowEnd: string;
 }): Promise<AllPerformancesResponse> => {
   try {
     const response = await apiClient.get<AllPerformancesResponse>(ENDPOINTS.PERFORMANCES.GET_ALL, { params });
-=======
-export const fetchAllPerformances = async (params: { rowStart: string; rowEnd: string }) => {
-  try {
-    const response = await apiClient.get<AllPerformancesResponse>(ENDPOINTS.PERFORMANCES.GET_ALL, { params });
-    console.log(response.data);
-
-    return response.data;
-  } catch (error) {
-    throw new Error(handleApiError(error));
-  }
-};
-
-/**
- * @param performanceId 공연 ID
- * @returns 공연 상세 목록
- */
-export const fetchPerformanceById = async (performanceId: string) => {
-  try {
-    const response = await apiClient.get(ENDPOINTS.PERFORMANCES.GET_BY_ID(performanceId));
->>>>>>> 885b823 (✨ Feat: 공연 조회 api 연결 및 performance api adapter 추가 (#34))
     return response.data;
   } catch (error) {
     throw new Error(handleApiError(error));
@@ -68,7 +43,6 @@ export const fetchPerformancesByGenre = async (params: { rowStart: string; rowEn
     throw new Error(handleApiError(error));
   }
 };
-<<<<<<< HEAD
 
 /**
  * @param performanceId 공연 ID
@@ -137,5 +111,3 @@ export const fetchFacilityInfo = async (facilityId: string): Promise<ServerFacil
     throw new Error(handleApiError(error));
   }
 };
-=======
->>>>>>> 885b823 (✨ Feat: 공연 조회 api 연결 및 performance api adapter 추가 (#34))
