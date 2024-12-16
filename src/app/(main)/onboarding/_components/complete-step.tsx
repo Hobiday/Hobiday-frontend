@@ -16,10 +16,10 @@ export default function CompleteStep() {
   console.log(nickname, categories);
 
   useEffect(() => {
-    if (!nickname || categories.length === 0) return; // 유효성 체크 추가
+    if (!nickname || categories.length === 0) return;
 
     mutate(
-      { profileNickname: nickname, profileGenres: categories },
+      { profileNickname: nickname, profileGenre: categories },
       {
         onSuccess: () => {
           console.log("프로필 등록 성공");

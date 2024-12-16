@@ -2,7 +2,7 @@ import { BaseResponse } from "../base-response";
 
 export interface PostProfileRegistrationRequest {
   profileNickname: string;
-  profileGenres: string[];
+  profileGenre: string[];
 }
 
 export interface PostProfileRegistrationResponse {

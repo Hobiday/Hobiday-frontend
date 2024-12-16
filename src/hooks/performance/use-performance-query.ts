@@ -1,6 +1,7 @@
 import { PaginationProps } from "@/types/commons/pagination";
 import { performanceAdapter, performanceDetailAdapter } from "@/types/performance/adapter";
 import { performanceDetailAllAdapter } from "@/types/performance/adapter/performance-detail-all-adapter";
+import { ClientPerformance } from "@/types/performance/client";
 import { PerformancesByGenreQueryProps } from "@/types/performance/performance-queries";
 import { useQuery } from "@tanstack/react-query";
 import {
@@ -8,6 +9,7 @@ import {
   fetchPerformanceById,
   fetchPerformanceDetailAll,
   fetchPerformancesByGenre,
+  fetchPerformancesByKeyword,
 } from "../../apis/performance-api";
 import { PERFORMANCE_KEYS } from "../queries";
 
@@ -58,5 +60,21 @@ export const usePerformanceDetailAll = (performanceId: string) => {
       return performanceDetailAllAdapter(data.result);
     },
     enabled: !!performanceId,
+  });
+};
+
+// 공연 검색
+/**
+ * @param keyword 검색어
+ * @returns 변환된 검색된 공연 목록
+ */
+export const useSearchPerformances = (keyword: string) => {
+  return useQuery<ClientPerformance[], Error>({
+    queryKey: PERFORMANCE_KEYS.search(keyword),
+    queryFn: async () => {
+      const serverData = await fetchPerformancesByKeyword(keyword);
+      return performanceAdapter(serverData);
+    },
+    enabled: !!keyword,
   });
 };

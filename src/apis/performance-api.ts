@@ -4,6 +4,7 @@ import {
   PerformanceDetailResponse,
   PerformancesByGenreResponse,
 } from "@/types/performance/performance.type";
+import { ServerPerformance } from "@/types/performance/server";
 import { handleApiError } from "@/utils/api-error/error-handler";
 import { ENDPOINTS } from "./end-points";
 import { apiClient } from "./index";
@@ -59,9 +60,20 @@ export const fetchPerformanceDetailAll = async (performanceId: string): Promise<
     const response = await apiClient.get<PerformanceDetailAllResponse>(
       ENDPOINTS.PERFORMANCES.DETAIL.BY_ID_ALL(performanceId),
     );
-    console.log("Hi", response.data);
-
     return response.data;
+  } catch (error) {
+    throw new Error(handleApiError(error));
+  }
+};
+
+/**
+ * @param keyword 검색어
+ * @returns 검색된 공연 목록 (서버 데이터)
+ */
+export const fetchPerformancesByKeyword = async (keyword: string): Promise<ServerPerformance[]> => {
+  try {
+    const response = await apiClient.get<{ result: ServerPerformance[] }>(ENDPOINTS.PERFORMANCES.SEARCH(keyword));
+    return response.data.result;
   } catch (error) {
     throw new Error(handleApiError(error));
   }
