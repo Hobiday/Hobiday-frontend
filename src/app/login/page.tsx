@@ -28,7 +28,6 @@ export default function LoginPage(): JSX.Element {
       <Title />
       <IntroText />
       <LoginButton />
-      {/* <Policies /> */}
       <Policies />
     </main>
   );
