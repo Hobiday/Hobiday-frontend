@@ -5,7 +5,7 @@ export const ENDPOINTS = {
     GET_ALL: `${API_BASE_URL}/api/performs`,
     GENRE: `${API_BASE_URL}/api/performs/genre`,
     GET_BY_ID: (performId: string) => `${API_BASE_URL}/api/performs/${performId}`,
-    SEARCH: `${API_BASE_URL}/api/performs/search`,
+    SEARCH: (keyword: string) => `/api/performs/search?keyword=${keyword}`,
     RECOMMENDS: `${API_BASE_URL}/api/performs/search/recommends`,
     DETAIL: {
       BY_ID: (performId: string) => `${API_BASE_URL}/api/performs/detail/${performId}`,
