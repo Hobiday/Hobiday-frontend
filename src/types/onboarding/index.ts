@@ -15,4 +15,4 @@ export interface PostProfileRegistrationResponse {
   profileImageUrl: string;
 }
 
-export type ProfileRegistrationResponse = BaseResponse<PostProfileRegistrationResponse[]>;
+export type ProfileRegistrationResponse = BaseResponse<PostProfileRegistrationResponse>;
