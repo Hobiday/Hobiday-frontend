@@ -1,3 +1,4 @@
+import { ServerAllPerformances } from "@/types/performance";
 import {
   AllPerformancesResponse,
   PerformanceDetailAllResponse,
@@ -63,6 +64,19 @@ export const fetchPerformanceDetailAll = async (performanceId: string): Promise<
       ENDPOINTS.PERFORMANCES.DETAIL.BY_ID_ALL(performanceId),
     );
     return response.data;
+  } catch (error) {
+    throw new Error(handleApiError(error));
+  }
+};
+
+/**
+ * @param keyword 검색어
+ * @returns 검색된 공연 목록
+ */
+export const fetchPerformancesByKeyword = async (keyword: string): Promise<ServerAllPerformances[]> => {
+  try {
+    const response = await apiClient.get<{ result: ServerAllPerformances[] }>(ENDPOINTS.PERFORMANCES.SEARCH(keyword));
+    return response.data.result;
   } catch (error) {
     throw new Error(handleApiError(error));
   }
