@@ -9,7 +9,7 @@ import { ENDPOINTS } from "./end-points";
  */
 export const getCheckNickname = async (nickname: string): Promise<CheckNicknameResponse> => {
   const response = await apiClient.get<CheckNicknameResponse>(ENDPOINTS.PROFILES.NICKNAME_CHECK(nickname));
-  return response.data;
+  return { ...response.data, result: response.data.result || {} };
 };
 
 export const getMyProfile = async () => {
