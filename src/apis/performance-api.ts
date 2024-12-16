@@ -1,13 +1,8 @@
 import {
   AllPerformancesResponse,
-  FacilityInfoResponse,
   PerformanceDetailAllResponse,
   PerformancesByGenreResponse,
-  RecommendedSearchWordsResponse,
-  ServerAllPerformances,
-  ServerFacilityInfo,
-  ServerRecommendedSearchWords,
-} from "@/types/performance/server";
+} from "@/types/performance/performance.type";
 import { handleApiError } from "@/utils/api-error/error-handler";
 import { ENDPOINTS } from "./end-points";
 import { apiClient } from "./index";
@@ -68,45 +63,6 @@ export const fetchPerformanceDetailAll = async (performanceId: string): Promise<
       ENDPOINTS.PERFORMANCES.DETAIL.BY_ID_ALL(performanceId),
     );
     return response.data;
-  } catch (error) {
-    throw new Error(handleApiError(error));
-  }
-};
-
-/**
- * 공연 추천 검색어 목록
- * @returns 추천 공연 목록
- */
-export const fetchRecommendedPerformances = async (): Promise<ServerRecommendedSearchWords[]> => {
-  try {
-    const response = await apiClient.get<RecommendedSearchWordsResponse>(ENDPOINTS.PERFORMANCES.RECOMMENDS);
-    return response.data.result;
-  } catch (error) {
-    throw new Error(handleApiError(error));
-  }
-};
-
-/**
- * @param keyword 검색어
- * @returns 검색된 공연 목록
- */
-export const fetchPerformancesByKeyword = async (keyword: string): Promise<ServerAllPerformances[]> => {
-  try {
-    const response = await apiClient.get<{ result: ServerAllPerformances[] }>(ENDPOINTS.PERFORMANCES.SEARCH(keyword));
-    return response.data.result;
-  } catch (error) {
-    throw new Error(handleApiError(error));
-  }
-};
-
-/**
- * @param facilityId - 시설 ID
- * @returns 시설 상세 정보
- */
-export const fetchFacilityInfo = async (facilityId: string): Promise<ServerFacilityInfo> => {
-  try {
-    const response = await apiClient.get<FacilityInfoResponse>(ENDPOINTS.PERFORMANCES.DETAIL.FACILITY(facilityId));
-    return response.data.result;
   } catch (error) {
     throw new Error(handleApiError(error));
   }

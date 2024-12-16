@@ -22,7 +22,7 @@ const InfoSection = ({ title, content, placeholder, children }: InfoSectionProps
   <SectionLayout className="px-5 py-6">
     <h2 className="text-lg font-bold mb-4">{title}</h2>
     {children ? (
-      <div className="flex flex-col justify-center items-center">{children}</div>
+      <div className="flex flex-col justify-center items-start">{children}</div>
     ) : (
       <p className="text-sm text-textColor">{content?.trim() || placeholder}</p>
     )}
