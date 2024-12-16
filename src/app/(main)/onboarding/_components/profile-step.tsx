@@ -9,7 +9,7 @@ import { validateNickname } from "@/utils/validate-nickname";
 import { ChangeEvent, useEffect, useState } from "react";
 
 type ProfileStepProps = {
-  onNext: () => void;
+  onNext: (profile: string) => void;
 };
 
 export default function ProfileStep({ onNext }: ProfileStepProps) {
@@ -78,7 +78,7 @@ export default function ProfileStep({ onNext }: ProfileStepProps) {
           size="lg"
           fullWidth
           disabled={status !== "success"}
-          onClick={status === "success" ? onNext : undefined}
+          onClick={status === "success" ? () => onNext(inputValue) : undefined}
         >
           다음
         </Button>

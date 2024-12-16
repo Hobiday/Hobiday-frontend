@@ -68,8 +68,6 @@ export default function CompleteStep() {
             <Image src="/img/logo-image.png" alt="가입 성공" width={176.84} height={182.4} priority />
           </div>
           <h1 className="mt-6 text-center text-[32px] font-semibold leading-snug text-white animate-fade-in-up z-10">
-            <span className="text-primary">{nickname}</span>님,
-            <br />
             가입을 축하합니다!
           </h1>
           <div className="absolute bottom-[50px] w-full px-[23px] animate-fade-in-up">
