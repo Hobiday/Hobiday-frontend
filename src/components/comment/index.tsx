@@ -123,7 +123,7 @@ export default function CommentCard({
       {/* 작성 시간 및 옵션 */}
       <div className="flex items-center mx-9 my-3 text-[10px] text-gray-500">
         <div className="mr-3">{relativeTime}</div>
-        {profileName && (
+        {/* {profileName && (
           <div className="flex space-x-2">
             {isEditing ? (
               <button onClick={() => setIsEditing(false)} className="text-gray-500">
@@ -143,7 +143,7 @@ export default function CommentCard({
               </>
             )}
           </div>
-        )}
+        )} */}
       </div>
 
       {/* 삭제 확인 모달 */}
