@@ -9,7 +9,7 @@ import { validateNickname } from "@/utils/validate-nickname";
 import { ChangeEvent, useEffect, useState } from "react";
 
 type ProfileStepProps = {
-  onNext: (profile: string) => void;
+  onNext: (nickname: string) => void;
 };
 
 export default function ProfileStep({ onNext }: ProfileStepProps) {
@@ -77,8 +77,8 @@ export default function ProfileStep({ onNext }: ProfileStepProps) {
           variant="primary"
           size="lg"
           fullWidth
-          disabled={status !== "success"}
-          onClick={status === "success" ? () => onNext(inputValue) : undefined}
+          onClick={() => onNext(nickname)}
+          disabled={status !== "success"} // 성공 상태에서만 버튼 활성화
         >
           다음
         </Button>
