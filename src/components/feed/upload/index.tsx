@@ -40,8 +40,12 @@ export default function UploadPage() {
     try {
       const uploadedUrls = await uploadImages(photos);
       // url 주소 추가
-      const baseAddrss = process.env.NEXT_PUBLIC_API_BASE_URL;
+      const baseAddrss = process.env.NEXT_PUBLIC_S3_BUCKET_URL;
       const fullUrls = uploadedUrls.map((url) => `${baseAddrss}${url}`);
+      // const fullUrls = [
+      //   "https://fastly.picsum.photos/id/861/400/400.jpg?hmac=Bt3C22W8d4rkkTYLllIRhZyKnD8LLvwgzUmqhGjzKsI",
+      //   "https://fastly.picsum.photos/id/443/500/500.jpg?hmac=k2eq9Aa8gmKfA9nN2fx1CVVqAIhaCzUWfuLT8TaOTtM",
+      // ];
 
       await registerFeed({
         performId: "PF254874",
