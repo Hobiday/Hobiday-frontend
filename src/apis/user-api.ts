@@ -13,6 +13,6 @@ export const getCheckNickname = async (nickname: string): Promise<CheckNicknameR
 };
 
 export const getMyProfile = async () => {
-  const response = await apiClient.get(ENDPOINTS.USER.PROFILE);
+  const response = await apiClient.get(ENDPOINTS.PROFILES.PROFILE);
   return response.data;
 };

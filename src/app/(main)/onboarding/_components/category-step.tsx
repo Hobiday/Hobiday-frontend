@@ -33,7 +33,7 @@ export default function CategoryStep({ onNext }: CategoryStepProps) {
 
   const handleNext = () => {
     setCategories(selectedCategories);
-    onNext();
+    onNext(categories);
   };
 
   return (
