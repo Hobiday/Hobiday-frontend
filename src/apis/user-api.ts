@@ -11,3 +11,8 @@ export const getCheckNickname = async (nickname: string): Promise<CheckNicknameR
   const response = await apiClient.get<CheckNicknameResponse>(ENDPOINTS.USERS.NICKNAME_CHECK(nickname));
   return response.data;
 };
+
+export const getMyProfile = async () => {
+  const response = await apiClient.get(ENDPOINTS.USER.PROFILE);
+  return response.data;
+};
