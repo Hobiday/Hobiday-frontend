@@ -6,6 +6,6 @@ export default function WishlistPage() {
       <div className="flex flex-col items-center justify-center min-h-screen text-gray-600">
         고도화 기간 중 업데이트 예정입니다.
       </div>
-    </>
+    </MainLayout>
   );
 }
