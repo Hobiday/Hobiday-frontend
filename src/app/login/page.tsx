@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { IntroText, LoginButton, Logo, Title } from "./_component";
+import { IntroText, LoginButton, Logo, Policies, Title } from "./_component";
 
 export default function LoginPage(): JSX.Element {
   // 카카오 SDK 초기화
@@ -29,6 +29,7 @@ export default function LoginPage(): JSX.Element {
       <IntroText />
       <LoginButton />
       {/* <Policies /> */}
+      <Policies />
     </main>
   );
 }
