@@ -7,7 +7,7 @@ import { useOnboardingStore } from "@/stores/use-onboarding.store";
 import { useState } from "react";
 
 type CategoryStepProps = {
-  onNext: () => void;
+  onNext: (categories: string[]) => void;
 };
 
 export default function CategoryStep({ onNext }: CategoryStepProps) {
@@ -33,7 +33,7 @@ export default function CategoryStep({ onNext }: CategoryStepProps) {
 
   const handleNext = () => {
     setCategories(selectedCategories);
-    onNext();
+    onNext(categories);
   };
 
   return (
