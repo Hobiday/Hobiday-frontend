@@ -8,8 +8,17 @@ import SelectCategory from "@/app/(main)/feed/upload/_component/category";
 import useUploadTextStore from "@/stores/useUploadTextStore";
 import usePresignedURL from "@/hooks/feed/use-image-upload";
 import useFeedRegistration from "@/hooks/feed/use-feed-upload";
+import { MainLayout } from "@/components/layout";
+import cn from "@/lib/tailwind-cn";
+import { useRouter } from "next/navigation";
+import Icon from "@/components/commons/icons";
+import ArrowBack from "@/assets/icons/arrow-back.svg";
 
 export default function UploadPage() {
+  const router = useRouter();
+  const handleGoBack = () => {
+    router.back();
+  };
   const { performId, content, category, hashTags, photos, setHashTags } = useUploadTextStore();
   const { uploadImages, isLoading: isUploading } = usePresignedURL();
   const { registerFeed, isLoading: isRegistering } = useFeedRegistration();
@@ -48,16 +57,27 @@ export default function UploadPage() {
   }
 
   return (
-    <div className="bg-white">
+    <div className="bg-white min-h-screen flex flex-col">
+      <header className={cn("relative flex items-center justify-between w-full h-header px-4 py-2 bg-white")}>
+        <div className="flex items-center justify-start space-x-2">
+          <Icon onClick={handleGoBack} size={24} className="cursor-pointer">
+            <ArrowBack />
+          </Icon>
+        </div>
+        <div className="absolute left-1/2 transform -translate-x-1/2 text-lg font-bold text-center">
+          <h2>피드</h2>
+        </div>
+        <div className="flex items-center justify-end gap-2">
+          <button type="submit" onClick={handleUpload} className="text-primary font-semibold text-sm cursor-pointer">
+            올리기
+          </button>
+        </div>
+      </header>
       <SelectCategory />
       <ImageUploader />
       <TextInput />
       <HashtagInput onAddHashTags={handleAddHashTags} onRemoveHashTag={handleRemoveHashTag} />
-      <AddInfo />
-
-      <button className="w-full h-12 bg-blue-500 text-white text-lg font-bold" onClick={handleUpload}>
-        사진업로드
-      </button>
+      {/* <AddInfo /> */}
     </div>
   );
 }

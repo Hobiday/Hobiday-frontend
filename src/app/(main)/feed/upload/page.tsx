@@ -1,12 +1,4 @@
-import { MainLayout } from "@/components/layout";
 import UploadPage from "@/components/feed/upload";
-
-const headerProps = {
-  title: "피드",
-  showBackButton: true,
-  rightText: "올리기",
-  // onRightTextClick: () => {},
-};
 
 export default function FeedUploadPage() {
   // function handleFeedUpload() {
@@ -14,8 +6,8 @@ export default function FeedUploadPage() {
   // }
 
   return (
-    <MainLayout headerProps={headerProps}>
+    <div className="relative flex flex-col min-h-screen">
       <UploadPage />
-    </MainLayout>
+    </div>
   );
 }
