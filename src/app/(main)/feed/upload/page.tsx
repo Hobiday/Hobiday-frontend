@@ -1,21 +1,14 @@
 import UploadPage from "@/components/feed/upload";
 import { MainLayout } from "@/components/layout";
 
-const headerProps = {
-  title: "피드",
-  showBackButton: true,
-  rightText: "올리기",
-  // onRightTextClick: () => {},
-};
-
 export default function FeedUploadPage() {
   // function handleFeedUpload() {
   //   console.log("API 연결 예정");
   // }
 
   return (
-    <MainLayout headerProps={headerProps}>
+    <div className="relative flex flex-col min-h-screen">
       <UploadPage />
-    </MainLayout>
+    </div>
   );
 }
