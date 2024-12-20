@@ -62,7 +62,7 @@ export default function MyProfilePage() {
   if (!user) {
     return (
       <div>
-        <LoadingSpinner />{" "}
+        <LoadingSpinner />
       </div>
     );
   }
