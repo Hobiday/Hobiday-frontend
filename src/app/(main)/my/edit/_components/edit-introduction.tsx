@@ -1,8 +1,8 @@
+import { updateMyProfile } from "@/apis/user-api";
 import SvgPencil from "@/assets/svgr-icons/Pencil";
 import BottomSheet from "@/components/bottom-sheet";
 import Button from "@/components/commons/button";
 import { useBottomSheet } from "@/contexts";
-import updateProfile from "@/hooks/user/use-profile-update";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -22,7 +22,7 @@ export default function EditProfileIntroduction({ profileIntroduction }: Profile
 
   async function handleUpdate() {
     try {
-      await updateProfile({ profileIntroduction: content });
+      await updateMyProfile({ profileIntroduction: content });
       alert("수정이 완료되었습니다!");
       close(bottomSheetId);
       router.push("/my");

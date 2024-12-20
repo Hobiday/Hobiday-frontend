@@ -12,7 +12,7 @@ import { useUserStore } from "@/stores/useUserStore";
 import LoadingSpinner from "@/components/commons/spinner";
 import { useState } from "react";
 import useProfileImageUpload from "@/hooks/user/use-profile-image-upload";
-import updateProfile from "@/hooks/user/use-profile-update";
+import { updateMyProfile } from "@/apis/user-api";
 
 export default function ProfileEditPage() {
   const { user, setUser } = useUserStore();
@@ -53,7 +53,7 @@ export default function ProfileEditPage() {
         profileImageUrl: uploadedUrl,
       });
 
-      await updateProfile({ profileImageFilePath: uploadedUrl });
+      await updateMyProfile({ profileImageFilePath: uploadedUrl });
 
       alert("업로드 성공");
       router.push("/my");

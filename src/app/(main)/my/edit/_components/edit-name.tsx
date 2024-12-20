@@ -1,3 +1,4 @@
+import { updateMyProfile } from "@/apis/user-api";
 import SvgPencil from "@/assets/svgr-icons/Pencil";
 import BottomSheet from "@/components/bottom-sheet";
 import Button from "@/components/commons/button";
@@ -5,7 +6,6 @@ import TextField from "@/components/commons/text-field";
 import { useBottomSheet } from "@/contexts";
 import { useDebounce } from "@/hooks/use-debounce";
 import { useCheckNickname } from "@/hooks/user/use-profile-registration";
-import updateProfile from "@/hooks/user/use-profile-update";
 import { useOnboardingStore } from "@/stores/use-onboarding.store";
 import { validateNickname } from "@/utils/validate-nickname";
 import { useRouter } from "next/navigation";
@@ -58,7 +58,7 @@ export default function EditProfileName({ profileNickname }: ProfileNameProps) {
 
   async function handleUpdate() {
     try {
-      await updateProfile({ profileNickname: inputValue });
+      await updateMyProfile({ profileNickname: inputValue });
       alert("수정이 완료되었습니다!");
       close(bottomSheetId);
       router.push("/my");

@@ -1,10 +1,10 @@
+import { updateMyProfile } from "@/apis/user-api";
 import SvgArrowForward from "@/assets/svgr-icons/ArrowForward";
 import BottomSheet from "@/components/bottom-sheet";
 import Button from "@/components/commons/button";
 import Chip from "@/components/commons/chip";
 import { TAB_CATEGORY } from "@/constants/category";
 import { useBottomSheet } from "@/contexts";
-import updateProfile from "@/hooks/user/use-profile-update";
 import { useOnboardingStore } from "@/stores/use-onboarding.store";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -39,7 +39,7 @@ export default function EditProfileGenres({ profileGenres }: ProfileGenresProps)
     }
 
     try {
-      await updateProfile({ profileGenre: selectedCategories });
+      await updateMyProfile({ profileGenre: selectedCategories });
       alert("수정이 완료되었습니다.");
       close(bottomSheetId);
       router.push("/my");
