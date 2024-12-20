@@ -5,9 +5,10 @@ import { useState } from "react";
 interface ProfileImageProps {
   profileImageUrl: string;
   onImageSelect: (file: File) => void;
+  profileNickname: string;
 }
 
-export default function EditProfileImage({ profileImageUrl, onImageSelect }: ProfileImageProps) {
+export default function EditProfileImage({ profileImageUrl, onImageSelect, profileNickname }: ProfileImageProps) {
   const [preview, setPreview] = useState<string>(profileImageUrl);
 
   function handleImageChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -45,7 +46,7 @@ export default function EditProfileImage({ profileImageUrl, onImageSelect }: Pro
         </div>
         {/* 닉네임*/}
         <div>
-          <h2 className="font-semibold">하비데이</h2>
+          <h2 className="font-semibold">{profileNickname}</h2>
         </div>
       </div>
     </>

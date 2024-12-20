@@ -38,7 +38,7 @@ export const fetchAllFeedByMine = async () => {
  */
 export const fetchFeedById = async (feedId: string) => {
   try {
-    const response = await apiClient.get<AllFeedsResponse>(ENDPOINTS.FEED.GET.DETAIL(feedId));
+    const response = await apiClient.get(ENDPOINTS.FEED.GET.DETAIL(feedId));
     return response.data;
   } catch (error) {
     throw new Error(handleApiError(error));

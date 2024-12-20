@@ -88,6 +88,7 @@ export default function ProfileEditPage() {
           <EditProfileImage
             profileImageUrl={user.profileImageUrl}
             onImageSelect={(file: File) => setSelectedImage(file)}
+            profileNickname={user.profileNickname}
           />
           <EditProfileName profileNickname={user.profileNickname} />
           <EditProfileIntroduction profileIntroduction={user.profileIntroduction} />
