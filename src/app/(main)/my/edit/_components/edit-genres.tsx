@@ -15,6 +15,7 @@ interface ProfileGenresProps {
 
 export default function EditProfileGenres({ profileGenres }: ProfileGenresProps) {
   const { open, close } = useBottomSheet();
+  const bottomSheetId = "editProfileGenres";
   const router = useRouter();
   const { categories, setCategories } = useOnboardingStore();
   const [selectedCategories, setSelectedCategories] = useState<string[]>(categories);
@@ -40,7 +41,7 @@ export default function EditProfileGenres({ profileGenres }: ProfileGenresProps)
     try {
       await updateProfile({ profileGenre: selectedCategories });
       alert("수정이 완료되었습니다.");
-      close();
+      close(bottomSheetId);
       router.push("/my");
     } catch (error) {
       alert("수정에 실패했습니다.");
@@ -62,11 +63,11 @@ export default function EditProfileGenres({ profileGenres }: ProfileGenresProps)
           </div>
         </div>
 
-        <button onClick={open} className="px-4">
+        <button onClick={() => open(bottomSheetId)} className="px-4">
           <SvgArrowForward />
         </button>
 
-        <BottomSheet height="45%">
+        <BottomSheet id={bottomSheetId} height="45%">
           <BottomSheet.Title>관심사 선택</BottomSheet.Title>
           <BottomSheet.Contents>
             <div className="px-[29px] grid grid-cols-3 gap-x-2 gap-y-4">

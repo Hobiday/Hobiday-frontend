@@ -4,21 +4,22 @@ import { AnimatePresence, motion } from "framer-motion";
 import { PropsWithChildren, ReactNode } from "react";
 
 type BottomSheetProps = {
+  id: string;
   children: ReactNode;
   height?: string;
 };
 
-export default function BottomSheet({ children, height = "45%" }: BottomSheetProps) {
+export default function BottomSheet({ id, children, height = "45%" }: BottomSheetProps) {
   const { isOpen, close } = useBottomSheet();
 
   return (
     <AnimatePresence>
-      {isOpen && (
+      {isOpen(id) && (
         <>
           {/* 반투명 배경 */}
           <motion.div
             className="fixed inset-0 bg-black/30 z-bottomSheet"
-            onClick={close}
+            onClick={() => close(id)}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

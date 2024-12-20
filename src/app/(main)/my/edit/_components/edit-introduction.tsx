@@ -13,6 +13,7 @@ interface ProfileIntroductionProps {
 export default function EditProfileIntroduction({ profileIntroduction }: ProfileIntroductionProps) {
   const router = useRouter();
   const { open, close } = useBottomSheet();
+  const bottomSheetId = "editProfileIntroduction";
   const [content, setContent] = useState(profileIntroduction || "");
 
   function handleContentChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
@@ -23,7 +24,7 @@ export default function EditProfileIntroduction({ profileIntroduction }: Profile
     try {
       await updateProfile({ profileIntroduction: content });
       alert("수정이 완료되었습니다!");
-      close();
+      close(bottomSheetId);
       router.push("/my");
     } catch (error) {
       alert("수정에 실패했습니다. 다시 시도해주세요.");
@@ -40,11 +41,11 @@ export default function EditProfileIntroduction({ profileIntroduction }: Profile
           </div>
         </div>
 
-        <button onClick={open} className="px-4">
+        <button onClick={() => open(bottomSheetId)} className="px-4">
           <SvgPencil />
         </button>
 
-        <BottomSheet height="40%">
+        <BottomSheet id={bottomSheetId} height="40%">
           <BottomSheet.Title>자기소개</BottomSheet.Title>
           <BottomSheet.Contents>
             <div className="w-[300px] border border-gray-400 rounded-lg mx-auto relative">

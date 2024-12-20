@@ -17,6 +17,7 @@ interface ProfileNameProps {
 
 export default function EditProfileName({ profileNickname }: ProfileNameProps) {
   const { open, close } = useBottomSheet();
+  const bottomSheetId = "editProfileName";
   const router = useRouter();
   const { nickname, setNickname } = useOnboardingStore();
   const [inputValue, setInputValue] = useState(nickname);
@@ -59,7 +60,7 @@ export default function EditProfileName({ profileNickname }: ProfileNameProps) {
     try {
       await updateProfile({ profileNickname: inputValue });
       alert("수정이 완료되었습니다!");
-      close();
+      close(bottomSheetId);
       router.push("/my");
     } catch (error) {
       alert("수정에 실패했습니다.");
@@ -75,11 +76,11 @@ export default function EditProfileName({ profileNickname }: ProfileNameProps) {
           <span className="text-sm font-semibold">{profileNickname}</span>
         </div>
 
-        <button onClick={open} className="px-4">
+        <button onClick={() => open(bottomSheetId)} className="px-4">
           <SvgPencil />
         </button>
 
-        <BottomSheet height="35%">
+        <BottomSheet id={bottomSheetId} height="35%">
           <BottomSheet.Title>닉네임</BottomSheet.Title>
           <BottomSheet.Contents>
             <TextField>

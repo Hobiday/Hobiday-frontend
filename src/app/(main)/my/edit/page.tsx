@@ -12,6 +12,7 @@ import { useUserStore } from "@/stores/useUserStore";
 import LoadingSpinner from "@/components/commons/spinner";
 import { useState } from "react";
 import useProfileImageUpload from "@/hooks/user/use-profile-image-upload";
+import updateProfile from "@/hooks/user/use-profile-update";
 
 export default function ProfileEditPage() {
   const { user, setUser } = useUserStore();
@@ -39,11 +40,8 @@ export default function ProfileEditPage() {
 
     try {
       const uploadedUrl = await uploadImage(selectedImage);
-
-      const baseAddrss = process.env.NEXT_PUBLIC_S3_BUCKET_URL;
-      const fullUrl = `${baseAddrss}${uploadedUrl}`;
       console.log("업로드 성공");
-      console.log("uploadedUrl: ", fullUrl);
+      console.log("uploadedUrl: ", uploadedUrl);
       const currentUser = useUserStore.getState().user;
       if (!currentUser) {
         console.error("User is null. Cannot update profileImageUrl.");
@@ -52,12 +50,13 @@ export default function ProfileEditPage() {
 
       setUser({
         ...currentUser,
-        profileImageUrl: fullUrl,
+        profileImageUrl: uploadedUrl,
       });
 
-      console.log("After update:", useUserStore.getState().user);
+      await updateProfile({ profileImageFilePath: uploadedUrl });
+
       alert("업로드 성공");
-      router.push("/");
+      router.push("/my");
     } catch (err) {
       console.error("업로드 실패", err);
     }
