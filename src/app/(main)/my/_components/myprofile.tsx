@@ -1,8 +1,8 @@
 "use client";
 
-import { getMyProfile } from "@/apis/user-api";
+import { getMyFeed, getMyProfile } from "@/apis/user-api";
 import { useUserStore } from "@/stores/useUserStore";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import ProfileImage from "./profile-image";
 import ProfileName from "./profile-name";
@@ -11,22 +11,52 @@ import ProfileStats from "./profile-stats";
 import LoadingSpinner from "@/components/commons/spinner";
 import NoFeedSection from "./no-feed";
 import Link from "next/link";
+import ProfileFeed from "./profile-feed";
+
+interface FeedData {
+  feedId: number;
+  feedFiles: string[];
+}
+
+interface FeedThumbnail {
+  feedId: number;
+  imageUrl: string; // 첫 번째 사진만 사용
+}
 
 export default function MyProfilePage() {
   const user = useUserStore((state) => state.user);
   const setUser = useUserStore((state) => state.setUser);
+  const [myFeed, setMyFeed] = useState<FeedThumbnail[]>([]);
 
   useEffect(() => {
     const getUserProfile = async () => {
       try {
         const data = await getMyProfile();
-        console.log(data.result);
-        setUser(data.result);
+        console.log("data: ", data);
+        setUser(data);
       } catch (error) {
         console.log(error);
       }
     };
+
+    const getUserFeed = async () => {
+      try {
+        const feedData: FeedData[] = await getMyFeed();
+        console.log("feedData: ", feedData);
+
+        // 피드 데이터에서 썸네일 데이터만 추출
+        const thumbnailData = feedData.map((feed) => ({
+          feedId: feed.feedId,
+          imageUrl: feed.feedFiles[0],
+        }));
+        setMyFeed(thumbnailData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
     getUserProfile();
+    getUserFeed();
   }, [setUser]);
 
   if (!user) {
@@ -63,7 +93,7 @@ export default function MyProfilePage() {
       </div>
 
       {/* 하단 섹션 */}
-      <NoFeedSection />
+      {myFeed.length === 0 ? <NoFeedSection /> : <ProfileFeed myFeeds={myFeed} />}
     </div>
   );
 }
