@@ -17,7 +17,7 @@ export default function FeedProfile({ profileImageUrl, profileName, isFollowing 
           alt={`${profileName} profile`}
           width={40}
           height={40}
-          className="rounded-full"
+          className="rounded-full w-10 h-10"
           unoptimized
         />
         <div className="font-semibold mx-2">{profileName}</div>
