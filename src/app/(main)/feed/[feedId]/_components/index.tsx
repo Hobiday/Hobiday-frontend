@@ -2,18 +2,20 @@
 
 import { fetchFeedById } from "@/apis/feed-api";
 import FeedItem from "@/components/feed/item";
+import { useUserStore } from "@/stores/useUserStore";
 import { AllFeeds } from "@/types/feed/feed.type";
 import { useEffect, useState } from "react";
 
-export default function FeedIdComponent({ feedId: feedId }: { feedId: string }) {
+export default function FeedIdComponent({ feedId: feedId }: { feedId: number }) {
   const [feedData, setFeedData] = useState<AllFeeds | null>(null);
+  const { user } = useUserStore();
 
   useEffect(() => {
     const fetchFeedData = async () => {
+      if (!user) return;
       try {
         const data = await fetchFeedById(feedId);
-        console.log("data: ", data.result);
-        setFeedData(data.result);
+        setFeedData(data);
       } catch (error) {
         console.log(error);
       }
@@ -22,20 +24,11 @@ export default function FeedIdComponent({ feedId: feedId }: { feedId: string }) 
     fetchFeedData();
   }, [feedId]);
 
-  function checkIsFollowing(feedProfileId: number, loggedInProfileId: number): boolean {
-    // 고도화 단계에서 팔로우 기능 구현 시 로직 추가
-    return feedProfileId === loggedInProfileId;
-  }
-
   return (
     <>
       {feedData && (
         <FeedItem key={feedData.feedId} className="w-full">
-          <FeedItem.Profile
-            profileImageUrl={feedData.profileImageUrl || ""}
-            profileName={feedData.profileName}
-            isFollowing={checkIsFollowing(feedData.profileId, 5)}
-          />
+          <FeedItem.Profile feed={feedData} />
           <FeedItem.Image feedFiles={feedData.feedFiles} />
           <FeedItem.Content contents={feedData.contents} />
           <FeedItem.HashTags hashTag={feedData.hashTag} />

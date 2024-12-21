@@ -57,7 +57,7 @@ function SelectCategoryButton({ onConfirm, disabled }: SelectCategoryButtonProps
 
 export default function SelectCategory() {
   const { category, setCategory } = useUploadTextStore();
-  const [tempCategory, setTempCategory] = useState("");
+  const [tempCategory, setTempCategory] = useState(category || "");
   const { open, close } = useBottomSheet();
   const bottomSheetId = "selectCategory";
   const categories = ["연극", "무용", "대중무용", "클래식", "국악", "대중음악", "복합", "서커스/마술", "뮤지컬"];
