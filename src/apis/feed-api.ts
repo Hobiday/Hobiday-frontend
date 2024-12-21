@@ -58,14 +58,22 @@ export const createFeed = async (data: FormData) => {
   }
 };
 
+interface UpdateFeedData {
+  content: string;
+  topic: string;
+  fileUrls: string[];
+  hashTags: string[];
+  performId: string;
+}
+
 /**
  * @param feedId - 피드 ID
  * @param data - 피드 데이터
  * @returns 피드 정보
  */
-export const updateFeed = async (params: { feedId: string; data: FormData }) => {
+export const updateFeed = async (params: { feedId: number; data: UpdateFeedData }) => {
   try {
-    const response = await apiClient.put(ENDPOINTS.FEED.UPDATE(params.feedId), params.data);
+    const response = await apiClient.patch(ENDPOINTS.FEED.UPDATE(params.feedId), params.data);
     return response.data;
   } catch (error) {
     throw new Error(handleApiError(error));
@@ -76,7 +84,7 @@ export const updateFeed = async (params: { feedId: string; data: FormData }) => 
  * @param feedId - 피드 ID
  * @returns
  */
-export const deleteFeed = async (feedId: string) => {
+export const deleteFeed = async (feedId: number) => {
   try {
     const response = await apiClient.delete(ENDPOINTS.FEED.DELETE(feedId));
     return response.data;
@@ -102,7 +110,7 @@ export const saveImageFile = async (data: FormData) => {
  * @param feedId - 피드 ID
  * @returns 좋아요 정보
  */
-export const likeFeed = async (feedId: string) => {
+export const likeFeed = async (feedId: number) => {
   try {
     const response = await apiClient.post(ENDPOINTS.FEED.LIKE(feedId));
     return response.data;
