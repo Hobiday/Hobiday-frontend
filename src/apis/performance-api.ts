@@ -3,6 +3,8 @@ import {
   PerformanceDetailAllResponse,
   PerformanceDetailResponse,
   PerformancesByGenreResponse,
+  RecommendedSearchWords,
+  RecommendedSearchWordsResponse,
 } from "@/types/performance/performance.type";
 import { ServerPerformance } from "@/types/performance/server";
 import { handleApiError } from "@/utils/api-error/error-handler";
@@ -67,8 +69,21 @@ export const fetchPerformanceDetailAll = async (performanceId: string): Promise<
 };
 
 /**
+ * 공연 추천 검색어 목록
+ * @returns 추천 공연 목록
+ */
+export const fetchRecommendedPerformances = async (): Promise<RecommendedSearchWords[]> => {
+  try {
+    const response = await apiClient.get<RecommendedSearchWordsResponse>(ENDPOINTS.PERFORMANCES.RECOMMENDS);
+    return response.data.result;
+  } catch (error) {
+    throw new Error(handleApiError(error));
+  }
+};
+
+/**
  * @param keyword 검색어
- * @returns 검색된 공연 목록 (서버 데이터)
+ * @returns 검색된 공연 목록
  */
 export const fetchPerformancesByKeyword = async (keyword: string): Promise<ServerPerformance[]> => {
   try {

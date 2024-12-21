@@ -47,3 +47,9 @@ export interface ServerPerformanceDetailAll {
   reservationChannel: string;
   reservationUrl: string;
 }
+
+export interface ServerRecommendedSearchWords {
+  performId: string;
+  performName: string;
+  genreName: string;
+}

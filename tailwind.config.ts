@@ -47,6 +47,10 @@ const config: Config = {
       },
       spacing: {
         header: "48px",
+        navbar: "80px",
+      },
+      height: {
+        content: "calc(100dvh - var(--header-height) - var(--navbar-height))",
       },
       zIndex: {
         header: "20",
@@ -71,6 +75,7 @@ const config: Config = {
       addBase({
         ":root": {
           "--header-height": theme("spacing.header"),
+          "--navbar-height": theme("spacing.navbar"),
         },
       });
     }),

@@ -30,7 +30,7 @@ export default function SearchBar(className: SearchBarProps) {
   };
 
   return (
-    <header className={cn("relative flex items-center justify-between w-full h-[48px] px-4 py-2 bg-white", className)}>
+    <header className={cn("relative flex items-center justify-between w-full h-header px-4 py-2 bg-white", className)}>
       {/* 왼쪽: 뒤로가기 버튼 */}
       <div className="flex items-center justify-start space-x-2">
         <Icon onClick={handleGoBack} size={24} className="cursor-pointer">

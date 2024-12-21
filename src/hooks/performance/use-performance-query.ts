@@ -1,7 +1,11 @@
 import { PaginationProps } from "@/types/commons/pagination";
-import { performanceAdapter, performanceDetailAdapter } from "@/types/performance/adapter";
+import {
+  performanceAdapter,
+  performanceDetailAdapter,
+  RecommendedSearchWordsAdapter,
+} from "@/types/performance/adapter";
 import { performanceDetailAllAdapter } from "@/types/performance/adapter/performance-detail-all-adapter";
-import { ClientPerformance } from "@/types/performance/client";
+import { ClientPerformance, ClientRecommendedSearchWords } from "@/types/performance/client";
 import { PerformancesByGenreQueryProps } from "@/types/performance/performance-queries";
 import { useQuery } from "@tanstack/react-query";
 import {
@@ -10,6 +14,7 @@ import {
   fetchPerformanceDetailAll,
   fetchPerformancesByGenre,
   fetchPerformancesByKeyword,
+  fetchRecommendedPerformances,
 } from "../../apis/performance-api";
 import { PERFORMANCE_KEYS } from "../queries";
 
@@ -64,10 +69,6 @@ export const usePerformanceDetailAll = (performanceId: string) => {
 };
 
 // 공연 검색
-/**
- * @param keyword 검색어
- * @returns 변환된 검색된 공연 목록
- */
 export const useSearchPerformances = (keyword: string) => {
   return useQuery<ClientPerformance[], Error>({
     queryKey: PERFORMANCE_KEYS.search(keyword),
@@ -76,5 +77,15 @@ export const useSearchPerformances = (keyword: string) => {
       return performanceAdapter(serverData);
     },
     enabled: !!keyword,
+  });
+};
+
+export const useRecommendedPerformances = () => {
+  return useQuery<ClientRecommendedSearchWords[], Error>({
+    queryKey: PERFORMANCE_KEYS.recommendSearchWord,
+    queryFn: async () => {
+      const ServerData = await fetchRecommendedPerformances();
+      return RecommendedSearchWordsAdapter(ServerData);
+    },
   });
 };

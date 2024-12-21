@@ -74,3 +74,11 @@ export interface PerformanceDetailAll {
 }
 
 export type PerformanceDetailAllResponse = BaseResponse<PerformanceDetailAll>;
+
+export interface RecommendedSearchWords {
+  performId: string;
+  performName: string;
+  genreName: string;
+}
+
+export type RecommendedSearchWordsResponse = BaseResponse<RecommendedSearchWords[]>;

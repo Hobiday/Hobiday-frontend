@@ -55,3 +55,10 @@ export interface ClientPerformanceDetailAll {
   showtime: string;
   openRun: boolean;
 }
+
+// 추천 공연 검색어
+export interface ClientRecommendedSearchWords {
+  performanceId: string;
+  performanceName: string;
+  genreName: string;
+}
