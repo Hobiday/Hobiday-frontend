@@ -29,6 +29,7 @@ export default function FeedMenuModal({ feed }: FeedMenuProps) {
     setFileUrls(feed.feedFiles);
     setPhotos(() => feed.feedFiles);
     setFeedId(feed.feedId);
+    handleDeleteModalClose();
     router.push("/feed/upload");
   }
 

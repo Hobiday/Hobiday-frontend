@@ -1,6 +1,6 @@
 "use client";
 
-import { getMyFeed, getMyProfile } from "@/apis/user-api";
+import { getMyProfile } from "@/apis/user-api";
 import { useUserStore } from "@/stores/useUserStore";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -12,6 +12,7 @@ import LoadingSpinner from "@/components/commons/spinner";
 import NoFeedSection from "./no-feed";
 import Link from "next/link";
 import ProfileFeed from "./profile-feed";
+import { fetchAllFeedById } from "@/apis/feed-api";
 
 interface FeedData {
   feedId: number;
@@ -40,8 +41,9 @@ export default function MyProfilePage() {
     };
 
     const getUserFeed = async () => {
+      if (!user) return;
       try {
-        const feedData: FeedData[] = await getMyFeed();
+        const feedData: FeedData[] = await fetchAllFeedById(user.profileId);
         console.log("feedData: ", feedData);
 
         // 피드 데이터에서 썸네일 데이터만 추출
@@ -73,7 +75,11 @@ export default function MyProfilePage() {
         <ProfileImage profileImageUrl={user.profileImageUrl} />
         <ProfileName profileNickname={user.profileNickname} profileIntroduction={user.profileIntroduction} />
         <ProfileGenres profileGenres={user.profileGenres} />
-        <ProfileStats />
+        <ProfileStats
+          postCount={user.totalFeedCount}
+          followerCount={user.followerCount}
+          followingCount={user.followingCount}
+        />
 
         {/* 버튼 */}
         <div className="flex gap-4 justify-center">

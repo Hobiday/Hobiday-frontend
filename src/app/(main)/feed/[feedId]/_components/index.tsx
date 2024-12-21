@@ -2,18 +2,20 @@
 
 import { fetchFeedById } from "@/apis/feed-api";
 import FeedItem from "@/components/feed/item";
+import { useUserStore } from "@/stores/useUserStore";
 import { AllFeeds } from "@/types/feed/feed.type";
 import { useEffect, useState } from "react";
 
-export default function FeedIdComponent({ feedId: feedId }: { feedId: string }) {
+export default function FeedIdComponent({ feedId: feedId }: { feedId: number }) {
   const [feedData, setFeedData] = useState<AllFeeds | null>(null);
+  const { user } = useUserStore();
 
   useEffect(() => {
     const fetchFeedData = async () => {
+      if (!user) return;
       try {
         const data = await fetchFeedById(feedId);
-        console.log("data: ", data.result);
-        setFeedData(data.result);
+        setFeedData(data);
       } catch (error) {
         console.log(error);
       }

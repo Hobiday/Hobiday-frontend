@@ -44,7 +44,8 @@ export const fetchPerformancesByGenre = async (params: { rowStart: string; rowEn
  */
 export const fetchPerformanceById = async (performanceId: string) => {
   try {
-    const response = await apiClient.get<PerformanceDetailResponse>(ENDPOINTS.PERFORMANCES.GET_BY_ID(performanceId));
+    // const response = await apiClient.get<PerformanceDetailResponse>(ENDPOINTS.PERFORMANCES.GET_BY_ID(performanceId));
+    const response = await apiClient.get(ENDPOINTS.PERFORMANCES.GET_BY_ID(performanceId));
     return response.data;
   } catch (error) {
     throw new Error(handleApiError(error));
@@ -72,7 +73,8 @@ export const fetchPerformanceDetailAll = async (performanceId: string): Promise<
  */
 export const fetchPerformancesByKeyword = async (keyword: string): Promise<ServerPerformance[]> => {
   try {
-    const response = await apiClient.get<{ result: ServerPerformance[] }>(ENDPOINTS.PERFORMANCES.SEARCH(keyword));
+    // const response = await apiClient.get<{ result: ServerPerformance[] }>(ENDPOINTS.PERFORMANCES.SEARCH(keyword));
+    const response = await apiClient.get(ENDPOINTS.PERFORMANCES.SEARCH(keyword));
     return response.data.result;
   } catch (error) {
     throw new Error(handleApiError(error));

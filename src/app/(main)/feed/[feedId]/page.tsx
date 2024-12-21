@@ -5,7 +5,7 @@ import SvgSearch from "@/assets/svgr-icons/Search";
 import { MainLayout } from "@/components/layout";
 
 export default function FeedIdPage({ params }: { params: { feedId: string } }) {
-  const { feedId } = params;
+  const feedId = Number(params.feedId);
   const headerProps = {
     title: "피드",
     showBackButton: true,

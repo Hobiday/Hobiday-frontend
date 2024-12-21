@@ -17,6 +17,11 @@ const nextConfig = {
         hostname: "hobiday-bucket.s3.ap-northeast-2.amazonaws.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "*.cloudfront.net",
+        pathname: "/**",
+      },
     ],
   },
   webpack(config) {
