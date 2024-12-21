@@ -14,5 +14,21 @@ export const getCheckNickname = async (nickname: string): Promise<CheckNicknameR
 
 export const getMyProfile = async () => {
   const response = await apiClient.get(ENDPOINTS.PROFILES.PROFILE);
+  return response.data.result;
+};
+
+export const getMyFeed = async () => {
+  const response = await apiClient.get(ENDPOINTS.FEED.GET.MINE);
+  return response.data.result;
+};
+
+export const userLogout = async () => {
+  const response = await apiClient.delete(ENDPOINTS.USERS.LOGOUT);
+  return response;
+};
+
+export const updateMyProfile = async (data: { [key: string]: string | string[] }) => {
+  const response = await apiClient.put(ENDPOINTS.PROFILES.UPDATE, data);
+  console.log("updateAPI", response.data);
   return response.data;
 };

@@ -41,6 +41,7 @@ const config: Config = {
           900: "#070708",
         },
         kakao: "#FEE500",
+        flat: "#EFF3FB",
       },
       fontFamily: {
         pretendard: ["var(--font-pretendard)"],

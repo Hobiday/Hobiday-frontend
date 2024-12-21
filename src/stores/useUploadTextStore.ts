@@ -13,6 +13,7 @@ interface UploadTextState {
   setHashTags: (newHashtags: string[]) => void;
   setFileUrls: (newFileUrls: string[]) => void;
   setPhotos: (updateFn: (prevPhotos: File[]) => File[]) => void;
+  reset: () => void;
 }
 
 const useUploadTextStore = create<UploadTextState>((set) => ({
@@ -28,6 +29,7 @@ const useUploadTextStore = create<UploadTextState>((set) => ({
   setHashTags: (newHashTags) => set({ hashTags: newHashTags }),
   setFileUrls: (newFileUrls) => set({ fileUrls: newFileUrls }),
   setPhotos: (updateFn) => set((state) => ({ photos: updateFn(state.photos) })),
+  reset: () => set({ performId: "", content: "", category: "", hashTags: [], fileUrls: [], photos: [] }),
 }));
 
 export default useUploadTextStore;

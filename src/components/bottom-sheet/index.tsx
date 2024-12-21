@@ -6,21 +6,22 @@ import { AnimatePresence, motion } from "framer-motion";
 import { PropsWithChildren, ReactNode, useEffect, useRef } from "react";
 
 type BottomSheetProps = {
+  id: string;
   children: ReactNode;
   height?: string;
 };
 
 const TITLE_ID = "bottom-sheet-title";
 const DESCRIPTION_ID = "bottom-sheet-description";
-export default function BottomSheet({ children, height = "45%" }: BottomSheetProps) {
+export default function BottomSheet({ id, children, height = "45%" }: BottomSheetProps) {
   const { isOpen, close } = useBottomSheet();
   const sheetRef = useRef<HTMLDivElement>(null);
 
   // ESC 키로 닫기
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && isOpen) {
-        close();
+      if (e.key === "Escape" && isOpen(id)) {
+        close(id);
       }
     };
     window.addEventListener("keydown", handleKeyDown);
@@ -31,12 +32,12 @@ export default function BottomSheet({ children, height = "45%" }: BottomSheetPro
 
   return (
     <AnimatePresence>
-      {isOpen && (
+      {isOpen(id) && (
         <>
           {/* 반투명 배경 */}
           <motion.div
             className="fixed inset-0 bg-black/30 z-bottomSheet"
-            onClick={close}
+            onClick={() => close(id)}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
