@@ -1,4 +1,7 @@
-export interface ServerPerformance {
+import { BaseResponse } from "../base-response";
+
+// 전체 공연 조회
+export interface ServerAllPerformances {
   performId: string; // 공연 ID
   performName: string; // 공연명
   startDate: string; // 시작일
@@ -12,6 +15,26 @@ export interface ServerPerformance {
   likeCount: number; // 좋아요 수
 }
 
+export type AllPerformancesResponse = BaseResponse<ServerAllPerformances[]>;
+
+// 장르별 공연 조회
+export interface ServerPerformancesByGenre {
+  performId: string;
+  performName: string;
+  startDate: string;
+  endDate: string;
+  genreName: string;
+  performState: string;
+  placeName: string;
+  openRun: boolean;
+  area: string;
+  poster: string;
+  likeCount: number;
+}
+
+export type PerformancesByGenreResponse = BaseResponse<ServerPerformancesByGenre[]>;
+
+// 공연 상세 조회
 export interface ServerPerformanceDetails {
   performId: string; // 공연 ID
   facilityId: string; // 시설 상세 ID
@@ -25,6 +48,9 @@ export interface ServerPerformanceDetails {
   reservationUrl: string; // 예약 사이트
 }
 
+export type PerformanceDetailResponse = BaseResponse<ServerPerformanceDetails[]>;
+
+// 공연 기본 조회 + 상세 조회
 export interface ServerPerformanceDetailAll {
   performId: string;
   performName: string;
@@ -48,8 +74,13 @@ export interface ServerPerformanceDetailAll {
   reservationUrl: string;
 }
 
+export type PerformanceDetailAllResponse = BaseResponse<ServerPerformanceDetailAll>;
+
+// 공연 추천 검색어
 export interface ServerRecommendedSearchWords {
   performId: string;
   performName: string;
   genreName: string;
 }
+
+export type RecommendedSearchWordsResponse = BaseResponse<ServerRecommendedSearchWords[]>;

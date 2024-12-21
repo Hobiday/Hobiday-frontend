@@ -3,10 +3,10 @@ import {
   PerformanceDetailAllResponse,
   PerformanceDetailResponse,
   PerformancesByGenreResponse,
-  RecommendedSearchWords,
   RecommendedSearchWordsResponse,
-} from "@/types/performance/performance.type";
-import { ServerPerformance } from "@/types/performance/server";
+  ServerAllPerformances,
+  ServerRecommendedSearchWords,
+} from "@/types/performance/server";
 import { handleApiError } from "@/utils/api-error/error-handler";
 import { ENDPOINTS } from "./end-points";
 import { apiClient } from "./index";
@@ -16,7 +16,10 @@ import { apiClient } from "./index";
  * @param params.rowEnd - 불러올 데이터의 끝 인덱스
  * @returns 전체 공연 데이터
  */
-export const fetchAllPerformances = async (params: { rowStart: string; rowEnd: string }) => {
+export const fetchAllPerformances = async (params: {
+  rowStart: string;
+  rowEnd: string;
+}): Promise<AllPerformancesResponse> => {
   try {
     const response = await apiClient.get<AllPerformancesResponse>(ENDPOINTS.PERFORMANCES.GET_ALL, { params });
     return response.data;
@@ -72,7 +75,7 @@ export const fetchPerformanceDetailAll = async (performanceId: string): Promise<
  * 공연 추천 검색어 목록
  * @returns 추천 공연 목록
  */
-export const fetchRecommendedPerformances = async (): Promise<RecommendedSearchWords[]> => {
+export const fetchRecommendedPerformances = async (): Promise<ServerRecommendedSearchWords[]> => {
   try {
     const response = await apiClient.get<RecommendedSearchWordsResponse>(ENDPOINTS.PERFORMANCES.RECOMMENDS);
     return response.data.result;
@@ -85,9 +88,9 @@ export const fetchRecommendedPerformances = async (): Promise<RecommendedSearchW
  * @param keyword 검색어
  * @returns 검색된 공연 목록
  */
-export const fetchPerformancesByKeyword = async (keyword: string): Promise<ServerPerformance[]> => {
+export const fetchPerformancesByKeyword = async (keyword: string): Promise<ServerAllPerformances[]> => {
   try {
-    const response = await apiClient.get<{ result: ServerPerformance[] }>(ENDPOINTS.PERFORMANCES.SEARCH(keyword));
+    const response = await apiClient.get<{ result: ServerAllPerformances[] }>(ENDPOINTS.PERFORMANCES.SEARCH(keyword));
     return response.data.result;
   } catch (error) {
     throw new Error(handleApiError(error));
