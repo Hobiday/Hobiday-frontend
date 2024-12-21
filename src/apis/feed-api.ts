@@ -3,6 +3,7 @@ import { ENDPOINTS } from "./end-points";
 import { apiClient } from "./index";
 import { AllFeedsResponse } from "@/types/feed/feed.type";
 
+// 최신순 정렬
 export const fetchAllFeedByLatest = async () => {
   try {
     const response = await apiClient.get<AllFeedsResponse>(ENDPOINTS.FEED.GET.LATEST);
@@ -14,6 +15,7 @@ export const fetchAllFeedByLatest = async () => {
   }
 };
 
+// 인기순 정렬
 export const fetchAllFeedByPopular = async () => {
   try {
     const response = await apiClient.get<AllFeedsResponse>(ENDPOINTS.FEED.GET.POPULAR);
@@ -23,23 +25,26 @@ export const fetchAllFeedByPopular = async () => {
   }
 };
 
-export const fetchAllFeedByMine = async () => {
+// 사용자 Id로 모든 피드 조회
+export const fetchAllFeedById = async (profileId: number) => {
   try {
-    const response = await apiClient.get<AllFeedsResponse>(ENDPOINTS.FEED.GET.MINE);
-    return response.data;
+    const response = await apiClient.get(ENDPOINTS.FEED.GET.BY_ID(profileId));
+    return response.data.result;
   } catch (error) {
     throw new Error(handleApiError(error));
   }
 };
 
 /**
+ * @param profileId - 프로필 ID
  * @param feedId - 피드 ID
  * @returns 피드 상세 정보
  */
-export const fetchFeedById = async (feedId: string) => {
+// 개별 피드 조회
+export const fetchFeedById = async (feedId: number) => {
   try {
     const response = await apiClient.get(ENDPOINTS.FEED.GET.DETAIL(feedId));
-    return response.data;
+    return response.data.result;
   } catch (error) {
     throw new Error(handleApiError(error));
   }

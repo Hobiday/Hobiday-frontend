@@ -6,7 +6,7 @@ import MyProfilePage from "./_components/myprofile";
 export default function MyPage() {
   const headerProps = {
     leftIcons: [{ icon: <TextLogo />, path: "/" }],
-    rightIcons: [{ icon: <Settings />, path: "/setting", size: 24 }],
+    rightIcons: [{ icon: <Settings />, path: "/my/setting", size: 24 }],
   };
 
   return (

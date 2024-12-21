@@ -22,8 +22,8 @@ export const ENDPOINTS = {
     GET: {
       LATEST: `${API_BASE_URL}/api/feeds`,
       POPULAR: `${API_BASE_URL}/api/feeds/likes`,
-      MINE: `${API_BASE_URL}/api/profiles/feeds`, // 마이페이지
-      DETAIL: (feedId: string) => `${API_BASE_URL}/api/profiles/feeds/${feedId}`, // 피드 상세 페이지
+      BY_ID: (profileId: number) => `${API_BASE_URL}/api/profiles/${profileId}/feeds`,
+      DETAIL: (feedId: number) => `${API_BASE_URL}/api/profiles/feeds/${feedId}`, // 피드 상세 페이지
     },
     CREATE: `${API_BASE_URL}/api/feeds`, // 피드 등록
     UPDATE: (feedId: number) => `${API_BASE_URL}/api/feeds/${feedId}`, // 피드 수정
@@ -38,9 +38,15 @@ export const ENDPOINTS = {
     DELETE: (commentId: number) => `${API_BASE_URL}/api/comments/${commentId}`, // 댓글 삭제
   },
   PROFILES: {
+    GET: {
+      BY_ID: (profileId: number) => `${API_BASE_URL}/api/profiles/myprofile?profileId=${profileId}`, // 프로필 조회
+      FOLLOWING: (profileId: number) => `${API_BASE_URL}/api/profiles/${profileId}/following`, // 팔로잉 조회
+      FOLLOWERS: (profileId: number) => `${API_BASE_URL}/api/profiles/${profileId}/followers`, // 팔로워 조회
+    },
     REGISTRATION: `${API_BASE_URL}/api/profiles/registration`,
     NICKNAME_CHECK: (nickname: string) => `${API_BASE_URL}/api/profiles/registration/${nickname}`,
-    PROFILE: `${API_BASE_URL}/api/profiles/myprofile`,
+    PROFILE: `${API_BASE_URL}/api/profiles/myprofile`, // 내 프로필 정보
     UPDATE: `${API_BASE_URL}/api/profiles/update`,
+    FOLLOW: (targetProfileId: number) => `${API_BASE_URL}/api/profiles/follow?targetProfileId=${targetProfileId}`,
   },
 };
