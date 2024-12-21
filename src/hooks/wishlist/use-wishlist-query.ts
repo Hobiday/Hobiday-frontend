@@ -5,11 +5,11 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { WISHLIST_KEYS } from "../queries";
 
 // 전체 위시리스트 데이터 조회
-export const useAllWishlistQuery = () => {
+export const useAllWishlistQuery = (rowStart: string, rowEnd: string) => {
   return useQuery<ClientWishlist[]>({
-    queryKey: WISHLIST_KEYS.all,
+    queryKey: [...WISHLIST_KEYS.all, rowStart, rowEnd],
     queryFn: async () => {
-      const serverData = await fetchWishlist();
+      const serverData = await fetchWishlist(rowStart, rowEnd);
       return wishlistAdapter(serverData);
     },
     select: (data) => data || [],

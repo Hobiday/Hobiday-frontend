@@ -62,7 +62,6 @@ export interface ServerPerformanceDetailAll {
   openRun: boolean;
   area: string;
   poster: string;
-  likeCount: number;
   facilityId: string;
   cast: string;
   runtime: string;
@@ -72,6 +71,9 @@ export interface ServerPerformanceDetailAll {
   showtime: string;
   reservationChannel: string;
   reservationUrl: string;
+  wishCount: number;
+  feedCount: number;
+  isWished: boolean;
 }
 
 export type PerformanceDetailAllResponse = BaseResponse<ServerPerformanceDetailAll>;

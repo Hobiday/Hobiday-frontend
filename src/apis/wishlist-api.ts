@@ -4,24 +4,15 @@ import { apiClient } from ".";
 import { ENDPOINTS } from "./end-points";
 
 /**
- * @param performId 공연 ID
- * @returns 위시리스트 추가 응답
- */
-export const postAddWishlist = async (performId: string) => {
-  try {
-    const response = await apiClient.post(ENDPOINTS.WISHLIST.POST(performId));
-    return response.data.result;
-  } catch (error) {
-    throw new Error(handleApiError(error));
-  }
-};
-
-/**
+ * @param rowStart 시작 인덱스
+ * @param rowEnd 종료 인덱스
  * @returns 전체 위시리스트 목록
  */
-export const fetchWishlist = async () => {
+export const fetchWishlist = async (rowStart: string, rowEnd: string) => {
   try {
-    const response = await apiClient.get<WishlistResponse>(ENDPOINTS.WISHLIST.GET.ALL);
+    const response = await apiClient.get<WishlistResponse>(ENDPOINTS.WISHLIST.GET.ALL, {
+      params: { rowStart, rowEnd },
+    });
     return response.data.result;
   } catch (error) {
     throw new Error(handleApiError(error));
@@ -37,6 +28,19 @@ export const fetchWishlistByGenre = async (category: string) => {
     const response = await apiClient.get<WishlistResponse>(ENDPOINTS.WISHLIST.GET.GENRE, {
       params: { category },
     });
+    return response.data.result;
+  } catch (error) {
+    throw new Error(handleApiError(error));
+  }
+};
+
+/**
+ * @param performId 공연 ID
+ * @returns 위시리스트 추가 응답
+ */
+export const postAddWishlist = async (performId: string) => {
+  try {
+    const response = await apiClient.post(ENDPOINTS.WISHLIST.POST(performId));
     return response.data.result;
   } catch (error) {
     throw new Error(handleApiError(error));

@@ -57,6 +57,8 @@ export default function PerformanceDetail() {
         location={data.location.place}
         dateStart={data.date.start}
         dateEnd={data.date.end}
+        likeCounts={data.likeCounts}
+        performanceId={data.performanceId}
       />
 
       {/* 공연 상세 정보 */}
