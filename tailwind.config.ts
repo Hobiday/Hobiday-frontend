@@ -77,6 +77,7 @@ const config: Config = {
         ":root": {
           "--header-height": theme("spacing.header"),
           "--navbar-height": theme("spacing.navbar"),
+          "--content-height": theme("height.content"),
         },
       });
     }),

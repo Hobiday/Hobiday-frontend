@@ -1,8 +1,10 @@
 "use client";
 
 import Location from "@/assets/icons/location.svg";
+import LikeGradientDefault from "@/assets/svgr-icons/like-gradient-default";
 import Card from "@/components/card";
 import Chip from "@/components/commons/chip";
+import Icon from "@/components/commons/icons";
 import LoadingSpinner from "@/components/commons/spinner";
 import { SectionLayout } from "@/components/layout";
 import { TAB_CATEGORY } from "@/constants/category";
@@ -56,20 +58,32 @@ export default function WishlistPage() {
         onTabClick={handleTabClick}
         activeTab={selectedTab}
       />
-      <SectionLayout className="flex flex-col py-4 gap-3">
-        {wishlist?.map((item) => (
-          <Card key={item.wishListId} href={`/performance/${item.performanceId}`} className="w-full">
-            <Card.Image src={item.posterUrl} alt={item.performanceName} width={"w-[88px]"} height={"h-[88px]"} />
-            <Card.Content>
-              <Card.Category>
-                <Chip label={item.genreName} state="hashTag" />
-              </Card.Category>
-              <Card.Title>{item.performanceName}</Card.Title>
-              <Card.Info svgr={<Location className="fill-gray-400" />} info={item.placeName} />
-            </Card.Content>
-          </Card>
-        ))}
-      </SectionLayout>
+      {wishlist && wishlist.length > 0 ? (
+        <SectionLayout className="flex flex-col py-4 gap-3">
+          {wishlist.map((item) => (
+            <Card key={item.wishListId} href={`/performance/${item.performanceId}`} className="w-full">
+              <Card.Image src={item.posterUrl} alt={item.performanceName} width={"w-[88px]"} height={"h-[88px]"} />
+              <Card.Content>
+                <Card.Category>
+                  <Chip label={item.genreName} state="hashTag" />
+                </Card.Category>
+                <Card.Title>{item.performanceName}</Card.Title>
+                <Card.Info svgr={<Location className="fill-gray-400" />} info={item.placeName} />
+              </Card.Content>
+            </Card>
+          ))}
+        </SectionLayout>
+      ) : (
+        <div
+          className="flex flex-col justify-center items-center text-gray-600 text-center gap-4"
+          style={{ height: "calc(var(--content-height) - 44px)" }}
+        >
+          <Icon size={40}>
+            <LikeGradientDefault width={40} height={40} />
+          </Icon>
+          저장된 위시리스트가 없습니다.
+        </div>
+      )}
     </>
   );
 }
