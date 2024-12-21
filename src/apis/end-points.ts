@@ -37,6 +37,14 @@ export const ENDPOINTS = {
     UPDATE: (commentId: number) => `${API_BASE_URL}/api/comments/${commentId}`, // 댓글 수정
     DELETE: (commentId: number) => `${API_BASE_URL}/api/comments/${commentId}`, // 댓글 삭제
   },
+  WISHLIST: {
+    POST: (performId: string) => `${API_BASE_URL}/api/wishlist/${performId}`,
+    GET: {
+      ALL: `${API_BASE_URL}/api/wishlist`,
+      GENRE: `${API_BASE_URL}/api/wishlist/genre`,
+    },
+    DELETE: (performId: string) => `${API_BASE_URL}/api/wishlist/${performId}`,
+  },
   PROFILES: {
     GET: {
       BY_ID: (profileId: number) => `${API_BASE_URL}/api/profiles/myprofile?profileId=${profileId}`, // 프로필 조회

@@ -15,3 +15,8 @@ export const USER_KEYS = {
 export const PROFILE_KEYS = {
   PROFILE_REGISTRATION: "profile-registration",
 };
+
+export const WISHLIST_KEYS = {
+  all: ["wishlist"] as const,
+  byGenre: (genre: string) => [...WISHLIST_KEYS.all, "genre", genre] as const,
+};
