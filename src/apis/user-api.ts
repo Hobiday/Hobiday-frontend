@@ -71,14 +71,3 @@ export const followToggle = async (targetProfileId: number) => {
     throw new Error(handleApiError(error));
   }
 };
-
-export const userLogout = async () => {
-  const response = await apiClient.delete(ENDPOINTS.USERS.LOGOUT);
-  return response;
-};
-
-export const updateMyProfile = async (data: { [key: string]: string | string[] }) => {
-  const response = await apiClient.put(ENDPOINTS.PROFILES.UPDATE, data);
-  console.log("updateAPI", response.data);
-  return response.data;
-};
