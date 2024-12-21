@@ -31,7 +31,7 @@ export default function CommentCard({ id, contents, profileName, profileImageUrl
           alt={`${profileName} profile`}
           width={28}
           height={28}
-          className="rounded-full mr-2"
+          className="rounded-full mr-2 w-7 h-7"
           unoptimized
         />
         <div className="font-semibold text-xs">{profileName}</div>
