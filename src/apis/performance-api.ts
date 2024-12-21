@@ -1,7 +1,6 @@
 import {
   AllPerformancesResponse,
   PerformanceDetailAllResponse,
-  PerformanceDetailResponse,
   PerformancesByGenreResponse,
   RecommendedSearchWordsResponse,
   ServerAllPerformances,
@@ -49,7 +48,8 @@ export const fetchPerformancesByGenre = async (params: { rowStart: string; rowEn
  */
 export const fetchPerformanceById = async (performanceId: string) => {
   try {
-    const response = await apiClient.get<PerformanceDetailResponse>(ENDPOINTS.PERFORMANCES.GET_BY_ID(performanceId));
+    // const response = await apiClient.get<PerformanceDetailResponse>(ENDPOINTS.PERFORMANCES.GET_BY_ID(performanceId));
+    const response = await apiClient.get(ENDPOINTS.PERFORMANCES.GET_BY_ID(performanceId));
     return response.data;
   } catch (error) {
     throw new Error(handleApiError(error));
