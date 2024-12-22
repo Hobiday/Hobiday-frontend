@@ -60,6 +60,7 @@ export default function PerformanceDetail() {
           dateEnd: data.date.end,
           likeCounts: data.likeCounts,
           performanceId: data.performanceId,
+          feedCounts: data.feedCounts,
           isLiked: data.isLiked,
         }}
       />

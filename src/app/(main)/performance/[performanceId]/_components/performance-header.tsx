@@ -18,11 +18,24 @@ interface Performance {
   dateEnd: string;
   likeCounts: number;
   performanceId: string;
+  feedCounts: number;
   isLiked: boolean;
 }
 
 export default function PerformanceDetailHeader({ performance }: { performance: Performance }) {
-  const { genre, name, location, dateStart, dateEnd, likeCounts, performanceId, isLiked: initialLiked } = performance;
+  const {
+    genre,
+    name,
+    location,
+    dateStart,
+    dateEnd,
+    likeCounts,
+    performanceId,
+    feedCounts,
+    isLiked: initialLiked,
+  } = performance;
+
+  console.log(initialLiked);
 
   const addWishlistMutation = useAddWishlistMutation();
   const removeWishlistMutation = useRemoveWishlistMutation();
@@ -77,16 +90,12 @@ export default function PerformanceDetailHeader({ performance }: { performance: 
           </p>
         </div>
         <div className="h-20 w-[1px] bg-gray-300 mx-4" />
-        <div className="flex flex-col items-center gap-1">
-          <Link href={`/feed/search/${performanceId}`}>
-            <Icon size={40} className="cursor-pointer">
-              <FeedGradation width={33} height={33} />
-            </Icon>
-          </Link>
-          <p>
-            피드 <span>12</span>
-          </p>
-        </div>
+        <Link href={`/feed/search/${performanceId}`} className="flex flex-col items-center gap-1">
+          <Icon size={40} className="cursor-pointer">
+            <FeedGradation width={33} height={33} />
+          </Icon>
+          <p>피드 {feedCounts}</p>
+        </Link>
       </div>
     </SectionLayout>
   );
