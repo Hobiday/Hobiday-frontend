@@ -2,31 +2,47 @@
 
 import cn from "@/lib/tailwind-cn";
 import { useRouter } from "next/navigation";
-import { ChangeEvent } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 
 import ArrowBack from "@/assets/icons/arrow-back.svg";
 import CloseIcon from "@/assets/icons/cancel.svg";
 import Icon from "@/components/commons/icons";
+import { useDebounce } from "@/hooks/use-debounce";
 import { useSearchStore } from "@/stores/useSearchStore";
 
 export type SearchBarProps = {
   className?: string;
 };
 
-export default function SearchBar(className: SearchBarProps) {
+export default function SearchBar({ className }: SearchBarProps) {
   const router = useRouter();
   const { searchQuery, setSearchQuery } = useSearchStore();
+
+  const [localSearchQuery, setLocalSearchQuery] = useState(searchQuery);
+  const debouncedQuery = useDebounce(localSearchQuery, 400);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    setSearchQuery(debouncedQuery);
+  }, [debouncedQuery, setSearchQuery]);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+    return () => {
+      setSearchQuery("");
+    };
+  }, [setSearchQuery]);
 
   const handleGoBack = () => {
     router.back();
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(e.target.value);
+    setLocalSearchQuery(e.target.value);
   };
 
   const handleClear = () => {
-    setSearchQuery("");
+    setLocalSearchQuery("");
   };
 
   return (
@@ -41,12 +57,13 @@ export default function SearchBar(className: SearchBarProps) {
       {/* 중앙: 검색창 */}
       <div className="flex items-center justify-center w-[350px] h-9 bg-gray-50 rounded-full px-4">
         <input
+          ref={inputRef} // Automatically focus input
           type="text"
-          value={searchQuery}
+          value={localSearchQuery}
           onChange={handleChange}
           className="w-full h-full bg-transparent outline-none text-gray-700"
         />
-        {searchQuery && (
+        {localSearchQuery && (
           <button onClick={handleClear} className="text-gray-400 hover:text-gray-600">
             <Icon size={24}>
               <CloseIcon />

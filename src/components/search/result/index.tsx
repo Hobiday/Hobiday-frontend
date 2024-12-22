@@ -30,9 +30,9 @@ export default function SearchResult() {
   return (
     <>
       {performances && performances.length > 0 ? (
-        performances.map((performance) => (
-          <SectionLayout key={performance.performanceId} className="flex flex-col py-4 gap-3">
-            <Card href={`/performance/${performance.performanceId}`} className="w-full">
+        <SectionLayout className="flex flex-col py-4 gap-3">
+          {performances.map((performance) => (
+            <Card href={`/performance/${performance.performanceId}`} key={performance.performanceId} className="w-full">
               <Card.Image
                 src={performance.posterUrl}
                 alt={performance.performanceName}
@@ -47,8 +47,8 @@ export default function SearchResult() {
                 <Card.Info svgr={<Location />} info={performance.facility} />
               </Card.Content>
             </Card>
-          </SectionLayout>
-        ))
+          ))}
+        </SectionLayout>
       ) : (
         <div className="flex flex-col items-center justify-center h-content bg-white">
           <div className="mb-4">
