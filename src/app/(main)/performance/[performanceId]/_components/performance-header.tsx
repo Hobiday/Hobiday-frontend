@@ -10,7 +10,7 @@ import { useAddWishlistMutation, useRemoveWishlistMutation } from "@/hooks/wishl
 import Link from "next/link";
 import { useState } from "react";
 
-interface PerformanceDetailHeaderProps {
+interface Performance {
   genre: string;
   name: string;
   location: string;
@@ -18,38 +18,30 @@ interface PerformanceDetailHeaderProps {
   dateEnd: string;
   likeCounts: number;
   performanceId: string;
+  isLiked: boolean;
 }
 
-const INITIAL_COUNT = 38;
-export default function PerformanceDetailHeader(props: PerformanceDetailHeaderProps) {
-  const { genre, name, location, dateStart, dateEnd, likeCounts, performanceId } = props;
+export default function PerformanceDetailHeader({ performance }: { performance: Performance }) {
+  const { genre, name, location, dateStart, dateEnd, likeCounts, performanceId, isLiked: initialLiked } = performance;
+
   const addWishlistMutation = useAddWishlistMutation();
   const removeWishlistMutation = useRemoveWishlistMutation();
-  const [wishCount, setWishCount] = useState(INITIAL_COUNT);
-  const [isLiked, setIsLiked] = useState(false);
+
+  const [wishCount, setWishCount] = useState(likeCounts);
+  const [isLiked, setIsLiked] = useState(initialLiked);
 
   const handleLikeToggle = () => {
-    if (isLiked) {
-      removeWishlistMutation.mutate(performanceId, {
-        onSuccess: () => {
-          setIsLiked(false);
-          setWishCount((prev) => Math.max(prev - 1, 0));
-        },
-        onError: (error) => {
-          console.error("위시리스트 해제 실패:", error);
-        },
-      });
-    } else {
-      addWishlistMutation.mutate(performanceId, {
-        onSuccess: () => {
-          setIsLiked(true);
-          setWishCount((prev) => prev + 1);
-        },
-        onError: (error) => {
-          console.error("위시리스트 추가 실패:", error);
-        },
-      });
-    }
+    const mutation = isLiked ? removeWishlistMutation : addWishlistMutation;
+
+    mutation.mutate(performanceId, {
+      onSuccess: () => {
+        setIsLiked((prev) => !prev);
+        setWishCount((prev) => prev + (isLiked ? -1 : 1));
+      },
+      onError: (error) => {
+        console.error(`위시리스트 ${isLiked ? "제거" : "추가"} 실패:`, error);
+      },
+    });
   };
 
   return (
@@ -77,15 +69,9 @@ export default function PerformanceDetailHeader(props: PerformanceDetailHeaderPr
       <Gap vertical size={16} />
       <div className="flex justify-evenly items-center max-w-[398px] w-full min-h-[112px] bg-white text-sm text-gray-600 font-medium shadow-md">
         <div onClick={handleLikeToggle} className="cursor-pointer flex flex-col items-center gap-1">
-          {isLiked ? (
-            <Icon size={40} className="cursor-pointer">
-              <LikeGradientPressed width={33} height={31} />
-            </Icon>
-          ) : (
-            <Icon size={40} className="cursor-pointer">
-              <LikeGradientDefault width={33} height={31} />
-            </Icon>
-          )}
+          <Icon size={40} className="cursor-pointer">
+            {isLiked ? <LikeGradientPressed width={33} height={31} /> : <LikeGradientDefault width={33} height={31} />}
+          </Icon>
           <p>
             위시 <span>{wishCount}</span>
           </p>

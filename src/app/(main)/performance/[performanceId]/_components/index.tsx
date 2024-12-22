@@ -52,13 +52,16 @@ export default function PerformanceDetail() {
       {/* 공연 상세 헤더 */}
       <Gap vertical size={103} />
       <PerformanceDetailHeader
-        genre={data.genre}
-        name={data.name}
-        location={data.location.place}
-        dateStart={data.date.start}
-        dateEnd={data.date.end}
-        likeCounts={data.likeCounts}
-        performanceId={data.performanceId}
+        performance={{
+          genre: data.genre,
+          name: data.name,
+          location: data.location.place,
+          dateStart: data.date.start,
+          dateEnd: data.date.end,
+          likeCounts: data.likeCounts,
+          performanceId: data.performanceId,
+          isLiked: data.isLiked,
+        }}
       />
 
       {/* 공연 상세 정보 */}
