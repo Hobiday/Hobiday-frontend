@@ -6,7 +6,7 @@ import ProfileIdInfo from "./_components";
 export default function ProfileIdPage({ params }: { params: { profileId: string } }) {
   const profileId = Number(params.profileId);
   const headerProps = {
-    leftIcons: [{ icon: <TextLogo />, path: "/" }],
+    showBackButton: true,
     rightIcons: [{ icon: <Settings />, path: "/my/setting", size: 24 }],
   };
 

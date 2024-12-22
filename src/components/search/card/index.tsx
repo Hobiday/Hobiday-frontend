@@ -8,7 +8,7 @@ type SearchCardProps = {
 };
 
 export default function SearchCard({ children, className }: SearchCardProps) {
-  return <div className={cn("flex rounded-md bg-gray-50", className)}>{children}</div>;
+  return <div className={cn("flex rounded-md", className)}>{children}</div>;
 }
 
 type SearchCardImageProps = {

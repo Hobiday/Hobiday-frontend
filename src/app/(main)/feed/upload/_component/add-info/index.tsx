@@ -28,7 +28,7 @@ export default function AddInfo() {
         <div className="flex items-center justify-center p-2">
           <SearchCard
             key={selectedPerformance.performanceId}
-            className="cursor-pointer flex items-center justify-start w-[356px] bg-white"
+            className="cursor-pointer flex items-center justify-start w-[356px]"
           >
             <SearchCard.Image
               src={selectedPerformance.posterUrl}
