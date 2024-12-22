@@ -10,7 +10,7 @@ export const ENDPOINTS = {
     DETAIL: {
       BY_ID: (performId: string) => `${API_BASE_URL}/api/performs/detail/${performId}`,
       BY_ID_ALL: (performId: string) => `${API_BASE_URL}/api/performs/all/${performId}`,
-      FACILITY: (facilityId: string) => `${API_BASE_URL}/api/performs/detail/facility/${facilityId}`,
+      FACILITY: (facilityId: string) => `${API_BASE_URL}/api/performs/facility/${facilityId}`,
     },
   },
   USERS: {
@@ -36,6 +36,14 @@ export const ENDPOINTS = {
     CREATE: (feedId: number) => `${API_BASE_URL}/api/comments/${feedId}`, // 댓글 등록
     UPDATE: (commentId: number) => `${API_BASE_URL}/api/comments/${commentId}`, // 댓글 수정
     DELETE: (commentId: number) => `${API_BASE_URL}/api/comments/${commentId}`, // 댓글 삭제
+  },
+  WISHLIST: {
+    POST: (performId: string) => `${API_BASE_URL}/api/wishlist/${performId}`,
+    GET: {
+      ALL: `${API_BASE_URL}/api/wishlist`,
+      GENRE: `${API_BASE_URL}/api/wishlist/genre`,
+    },
+    DELETE: (performId: string) => `${API_BASE_URL}/api/wishlist/${performId}`,
   },
   PROFILES: {
     GET: {
