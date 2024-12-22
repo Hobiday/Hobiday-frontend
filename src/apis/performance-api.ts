@@ -1,9 +1,11 @@
 import {
   AllPerformancesResponse,
+  FacilityInfoResponse,
   PerformanceDetailAllResponse,
   PerformancesByGenreResponse,
   RecommendedSearchWordsResponse,
   ServerAllPerformances,
+  ServerFacilityInfo,
   ServerRecommendedSearchWords,
 } from "@/types/performance/server";
 import { handleApiError } from "@/utils/api-error/error-handler";
@@ -91,6 +93,19 @@ export const fetchRecommendedPerformances = async (): Promise<ServerRecommendedS
 export const fetchPerformancesByKeyword = async (keyword: string): Promise<ServerAllPerformances[]> => {
   try {
     const response = await apiClient.get<{ result: ServerAllPerformances[] }>(ENDPOINTS.PERFORMANCES.SEARCH(keyword));
+    return response.data.result;
+  } catch (error) {
+    throw new Error(handleApiError(error));
+  }
+};
+
+/**
+ * @param facilityId - 시설 ID
+ * @returns 시설 상세 정보
+ */
+export const fetchFacilityInfo = async (facilityId: string): Promise<ServerFacilityInfo> => {
+  try {
+    const response = await apiClient.get<FacilityInfoResponse>(ENDPOINTS.PERFORMANCES.DETAIL.FACILITY(facilityId));
     return response.data.result;
   } catch (error) {
     throw new Error(handleApiError(error));

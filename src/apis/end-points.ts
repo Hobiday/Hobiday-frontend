@@ -10,7 +10,7 @@ export const ENDPOINTS = {
     DETAIL: {
       BY_ID: (performId: string) => `${API_BASE_URL}/api/performs/detail/${performId}`,
       BY_ID_ALL: (performId: string) => `${API_BASE_URL}/api/performs/all/${performId}`,
-      FACILITY: (facilityId: string) => `${API_BASE_URL}/api/performs/detail/facility/${facilityId}`,
+      FACILITY: (facilityId: string) => `${API_BASE_URL}/api/performs/facility/${facilityId}`,
     },
   },
   USERS: {

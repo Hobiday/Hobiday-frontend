@@ -2,7 +2,7 @@
 
 import Gap from "@/components/commons/gap";
 import LoadingSpinner from "@/components/commons/spinner";
-import { usePerformanceDetailAll } from "@/hooks";
+import { useFacilityInfo, usePerformanceDetailAll } from "@/hooks";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import BackGroundPoster from "./background-poster";
@@ -14,16 +14,24 @@ export default function PerformanceDetail() {
   const performanceId = params?.performanceId?.toString();
   const { data, isLoading, isError } = usePerformanceDetailAll(performanceId);
 
-  if (isLoading) {
+  const facilityId = data?.facilityId;
+  console.log(facilityId);
+  const {
+    data: facilityInfo,
+    isLoading: isFacilityLoading,
+    isError: isFacilityError,
+  } = useFacilityInfo(facilityId || "");
+
+  if (isLoading || isFacilityLoading) {
     return (
-      <div className="flex justify-center items-center h-[300px]">
+      <div className="flex justify-center items-center h-content">
         <LoadingSpinner size={40} />
       </div>
     );
   }
 
-  if (isError || !data) {
-    return <div className="flex justify-center items-center h-[300px]">데이터를 불러오는데 문제가 생겼습니다...</div>;
+  if (isError || !data || isFacilityError || !facilityInfo) {
+    return <div className="flex justify-center items-center h-content">데이터를 불러오는데 문제가 생겼습니다...</div>;
   }
 
   const PERFORMANCE_DEFAULT_INFO = [
@@ -37,10 +45,11 @@ export default function PerformanceDetail() {
     {
       title: "공연 위치",
       children: (
-        <p className="text-sm text-textColor">
-          {data.location.area?.trim() || "지역 정보가 없습니다."} <br />
-          {data.location.place?.trim() || "장소 정보가 없습니다."}
-        </p>
+        <div className="text-sm text-textColor">
+          <p>공연장 정보</p>
+          <p>{facilityInfo.facilityName || "시설 이름 정보가 없습니다."}</p>
+          <p>주소: {facilityInfo.address || "주소 정보가 없습니다."}</p>
+        </div>
       ),
     },
   ];
@@ -55,7 +64,7 @@ export default function PerformanceDetail() {
         performance={{
           genre: data.genre,
           name: data.name,
-          location: data.location.place,
+          location: facilityInfo.facilityName || data.location.place,
           dateStart: data.date.start,
           dateEnd: data.date.end,
           likeCounts: data.likeCounts,

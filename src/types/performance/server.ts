@@ -86,3 +86,17 @@ export interface ServerRecommendedSearchWords {
 }
 
 export type RecommendedSearchWordsResponse = BaseResponse<ServerRecommendedSearchWords[]>;
+
+// 공연 시설 정보
+export interface ServerFacilityInfo {
+  facilityId: string;
+  facilityName: string;
+  telephone: string;
+  address: string;
+  latitude: string;
+  longitude: string;
+  cafe: boolean;
+  parkingLot: boolean;
+}
+
+export type FacilityInfoResponse = BaseResponse<ServerFacilityInfo>;

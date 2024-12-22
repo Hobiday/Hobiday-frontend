@@ -6,6 +6,7 @@ export const PERFORMANCE_KEYS = {
   detailAll: (id: string) => [...PERFORMANCE_KEYS.all, "detail-all", id] as const,
   search: (keyword: string) => ["search", keyword],
   recommendSearchWord: ["recommandSearch"] as const,
+  facility: ["facility"] as const,
 };
 
 export const USER_KEYS = {

@@ -10,6 +10,7 @@ import { PerformancesByGenreQueryProps } from "@/types/performance/performance-q
 import { useQuery } from "@tanstack/react-query";
 import {
   fetchAllPerformances,
+  fetchFacilityInfo,
   fetchPerformanceById,
   fetchPerformanceDetailAll,
   fetchPerformancesByGenre,
@@ -80,6 +81,7 @@ export const useSearchPerformances = (keyword: string) => {
   });
 };
 
+// 추천 검색어
 export const useRecommendedPerformances = () => {
   return useQuery<ClientRecommendedSearchWords[], Error>({
     queryKey: PERFORMANCE_KEYS.recommendSearchWord,
@@ -87,5 +89,14 @@ export const useRecommendedPerformances = () => {
       const ServerData = await fetchRecommendedPerformances();
       return RecommendedSearchWordsAdapter(ServerData);
     },
+  });
+};
+
+// 공연 시설 정보
+export const useFacilityInfo = (facilityId: string) => {
+  return useQuery({
+    queryKey: [PERFORMANCE_KEYS.facility, facilityId],
+    queryFn: () => fetchFacilityInfo(facilityId),
+    enabled: !!facilityId,
   });
 };
