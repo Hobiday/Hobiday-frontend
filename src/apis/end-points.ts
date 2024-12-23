@@ -32,7 +32,7 @@ export const ENDPOINTS = {
     LIKE: (feedId: number) => `${API_BASE_URL}/api/likes/${feedId}`, // 피드 좋아요
   },
   COMMENT: {
-    GET: (feedId: string) => `${API_BASE_URL}/api/comments/${feedId}`, // 댓글 조회
+    GET: (feedId: number) => `${API_BASE_URL}/api/comments/${feedId}`, // 댓글 조회
     CREATE: (feedId: number) => `${API_BASE_URL}/api/comments/${feedId}`, // 댓글 등록
     UPDATE: (commentId: number) => `${API_BASE_URL}/api/comments/${commentId}`, // 댓글 수정
     DELETE: (commentId: number) => `${API_BASE_URL}/api/comments/${commentId}`, // 댓글 삭제

@@ -21,3 +21,7 @@ export const WISHLIST_KEYS = {
   all: ["wishlist"] as const,
   byGenre: (genre: string) => [...WISHLIST_KEYS.all, "genre", genre] as const,
 };
+
+export const COMMENT_KEYS = {
+  all: ["comment"] as const,
+};
