@@ -10,7 +10,9 @@ export default function SlideWelcome() {
       </h1>
       <p className="text-lg font-medium mt-4">3초 가입으로 바로 시작해보세요.</p>
       <Gap vertical size={150} />
-      <Logo />
+      <div className="flex justify-center items-center w-full">
+        <Logo />
+      </div>
     </div>
   );
 }

@@ -8,7 +8,7 @@ import { SlideCategory, SlideFeed, SlideWelcome, SlideWishlist } from "./slides"
 
 export default function OnboardingSwiper() {
   return (
-    <section className="relative w-full h-full z-10 mt-6">
+    <section className="relative w-full h-full mt-[19px] z-10">
       <Swiper
         modules={[Pagination]}
         pagination={{ clickable: true }}

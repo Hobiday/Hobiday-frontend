@@ -5,7 +5,7 @@ export default function SlideWishlist() {
         놓치고 싶지 않은 문화생활,
         <br /> 위시리스트에 담아보세요!
       </h2>
-      <p className="text-lg font-medium mt-4">
+      <p className="text-lg font-medium mt-[15px]">
         보고 싶은 공연, 영화, 전시 등을
         <br /> 언제든지 확인할 수 있습니다.
       </p>
