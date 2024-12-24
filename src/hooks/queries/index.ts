@@ -16,6 +16,7 @@ export const USER_KEYS = {
 export const PROFILE_KEYS = {
   PROFILE_REGISTRATION: "profile-registration",
   myProfile: "myProfile",
+  updateMyProfile: ["updateMyProfile"] as const,
 };
 
 export const WISHLIST_KEYS = {
@@ -31,4 +32,9 @@ export const FEED_KEYS = {
   all: ["feed"] as const,
   byProfileId: (profileId: number) => [...FEED_KEYS.all, "profileId", profileId] as const,
   byPerformId: (performId: string) => [...FEED_KEYS.all, "performId", performId] as const,
+};
+
+export const FOLLOW_KEYS = {
+  followingList: ["followingList"] as const,
+  followerList: ["followerList"] as const,
 };
