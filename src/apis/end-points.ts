@@ -23,6 +23,7 @@ export const ENDPOINTS = {
       LATEST: `${API_BASE_URL}/api/feeds`,
       POPULAR: `${API_BASE_URL}/api/feeds/likes`,
       BY_ID: (profileId: number) => `${API_BASE_URL}/api/profiles/${profileId}/feeds`,
+      BY_PERFORM_ID: (performId: string) => `${API_BASE_URL}/api/performs/feeds/${performId}`, // 공연별 피드 조회
       DETAIL: (feedId: number) => `${API_BASE_URL}/api/profiles/feeds/${feedId}`, // 피드 상세 페이지
     },
     CREATE: `${API_BASE_URL}/api/feeds`, // 피드 등록
