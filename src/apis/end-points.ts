@@ -2,7 +2,7 @@ import { API_BASE_URL } from "./index";
 
 export const ENDPOINTS = {
   PERFORMANCES: {
-    GET_ALL: `${API_BASE_URL}/api/performs`,
+    GET_ALL: `${API_BASE_URL}/api/performs/deadline`,
     GENRE: `${API_BASE_URL}/api/performs/genre`,
     GET_BY_ID: (performId: string) => `${API_BASE_URL}/api/performs/${performId}`,
     SEARCH: (keyword: string) => `/api/performs/search?keyword=${keyword}`,
