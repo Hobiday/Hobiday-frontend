@@ -62,8 +62,8 @@ export default function MyProfilePage() {
 
   if (!user) {
     return (
-      <div>
-        <LoadingSpinner />
+      <div className="flex justify-center items-center h-[300px]">
+        <LoadingSpinner size={60} />
       </div>
     );
   }
