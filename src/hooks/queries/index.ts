@@ -31,6 +31,8 @@ export const COMMENT_KEYS = {
 
 export const FEED_KEYS = {
   all: ["feed"] as const,
+  latest: () => [...FEED_KEYS.all, "latest"] as const,
+  popular: () => [...FEED_KEYS.all, "popular"] as const,
   byProfileId: (profileId: number) => [...FEED_KEYS.all, "profileId", profileId] as const,
   byPerformId: (performId: string) => [...FEED_KEYS.all, "performId", performId] as const,
 };
