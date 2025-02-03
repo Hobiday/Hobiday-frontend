@@ -2,6 +2,7 @@ import { AllFeedsResponse } from "@/types/feed/feed.type";
 import { handleApiError } from "@/utils/api-error/error-handler";
 import { ENDPOINTS } from "./end-points";
 import { apiClient } from "./index";
+import { UploadFeed } from "@/types/feed";
 
 // 최신순 정렬
 export const fetchAllFeedByLatest = async () => {
@@ -60,32 +61,24 @@ export const fetchFeedById = async (feedId: number) => {
 };
 
 /**
- * @param data - 피드 데이터
+ * @param params.data - 피드 데이터
  * @returns 피드 작성
  */
-export const createFeed = async (data: FormData) => {
+export const createFeed = async (params: { data: UploadFeed }) => {
   try {
-    const response = await apiClient.post(ENDPOINTS.FEED.CREATE, data);
+    const response = await apiClient.post(ENDPOINTS.FEED.CREATE, params.data);
     return response.data;
   } catch (error) {
     throw new Error(handleApiError(error));
   }
 };
 
-interface UpdateFeedData {
-  content: string;
-  topic: string;
-  fileUrls: string[];
-  hashTags: string[];
-  performId: string;
-}
-
 /**
  * @param feedId - 피드 ID
  * @param data - 피드 데이터
  * @returns 피드 수정
  */
-export const updateFeed = async (params: { feedId: number; data: UpdateFeedData }) => {
+export const updateFeed = async (params: { feedId: number; data: UploadFeed }) => {
   try {
     const response = await apiClient.patch(ENDPOINTS.FEED.UPDATE(params.feedId), params.data);
     return response.data;
