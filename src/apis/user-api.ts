@@ -15,15 +15,18 @@ export const getCheckNickname = async (nickname: string): Promise<CheckNicknameR
 
 // 내 프로필 조회
 export const getMyProfile = async () => {
-  const response = await apiClient.get(ENDPOINTS.PROFILES.PROFILE);
-  return response.data.result;
+  try {
+    const response = await apiClient.get(ENDPOINTS.PROFILES.PROFILE);
+    return response.data.result;
+  } catch (error) {
+    throw new Error(handleApiError(error));
+  }
 };
 
 // id로 프로필 조회
 export const getProfileById = async (profileId: number) => {
   try {
     const response = await apiClient.get(ENDPOINTS.PROFILES.GET.BY_ID(profileId));
-    console.log(response);
     return response.data.result;
   } catch (error) {
     throw new Error(handleApiError(error));
@@ -54,15 +57,23 @@ export const getFollowerById = async (profileId: number): Promise<FollowProfile[
 
 // 로그아웃
 export const userLogout = async () => {
-  const response = await apiClient.delete(ENDPOINTS.USERS.LOGOUT);
-  return response;
+  try {
+    const response = await apiClient.delete(ENDPOINTS.USERS.LOGOUT);
+    return response;
+  } catch (error) {
+    throw new Error(handleApiError(error));
+  }
 };
 
 // 프로필 수정
 export const updateMyProfile = async (data: { [key: string]: string | string[] }) => {
-  const response = await apiClient.put(ENDPOINTS.PROFILES.UPDATE, data);
-  console.log("updateAPI", response.data);
-  return response.data;
+  try {
+    const response = await apiClient.put(ENDPOINTS.PROFILES.UPDATE, data);
+    console.log("updateAPI", response.data);
+    return response.data;
+  } catch (error) {
+    throw new Error(handleApiError(error));
+  }
 };
 
 // 팔로우 토글
