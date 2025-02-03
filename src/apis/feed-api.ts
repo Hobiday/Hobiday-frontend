@@ -3,6 +3,7 @@ import { handleApiError } from "@/utils/api-error/error-handler";
 import { ENDPOINTS } from "./end-points";
 import { apiClient } from "./index";
 import { UploadFeed } from "@/types/feed";
+import axios from "axios";
 
 // 최신순 정렬
 export const fetchAllFeedByLatest = async () => {
@@ -104,10 +105,26 @@ export const deleteFeed = async (feedId: number) => {
  * @param data - 이미지 데이터
  * @returns 이미지 서버 URL
  */
-export const saveImageFile = async (data: FormData) => {
+export const saveImageFile = async (data: { prefix: string; fileName: string }) => {
   try {
     const response = await apiClient.post(ENDPOINTS.FEED.SAVE_IMAGE, data);
     return response.data;
+  } catch (error) {
+    throw new Error(handleApiError(error));
+  }
+};
+
+/**
+ * Presigned URL을 이용해 파일을 업로드하는 함수
+ * @param url - Presigned URL
+ * @param file - 업로드할 파일
+ */ export const uploadFileToPresignedUrl = async (url: string, file: File) => {
+  try {
+    await axios.put(url, file, {
+      headers: {
+        "Content-Type": file.type,
+      },
+    });
   } catch (error) {
     throw new Error(handleApiError(error));
   }
