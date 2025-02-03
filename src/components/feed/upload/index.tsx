@@ -10,7 +10,7 @@ import TextInput from "@/app/(main)/feed/upload/_component/text-input";
 import ArrowBack from "@/assets/icons/arrow-back.svg";
 import Icon from "@/components/commons/icons";
 import Toast from "@/components/commons/toast";
-import useFeedRegistration from "@/hooks/feed/use-feed-upload";
+import useFeedRegistrationMutation from "@/hooks/feed/use-feed-upload";
 import usePresignedURL from "@/hooks/feed/use-image-upload";
 import cn from "@/lib/tailwind-cn";
 import useUploadTextStore from "@/stores/use-upload-text.store";
@@ -34,7 +34,7 @@ export default function UploadPage() {
     setSelectedPerformance,
   } = useUploadTextStore();
   const { uploadImages, isLoading: isUploading } = usePresignedURL();
-  const { registerFeed, isLoading: isRegistering } = useFeedRegistration();
+  const uploadFeedMutation = useFeedRegistrationMutation();
   const [toast, setToast] = useState<{ type: "Complete" | "Error"; message: string } | null>(null);
 
   const searchParams = useSearchParams();
@@ -106,7 +106,7 @@ export default function UploadPage() {
         setToast({ type: "Complete", message: "피드 업로드가 완료되었습니다." });
       } else {
         // 피드 등록
-        await registerFeed(requestData);
+        await uploadFeedMutation.mutateAsync({ data: requestData });
         setToast({ type: "Complete", message: "피드 업로드가 완료되었습니다." });
       }
       // 초기화
