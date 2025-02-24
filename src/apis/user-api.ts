@@ -1,5 +1,6 @@
 import { CheckNicknameResponse, FollowProfile } from "@/types/user";
 import { handleApiError } from "@/utils/api-error/error-handler";
+import { removeAuthTokens } from "@/utils/remove-auth-token";
 import { apiClient } from ".";
 import { ENDPOINTS } from "./end-points";
 
@@ -50,12 +51,6 @@ export const getFollowerById = async (profileId: number): Promise<FollowProfile[
   } catch (error) {
     throw new Error(handleApiError(error));
   }
-};
-
-// access token/cookie 제거
-export const removeAuthTokens = () => {
-  localStorage.removeItem("accessToken");
-  document.cookie = "refreshToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
 };
 
 // 로그아웃
