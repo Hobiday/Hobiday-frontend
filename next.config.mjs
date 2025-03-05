@@ -42,6 +42,30 @@ const nextConfig = {
       },
     },
   },
+  async headers() {
+    return [
+      {
+        // 정적 이미지에 대한 캐시 설정
+        source: "/img/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      {
+        // API 응답에 대한 캐시 설정
+        source: "/api/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=3600, s-maxage=60",
+          },
+        ],
+      },
+    ];
+  },
   async rewrites() {
     return [
       {
