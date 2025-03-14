@@ -78,7 +78,6 @@ export const userSignOut = async (memberId: number) => {
 // 프로필 수정
 export const updateMyProfile = async (data: { [key: string]: string | string[] }) => {
   const response = await apiClient.put(ENDPOINTS.PROFILES.UPDATE, data);
-  console.log("updateAPI", response.data);
   return response.data;
 };
 
