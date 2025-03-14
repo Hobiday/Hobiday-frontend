@@ -1,4 +1,4 @@
-import { useUserStore } from "@/stores/useUserStore";
+import { useUserStore } from "@/stores";
 
 // access token/cookie 제거
 export const removeAuthTokens = () => {

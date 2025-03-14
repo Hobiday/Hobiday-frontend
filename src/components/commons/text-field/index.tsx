@@ -31,6 +31,7 @@ TextField.Input = forwardRef<
   const labelId = `textField-label-${uniqueId}`;
   const helperTextId = `textField-helperText-${uniqueId}`;
 
+  console.log("textfiled에 전해지는 값은", value);
   const inputStyle = {
     default: "border-gray-200 focus:ring-gray-500 focus:border-gray-500",
     success: "border-primary focus:ring-blue-500 focus:border-blue-500",
@@ -40,8 +41,9 @@ TextField.Input = forwardRef<
   return (
     <div className="relative w-full">
       <input
-        ref={ref}
         id={id}
+        ref={ref}
+        value={value ?? ""}
         maxLength={maxLength}
         className={cn("w-full border-b-2 px-1 py-2 font-semibold focus:outline-none", inputStyle[status], className)}
         aria-labelledby={labelId} // label과 연결

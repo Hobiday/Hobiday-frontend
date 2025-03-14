@@ -2,14 +2,16 @@
 
 import KakaoLogo from "@/assets/icons/kakao-logo.svg";
 import Icon from "@/components/commons/icons";
+import { useOnboardingStore } from "@/stores";
+import { removeAuthTokens } from "@/utils/remove-auth-token";
 import { useEffect } from "react";
-import { removeAuthTokens } from "./../../../utils/remove-auth-token";
 
 const redirectUri = `${process.env.NEXT_PUBLIC_SERVER_URL}/oauth2/authorization/kakao`;
 
 export default function LoginButton() {
-  // 기존 남아있는 토큰 및 유저 정보 삭제
+  // 기존 남아있는 토큰 및 유저 정보, 이전에 사용했던 온보딩 정보 삭제
   useEffect(() => {
+    useOnboardingStore.getState().resetOnboarding();
     removeAuthTokens();
   }, []);
 
