@@ -31,7 +31,6 @@ TextField.Input = forwardRef<
   const labelId = `textField-label-${uniqueId}`;
   const helperTextId = `textField-helperText-${uniqueId}`;
 
-  console.log("textfiled에 전해지는 값은", value);
   const inputStyle = {
     default: "border-gray-200 focus:ring-gray-500 focus:border-gray-500",
     success: "border-primary focus:ring-blue-500 focus:border-blue-500",

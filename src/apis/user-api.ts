@@ -1,5 +1,5 @@
 import { CheckNicknameResponse, FollowProfile } from "@/types/user";
-import { handleApiError } from "@/utils/api-error/error-handler";
+import { handleApiError } from "@/utils/api-error";
 import { removeAuthTokens } from "@/utils/remove-auth-token";
 import { apiClient } from ".";
 import { ENDPOINTS } from "./end-points";

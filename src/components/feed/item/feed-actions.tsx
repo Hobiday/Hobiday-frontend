@@ -1,7 +1,5 @@
-import CommentGradient from "@/utils/comment-gradient";
+import { CommentGradient, LikeGradientDefault, LikeGradientPressed } from "@/styles/gradients";
 import { getCookie } from "@/utils/get-refresh-cookie";
-import LikeGradientDefault from "@/utils/like-gradient-default";
-import LikeGradientPressed from "@/utils/like-gradient-pressed";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";

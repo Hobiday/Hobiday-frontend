@@ -9,7 +9,7 @@ import LoadingSpinner from "@/components/commons/spinner";
 import Toast from "@/components/commons/toast";
 import { SectionLayout } from "@/components/layout";
 import { useSearchPerformances } from "@/hooks";
-import { useSearchStore } from "@/stores/useSearchStore";
+import { useSearchStore } from "@/stores/use-search.store";
 import { useState } from "react";
 
 export default function SearchResult() {

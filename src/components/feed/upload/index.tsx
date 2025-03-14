@@ -13,7 +13,7 @@ import Toast from "@/components/commons/toast";
 import useFeedRegistration from "@/hooks/feed/use-feed-upload";
 import usePresignedURL from "@/hooks/feed/use-image-upload";
 import cn from "@/lib/tailwind-cn";
-import useUploadTextStore from "@/stores/useUploadTextStore";
+import useUploadTextStore from "@/stores/use-upload-text.store";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 

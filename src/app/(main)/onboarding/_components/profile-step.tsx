@@ -16,10 +16,6 @@ export default function ProfileStep({ onNext }: ProfileStepProps) {
   const { nickname, setNickname } = useOnboardingStore();
   const debouncedNickname = useDebounce(nickname, 600);
 
-  console.log("리렌더링");
-
-  console.log(nickname);
-
   const [status, setStatus] = useState<"default" | "success" | "error">("default");
   const [message, setMessage] = useState("");
 
