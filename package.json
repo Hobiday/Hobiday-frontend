@@ -12,6 +12,7 @@
     "svgr": "svgr --typescript --out-dir src/assets/svgr-icons src/assets/icons"
   },
   "dependencies": {
+    "@sentry/nextjs": "^9.5.0",
     "@tailwindcss/line-clamp": "^0.4.4",
     "@tanstack/react-query": "^5.61.0",
     "axios": "^1.7.7",
