@@ -1,5 +1,5 @@
 import { AllFeedsResponse } from "@/types/feed/feed.type";
-import { handleApiError } from "@/utils/api-error/error-handler";
+import { handleApiError } from "@/utils/api-error";
 import { ENDPOINTS } from "./end-points";
 import { apiClient } from "./index";
 

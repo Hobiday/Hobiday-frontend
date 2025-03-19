@@ -1,5 +1,5 @@
 import { CheckNicknameResponse, FollowProfile } from "@/types/user";
-import { handleApiError } from "@/utils/api-error/error-handler";
+import { handleApiError } from "@/utils/api-error";
 import { removeAuthTokens } from "@/utils/remove-auth-token";
 import { apiClient } from ".";
 import { ENDPOINTS } from "./end-points";
@@ -78,7 +78,6 @@ export const userSignOut = async (memberId: number) => {
 // 프로필 수정
 export const updateMyProfile = async (data: { [key: string]: string | string[] }) => {
   const response = await apiClient.put(ENDPOINTS.PROFILES.UPDATE, data);
-  console.log("updateAPI", response.data);
   return response.data;
 };
 

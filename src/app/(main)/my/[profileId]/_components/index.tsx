@@ -3,7 +3,7 @@
 import LoadingSpinner from "@/components/commons/spinner";
 import { useAllFeedsByProfileIdQuery } from "@/hooks/feed/use-feed-query";
 import { useFollowingList, useFollowToggleMutation, useGetProfileById } from "@/hooks/user/use-profile-update";
-import { useUserStore } from "@/stores/useUserStore";
+import { useUserStore } from "@/stores";
 import { FeedThumbnail } from "@/types/feed";
 import { useEffect, useState } from "react";
 import ProfileFeed from "../../_components/profile-feed";
