@@ -41,7 +41,15 @@ export default function PerformanceDetail() {
     {
       title: "공연 상세내용",
       children: (
-        <Image src={data.storyImageUrl} alt={data.name} width={380} height={450} priority fetchPriority="high" />
+        <Image
+          src={data.storyImageUrl}
+          alt={data.name}
+          width={380}
+          height={450}
+          priority
+          loading="eager"
+          fetchPriority="high"
+        />
       ),
     },
     { title: "공연 출연진", content: data.cast, placeholder: "공연자 정보가 없습니다." },
