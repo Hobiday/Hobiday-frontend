@@ -118,7 +118,8 @@ export const saveImageFile = async (data: { prefix: string; fileName: string }) 
  * Presigned URL을 이용해 파일을 업로드하는 함수
  * @param url - Presigned URL
  * @param file - 업로드할 파일
- */ export const uploadFileToPresignedUrl = async (url: string, file: File) => {
+ */
+export const uploadFileToPresignedUrl = async (url: string, file: File) => {
   try {
     await axios.put(url, file, {
       headers: {
