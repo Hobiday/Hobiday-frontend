@@ -1,0 +1,9 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+pnpm test || {
+  echo "❌ E2E 테스트에 실패하여, push 작업이 취소되었어요."
+  exit 1
+}
+
+echo "✅ 모든 테스트를 통과하여 정상적으로 push 작업이 이루어졌어요."
