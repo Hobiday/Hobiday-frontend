@@ -1,4 +1,7 @@
-import { CommentGradient, LikeGradientDefault, LikeGradientPressed } from "@/styles/gradients";
+import CommentGradationIcon from "@/assets/svgr-icons/CommentGradation";
+import HeartGradationIcon from "@/assets/svgr-icons/HeartGradation";
+import Icon from "@/components/commons/icons";
+import { LikeGradientDefault } from "@/styles/gradients";
 import { getCookie } from "@/utils/get-refresh-cookie";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -42,16 +45,26 @@ export default function FeedActions({ feedId, likeCount, liked, commentCount }: 
 
   return (
     <div className="flex items-center mx-4 pb-3">
-      <div className="flex items-center space-x-1 cursor-pointer" onClick={handleLikeToggle}>
-        {isLiked ? <LikeGradientPressed /> : <LikeGradientDefault />}
-        <div className="font-medium text-gray-500">{likes}</div>
+      <div className="flex items-center gap-[2px] cursor-pointer" onClick={handleLikeToggle}>
+        {isLiked ? (
+          <Icon size={24}>
+            <HeartGradationIcon />
+          </Icon>
+        ) : (
+          <Icon size={24}>
+            <LikeGradientDefault />
+          </Icon>
+        )}
+        <div className="font-medium text-gray-500 min-w-3 text-center">{likes}</div>
       </div>
       <div
-        className="flex items-center ml-4 space-x-1 cursor-pointer"
+        className="flex items-center ml-4 gap-[2px] cursor-pointer"
         onClick={() => router.push(`/feed/comments?feedId=${feedId}`)}
       >
-        <CommentGradient />
-        <div className="font-medium text-gray-500">{commentCount}</div>
+        <Icon size={24}>
+          <CommentGradationIcon />
+        </Icon>
+        <div className="font-medium text-gray-500 min-w-3 text-center">{commentCount}</div>
       </div>
     </div>
   );
