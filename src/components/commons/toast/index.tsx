@@ -5,7 +5,6 @@ import ToastTrue from "@/assets/icons/toast-true.svg";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect } from "react";
 import ReactDOM from "react-dom";
-
 interface ToastProps {
   type: "Complete" | "Error";
   message: string;
