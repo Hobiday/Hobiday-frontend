@@ -109,8 +109,8 @@ importers:
         specifier: ^0.11.1
         version: 0.11.4(eslint@9.22.0(jiti@1.21.7))(typescript@5.8.2)
       husky:
-        specifier: ^9.1.7
-        version: 9.1.7
+        specifier: ^8.0.0
+        version: 8.0.3
       postcss:
         specifier: ^8.4.49
         version: 8.5.3
@@ -3405,9 +3405,9 @@ packages:
     resolution: {integrity: sha512-dFcAjpTQFgoLMzC2VwU+C/CbS7uRL0lWmxDITmqm7C+7F0Odmj6s9l6alZc6AELXhrnggM2CeWSXHGOdX2YtwA==}
     engines: {node: '>= 6'}
 
-  husky@9.1.7:
-    resolution: {integrity: sha512-5gs5ytaNjBrh5Ow3zrvdUUY+0VxIuWVL4i9irt6friV+BqdCfmV11CQTWMiBYWHbXhco+J1kHfTOUkePhCDvMA==}
-    engines: {node: '>=18'}
+  husky@8.0.3:
+    resolution: {integrity: sha512-+dQSyqPh4x1hlO1swXBiNb2HzTDN1I2IGLQx1GrBuiqFJfoMrnZWwVmatvSiO+Iz8fBUnf+lekwNo4c2LlXItg==}
+    engines: {node: '>=14'}
     hasBin: true
 
   icss-utils@5.1.0:
@@ -9011,7 +9011,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  husky@9.1.7: {}
+  husky@8.0.3: {}
 
   icss-utils@5.1.0(postcss@8.5.3):
     dependencies:

@@ -60,9 +60,21 @@ export const getFollowerById = async (profileId: number): Promise<FollowProfile[
 export const userLogout = async () => {
   try {
     const response = await apiClient.delete(ENDPOINTS.USERS.LOGOUT);
-    return response;
+    removeAuthTokens();
+    return response.data;
   } catch (error) {
-    throw new Error(handleApiError(error));
+    throw new Error("로그아웃에 실패했습니다.");
+  }
+};
+
+// 회원탈퇴
+export const userSignOut = async (memberId: number) => {
+  try {
+    const { data } = await apiClient.delete(ENDPOINTS.USERS.SIGNOUT(memberId));
+    removeAuthTokens();
+    return data;
+  } catch (error) {
+    throw new Error("회원탈퇴에 실패했습니다.");
   }
 };
 
