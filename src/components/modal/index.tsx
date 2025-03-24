@@ -2,7 +2,7 @@
 
 import { useModal } from "@/contexts";
 import { AnimatePresence, motion } from "framer-motion";
-import { PropsWithChildren, useEffect, useState } from "react";
+import { PropsWithChildren, useEffect } from "react";
 import ReactDOM from "react-dom";
 
 type ModalProps = PropsWithChildren & {
@@ -11,12 +11,11 @@ type ModalProps = PropsWithChildren & {
 
 export default function Modal({ children, onClose }: ModalProps) {
   const { isOpen, close } = useModal();
-  const [portalRoot, setPortalRoot] = useState<HTMLElement | null>(null);
 
-  useEffect(() => {
-    const el = document.getElementById("portal-root");
-    setPortalRoot(el);
-  }, []);
+  const portalRoot = document.getElementById("portal-root");
+  if (!portalRoot) {
+    return null;
+  }
 
   // ESC 키로 모달
   useEffect(() => {
@@ -39,8 +38,6 @@ export default function Modal({ children, onClose }: ModalProps) {
       close();
     }
   }
-
-  if (!portalRoot) return null;
 
   return ReactDOM.createPortal(
     <AnimatePresence>
