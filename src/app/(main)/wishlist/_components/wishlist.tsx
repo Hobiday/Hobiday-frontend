@@ -1,7 +1,7 @@
 "use client";
 
 import Location from "@/assets/icons/location.svg";
-import LikeGradientDefault from "@/assets/svgr-icons/like-gradient-default";
+import LikeGradientDefault from "@/assets/svgr-icons/LikeGradientDefault";
 import Card from "@/components/card";
 import Chip from "@/components/commons/chip";
 import Icon from "@/components/commons/icons";
