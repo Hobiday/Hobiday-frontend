@@ -66,7 +66,7 @@ export default function PerformanceList() {
 
   if (isError) {
     setToast({ type: "Error", message: "화면을 불러올 수 없습니다. 다시 시도해 주세요." });
-    return <div className="flex justify-center items-center h-[300px]">데이터를 불러오는 중 오류가 발생했습니다.</div>;
+    return <div className="flex justify-center items-center h-[300px]">데이터를 불러오는 중 문제가 생겼습니다...</div>;
   }
 
   return (
@@ -82,12 +82,7 @@ export default function PerformanceList() {
       <SectionLayout className="flex flex-col py-4 gap-3">
         {performanceLists.map((performance) => (
           <Card key={performance.performanceId} href={`/performance/${performance.performanceId}`} className="w-full">
-            <Card.Image
-              src={performance.posterUrl}
-              alt={performance.performanceName}
-              width="w-[88px]"
-              height="h-[88px]"
-            />
+            <Card.Image src={performance.posterUrl} alt={performance.performanceName} size="sm" />
             <Card.Content>
               <Card.Category>
                 <Chip label={performance.genre} state="hashTag" />
