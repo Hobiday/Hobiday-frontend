@@ -1,5 +1,7 @@
 export const PERFORMANCE_KEYS = {
   all: ["performances"] as const,
+  infiniteList: (selectedTab: number, genre: string) =>
+    [...PERFORMANCE_KEYS.all, "infinite", selectedTab, genre] as const,
   byGenre: (genre: string, rowStart: string, rowEnd: string) =>
     [...PERFORMANCE_KEYS.all, "genre", genre, rowStart, rowEnd] as const,
   details: (id: string) => [...PERFORMANCE_KEYS.all, "details", id] as const,

@@ -51,4 +51,5 @@ node_modules/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
-tests/storage/*.json
+/tests/storage/*
+!/tests/storage/.gitkeep
