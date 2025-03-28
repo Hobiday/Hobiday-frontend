@@ -21,7 +21,8 @@ export function middleware(request: NextRequest) {
       return NextResponse.redirect(new URL("/", request.url));
     }
 
-    // // 프로필 등록 온보딩 페이지는 URL로 직접 접근 불가
+    // 프로필 등록 온보딩 페이지는 URL로 직접 접근 불가
+    // !!백엔드 수정 이후 복구!!
     // if (isOnboardingPage) {
     //   return NextResponse.redirect(new URL("/", request.url));
     // }

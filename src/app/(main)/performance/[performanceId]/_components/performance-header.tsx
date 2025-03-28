@@ -1,7 +1,7 @@
 import { CalendarMonth, Location } from "@/assets/svgr-icons";
 import FeedGradation from "@/assets/svgr-icons/FeedsGradation";
-import LikeGradientDefault from "@/assets/svgr-icons/like-gradient-default";
-import LikeGradientPressed from "@/assets/svgr-icons/like-gradient-pressed";
+import LikeGradientDefault from "@/assets/svgr-icons/LikeGradientDefault";
+import LikeGradientPressed from "@/assets/svgr-icons/LikeGradientPressed";
 import Chip from "@/components/commons/chip";
 import Gap from "@/components/commons/gap";
 import Icon from "@/components/commons/icons";
