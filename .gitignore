@@ -29,6 +29,7 @@ yarn-error.log*
 .env
 .env*.local
 .env*.production
+.env*.sentry-build-plugin
 
 # vercel
 .vercel
@@ -38,3 +39,17 @@ yarn-error.log*
 next-env.d.ts
 
 *storybook.log
+*playwright-report
+*test-results
+
+# Sentry Config File
+.env.sentry-build-plugin
+
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/tests/storage/*
+!/tests/storage/.gitkeep
