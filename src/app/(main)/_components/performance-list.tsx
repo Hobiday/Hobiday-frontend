@@ -74,13 +74,7 @@ export default function PerformanceList() {
 
   return (
     <>
-      <Tabs
-        categories={TAB_CATEGORY}
-        gap={12}
-        className="h-11 py-[6px]"
-        onTabClick={handleTabClick}
-        activeTab={selectedTab}
-      />
+      <Tabs categories={TAB_CATEGORY} gap={12} onTabClick={handleTabClick} activeTab={selectedTab} />
 
       {/* 탭 이동시 CLS 방지 */}
       <SectionLayout className="flex flex-col py-4 gap-3">
