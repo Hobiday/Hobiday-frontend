@@ -20,7 +20,6 @@ export default function CompleteStep() {
       { profileNickname: nickname, profileGenre: categories },
       {
         onSuccess: () => {
-          console.log("프로필 등록 성공");
           setIsRegistered("success");
           resetOnboarding();
         },

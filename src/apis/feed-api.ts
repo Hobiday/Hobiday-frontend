@@ -1,16 +1,14 @@
+import { UploadFeed } from "@/types/feed";
 import { AllFeedsResponse } from "@/types/feed/feed.type";
 import { handleApiError } from "@/utils/api-error";
+import axios from "axios";
 import { ENDPOINTS } from "./end-points";
 import { apiClient } from "./index";
-import { UploadFeed } from "@/types/feed";
-import axios from "axios";
 
 // 최신순 정렬
 export const fetchAllFeedByLatest = async () => {
   try {
     const response = await apiClient.get<AllFeedsResponse>(ENDPOINTS.FEED.GET.LATEST);
-    console.log(response.data);
-
     return response.data.result;
   } catch (error) {
     throw new Error(handleApiError(error));

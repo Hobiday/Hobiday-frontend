@@ -38,7 +38,6 @@ export const getProfileById = async (profileId: number) => {
 export const getFollowingById = async (profileId: number): Promise<FollowProfile[]> => {
   try {
     const response = await apiClient.get(ENDPOINTS.PROFILES.GET.FOLLOWING(profileId));
-    console.log("following: ", response.data.result);
     return response.data.result;
   } catch (error) {
     throw new Error(handleApiError(error));
@@ -49,7 +48,6 @@ export const getFollowingById = async (profileId: number): Promise<FollowProfile
 export const getFollowerById = async (profileId: number): Promise<FollowProfile[]> => {
   try {
     const response = await apiClient.get(ENDPOINTS.PROFILES.GET.FOLLOWERS(profileId));
-    console.log("follower: ", response.data.result);
     return response.data.result;
   } catch (error) {
     throw new Error(handleApiError(error));
@@ -82,7 +80,6 @@ export const userSignOut = async (memberId: number) => {
 export const updateMyProfile = async (data: { [key: string]: string | string[] }) => {
   try {
     const response = await apiClient.put(ENDPOINTS.PROFILES.UPDATE, data);
-    console.log("updateAPI", response.data);
     return response.data;
   } catch (error) {
     throw new Error(handleApiError(error));

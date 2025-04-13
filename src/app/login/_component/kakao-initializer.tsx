@@ -14,7 +14,6 @@ export default function KakaoInitializer() {
     function onLoadKakaoAPI() {
       if (!window.Kakao.isInitialized()) {
         window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_JS_API_KEY);
-        console.log("first Init!: ", window.Kakao.isInitialized());
       }
     }
     kakaoSDK.addEventListener("load", onLoadKakaoAPI);

@@ -1,6 +1,5 @@
 "use client";
 
-import { updateFeed } from "@/apis/feed-api";
 import { fetchPerformanceById } from "@/apis/performance-api";
 import AddInfo from "@/app/(main)/feed/upload/_component/add-info";
 import SelectCategory from "@/app/(main)/feed/upload/_component/category";
@@ -72,7 +71,6 @@ export default function UploadPage() {
   function handleAddHashTags(tags: string[]) {
     const addHashTags = Array.from(new Set([...hashTags, ...tags]));
     setHashTags(addHashTags);
-    console.log(hashTags);
   }
 
   function handleRemoveHashTag(tag: string) {
@@ -103,7 +101,6 @@ export default function UploadPage() {
       // 피드 수정
       if (feedId) {
         await updateFeedMutation.mutateAsync({ feedId, data: requestData });
-        console.log("data: ", requestData);
         setToast({ type: "Complete", message: "피드 업로드가 완료되었습니다." });
       } else {
         // 피드 등록
