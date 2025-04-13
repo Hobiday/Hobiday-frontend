@@ -6,7 +6,7 @@ export const PERFORMANCE_KEYS = {
     [...PERFORMANCE_KEYS.all, "genre", genre, rowStart, rowEnd] as const,
   details: (id: string) => [...PERFORMANCE_KEYS.all, "details", id] as const,
   detailAll: (id: string) => [...PERFORMANCE_KEYS.all, "detail-all", id] as const,
-  search: (keyword: string) => ["search", keyword],
+  search: (keyword: string) => ["performances", "search", keyword],
   recommendSearchWord: ["recommandSearch"] as const,
   facility: ["facility"] as const,
 };
@@ -36,7 +36,7 @@ export const FEED_KEYS = {
   latest: () => [...FEED_KEYS.all, "latest"] as const,
   popular: () => [...FEED_KEYS.all, "popular"] as const,
   byProfileId: (profileId: number) => [...FEED_KEYS.all, "profileId", profileId] as const,
-  byPerformId: (performId: string) => [...FEED_KEYS.all, "performId", performId] as const,
+  byPerformId: (performanceId: string) => [...FEED_KEYS.all, "performanceId", performanceId] as const,
 };
 
 export const FOLLOW_KEYS = {
