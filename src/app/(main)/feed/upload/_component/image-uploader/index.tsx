@@ -20,8 +20,6 @@ export default function ImageUploader() {
         return;
       }
       setPhotos((prevPhotos) => [...prevPhotos, ...selectedFiles]);
-      console.log(photos);
-      console.log(setPhotos);
     }
   }
 

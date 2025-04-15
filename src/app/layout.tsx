@@ -14,7 +14,7 @@ const pretendard = localFont({
 
 export const metadata: Metadata = {
   title: "Hobiday",
-  description: "Hobiday Project",
+  description: "문화생활을 기록하고 공유하는 맞춤형 아카이브 플랫폼 Hobiday",
   icons: {
     icon: "/img/logo-image.png",
   },

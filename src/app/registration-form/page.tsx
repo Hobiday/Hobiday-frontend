@@ -51,7 +51,6 @@ export default function RegistrationForm() {
           router.push("/login");
         });
     } else {
-      console.log("토큰 정보가 없습니다");
       router.push("/login");
     }
   }, [router]);

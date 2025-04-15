@@ -17,7 +17,7 @@ export default function FeedIdComponent({ feedId: feedId }: { feedId: number }) 
         const data = await fetchFeedById(feedId);
         setFeedData(data);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     };
 

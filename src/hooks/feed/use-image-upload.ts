@@ -1,7 +1,5 @@
 import { saveImageFile, uploadFileToPresignedUrl } from "@/apis/feed-api";
-import axios from "axios";
 import { useState } from "react";
-import { prefetchDNS } from "react-dom";
 
 interface PresignedURLResponse {
   presignedUrl: string;
@@ -43,9 +41,6 @@ const useImageUpload = (): UseImageUploadReturn => {
         };
 
         const data = await saveImageFile(imageData);
-
-        console.log("file.type:", file.type);
-        console.log("file.name", file.name);
         const { url: presignedUrl, filePath: fileUrl } = data;
 
         if (!presignedUrl) {

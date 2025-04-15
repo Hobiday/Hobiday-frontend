@@ -17,11 +17,9 @@ export default function LoginButton() {
 
   // 카카오 SDK 초기화 재확인
   useEffect(() => {
-    console.log("window.Kakao: ", window.Kakao);
     if (window.Kakao) {
       if (!window.Kakao.isInitialized()) {
         window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_JS_API_KEY);
-        console.log("after Init: ", window.Kakao.isInitialized());
       }
     }
   }, []);
